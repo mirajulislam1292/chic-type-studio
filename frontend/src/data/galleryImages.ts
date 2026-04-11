@@ -53,6 +53,7 @@ import img54 from "@/assets/gallery-extra-18.png";
 import img55 from "@/assets/gallery-extra-19.png";
 import img56 from "@/assets/gallery-extra-20.png";
 import img57 from "@/assets/gallery-extra-21.png";
+import img58 from "@/assets/gallery-extra-22.png";
 
 export type GalleryImage = {
   src: string;
@@ -111,4 +112,5 @@ export const galleryImages: GalleryImage[] = [
   { src: img55, alt: "Extra Photo 19" },
   { src: img56, alt: "Extra Photo 20" },
   { src: img57, alt: "Extra Photo 21" },
+  { src: img58, alt: "Art Gallery Photo" },
 ];

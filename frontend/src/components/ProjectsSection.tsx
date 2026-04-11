@@ -177,7 +177,7 @@ export function ProjectsSection() {
               {/* Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <motion.a 
-                  href="https://tagwraps.com" 
+                  href="https://tagwraps.vercel.app/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05, boxShadow: "0 10px 40px rgba(255, 119, 0, 0.3)" }}
