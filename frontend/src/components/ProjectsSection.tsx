@@ -193,7 +193,7 @@ export function ProjectsSection() {
                   whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-transparent border-2 border-border text-foreground rounded-full font-semibold hover:bg-card hover:border-primary/50 transition-all duration-300"
                 >
-                  White Paper of TagWraps
+                  Whitepaper of TagWraps
                   <Download className="h-4 w-4" />
                 </motion.a>
               </div>
