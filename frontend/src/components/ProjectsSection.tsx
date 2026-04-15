@@ -187,7 +187,7 @@ export function ProjectsSection() {
                   <span className="relative z-10 flex items-center gap-2">Visit TagWraps <ExternalLink className="h-4 w-4" /></span>
                 </motion.a>
                 <motion.a 
-                  href="/TagWraps Whitepaper.pdf"
+                  href="/TagWraps_Whitepaper.pdf"
                   download
                   whileHover={{ scale: 1.05, borderColor: "hsl(var(--primary))" }}
                   whileTap={{ scale: 0.95 }}
