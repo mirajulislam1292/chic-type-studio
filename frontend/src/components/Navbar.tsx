@@ -10,6 +10,7 @@ const navLinks = [
   { href: "#achievements", label: "Achievements" },
   { href: "#vision", label: "Vision" },
   { href: "#contact", label: "Contact" },
+  { href: "/whitepaper", label: "Whitepaper" },
 ];
 
 export function Navbar() {
@@ -59,12 +60,16 @@ export function Navbar() {
           <ul className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <button
-                  onClick={() => scrollToSection(link.href)}
-                  className="text-muted-foreground hover:text-foreground transition-colors font-medium"
-                >
-                  {link.label}
-                </button>
+                {link.href.startsWith('/') ? (
+                  <Link to={link.href} className="text-muted-foreground hover:text-foreground transition-colors font-medium">{link.label}</Link>
+                ) : (
+                  <button
+                    onClick={() => scrollToSection(link.href)}
+                    className="text-muted-foreground hover:text-foreground transition-colors font-medium"
+                  >
+                    {link.label}
+                  </button>
+                )}
               </li>
             ))}
             <li>
@@ -118,12 +123,16 @@ export function Navbar() {
             <ul className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className="w-full text-left py-3 px-4 text-muted-foreground hover:text-foreground hover:bg-card transition-all rounded-lg font-medium"
-                  >
-                    {link.label}
-                  </button>
+                  {link.href.startsWith('/') ? (
+                    <Link to={link.href} onClick={() => setMobileMenuOpen(false)} className="w-full text-left py-3 px-4 text-muted-foreground hover:text-foreground hover:bg-card transition-all rounded-lg font-medium">{link.label}</Link>
+                  ) : (
+                    <button
+                      onClick={() => scrollToSection(link.href)}
+                      className="w-full text-left py-3 px-4 text-muted-foreground hover:text-foreground hover:bg-card transition-all rounded-lg font-medium"
+                    >
+                      {link.label}
+                    </button>
+                  )}
                 </li>
               ))}
               <li>

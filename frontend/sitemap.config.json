@@ -3,6 +3,7 @@
   "routes": [
     "/",
     "/gallery",
+  "/whitepaper",
     "/projects/hydrover",
     "/projects/truemedi",
     "/projects/a-eye",
