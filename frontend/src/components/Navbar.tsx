@@ -10,7 +10,6 @@ const navLinks = [
   { href: "#achievements", label: "Achievements" },
   { href: "#vision", label: "Vision" },
   { href: "#contact", label: "Contact" },
-  { href: "/whitepaper", label: "Whitepaper" },
 ];
 
 export function Navbar() {

@@ -125,7 +125,7 @@ He would sit alone late at night and stare at those photos the way you look at a
           <motion.div variants={sectionVariant}>
             <div className="label">CHAPTER III  .  MIDNIGHT</div>
             <h2 className="m-heading">Philosophy at Midnight</h2>
-            <div className="prose">There is a kind of night that belongs only to people who love from a distance. The world gets quiet and you sit there with her photo and your thoughts. The distance feels like the entire universe. He lived inside those nights for years; the thinking deepened into something beyond sadness, closer to philosophy—questions about love and how one person can change you without knowing it.</div>
+            <div className="prose">There is a kind of night that belongs only to people who love from a distance. The world gets quiet and you sit there with her photo and your thoughts. The distance feels like the entire universe. He lived inside those nights for years; the thinking deepened into something beyond sadness, closer to philosophy, questions about love and how one person can change you without knowing it.</div>
           </motion.div>
         </motion.section>
 
@@ -134,7 +134,7 @@ He would sit alone late at night and stare at those photos the way you look at a
             <div className="label">CHAPTER IV  .  CLASS SIX TO CLASS EIGHT</div>
             <h2 className="m-heading">Everything I Wrote Was For Her</h2>
 
-            <div className="prose">From Class VI onward he carried her in small ways—posts, captions, private lines written for nobody. She left in Class VIII; his world did not. Years passed. He continued to write toward her even when she had no idea.</div>
+            <div className="prose">From Class VI onward he carried her in small ways, posts, captions, private lines written for nobody. She left in Class VIII; his world did not. Years passed. He continued to write toward her even when she had no idea.</div>
           </motion.div>
         </motion.section>
 
@@ -142,7 +142,7 @@ He would sit alone late at night and stare at those photos the way you look at a
           <motion.div variants={sectionVariant}>
             <div className="label">CHAPTER V  .  NOW</div>
             <h2 className="m-heading">I Am Glad She Is Happy</h2>
-            <div className="prose">She is with someone else now and he is glad. No jealousy or bitterness — just a quiet happiness for her. He watches from a distance, content that she is well.</div>
+            <div className="prose">She is with someone else now and he is glad. No jealousy or bitterness, just a quiet happiness for her. He watches from a distance, content that she is well.</div>
           </motion.div>
         </motion.section>
 
