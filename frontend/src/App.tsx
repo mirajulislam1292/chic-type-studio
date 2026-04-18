@@ -13,6 +13,7 @@ import NutriDripPage from "./pages/projects/NutriDripPage";
 import QCECPage from "./pages/projects/QCECPage";
 import Gallery from "./pages/Gallery";
 import Whitepaper from "./pages/Whitepaper";
+import Mohona from "./pages/Mohona";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/essays/qcec" element={<QCECPage />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/whitepaper" element={<Whitepaper />} />
+            <Route path="/mohona" element={<Mohona />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
