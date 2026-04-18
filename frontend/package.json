@@ -7,7 +7,7 @@
     "dev": "vite",
     "start": "vite",
   "build": "vite build",
-  "gen:sitemap": "node ./scripts/generate-sitemap.js",
+  "gen:sitemap": "node ./scripts/generate-sitemap.cjs",
   "prebuild": "npm run gen:sitemap",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",

@@ -11,7 +11,16 @@ import Seo from "@/components/Seo";
 const Index = () => {
   return (
     <div className="min-h-screen">
-      <Seo title="Home" description="Portfolio of M. Mahimmiraj — Robotic projects, essays, and gallery showcasing work in environmental robotics and IoT." />
+      <Seo
+        title="Home"
+        description="Portfolio of M. Mahimmiraj — Robotic projects, essays, and gallery showcasing work in environmental robotics and IoT."
+        keywords={["M Mahimmiraj","Mahim","Miraj","Mirajul Islam Mahim","TrueMedi","TagWraps","GTCSC","Govt Tolaram College"]}
+        sameAs={[
+          "https://www.linkedin.com/in/replace-with-your-profile",
+          "https://github.com/replace-with-your-profile",
+          "https://twitter.com/replace-with-your-profile"
+        ]}
+      />
       <Navbar />
       <HeroSection />
       <AboutSection />

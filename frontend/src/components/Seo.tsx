@@ -36,11 +36,31 @@ export const Seo: React.FC<Props> = ({ title, description, canonical, image, key
       {
         "@type": "Person",
         "@id": "https://www.mahim.live/#person",
-        "name": "Mirajul Islam (Mahim)",
+        "name": "M Mahimmiraj",
+        "alternateName": [
+          "Mahim",
+          "Miraj",
+          "Mirajul Islam Mahim",
+          "Md Mirajul Islam Mahim"
+        ],
         "url": "https://www.mahim.live/",
         "sameAs": sameAs || [],
-        "jobTitle": "Roboticist & Environmental Technologist",
-        "description": "Creator of robotics and IoT projects focused on environmental sensing and community impact."
+        "jobTitle": "President, GTCSC",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Govt Tolaram College"
+        },
+        "affiliation": [
+          {
+            "@type": "Organization",
+            "name": "TagWraps"
+          },
+          {
+            "@type": "Organization",
+            "name": "TrueMedi"
+          }
+        ],
+        "description": "Founder and project lead on robotics, IoT and environmental projects; President of GTCSC at Govt Tolaram College."
       }
     ]
   };
