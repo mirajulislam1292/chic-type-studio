@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 const COLORS = {
   bg: "#080b12",
   surface: "rgba(255,255,255,0.03)",
-  text: "#dde6f0",
-  textDim: "rgba(221,230,240,0.55)",
+  text: "#f7fbff",
+  textDim: "rgba(247,250,252,0.78)",
   accent: "#5bc4d6",
   accentDim: "#2a6b78",
   gold: "#c9a05a",
@@ -54,22 +54,19 @@ export default function Mohona(): JSX.Element {
         .name .latin { font-size: clamp(4rem, 12vw, 9rem); }
         .name .bangla { font-family: 'Crimson Pro', serif; font-style: italic; color: var(--gold); font-size: clamp(1.2rem, 4vw, 2.4rem); margin-top: 0.2rem; display:block; }
         .subtitle { font-family: 'Crimson Pro', serif; font-style: italic; color: var(--text-dim); margin: 1.2rem auto 0; max-width: 480px; line-height: 1.8; }
-        .scroll-line { position: absolute; left: 50%; transform: translateX(-50%); bottom: 2rem; width: 2px; height: 40px; background: linear-gradient(180deg, var(--accent), transparent); border-radius: 4px; box-shadow: 0 0 12px var(--accent); animation: pulse 1.8s infinite; opacity: 0.95; }
+  /* scroll indicator removed for cleaner layout */
         @keyframes pulse { 0% { transform: translateX(-50%) scaleY(0.9); opacity: 0.7 } 50% { transform: translateX(-50%) scaleY(1.1); opacity: 1 } 100% { transform: translateX(-50%) scaleY(0.9); opacity: 0.7 } }
         .section { padding: 6rem 1.25rem; max-width: 900px; margin: 0 auto; box-sizing: border-box; z-index: 3; position: relative; }
         .label { font-family: 'Courier Prime', monospace; color: var(--accent); letter-spacing: 0.12em; font-size: 0.85rem; margin-bottom: 0.6rem; }
         h2.m-heading { font-family: 'IM Fell English', serif; font-size: 2.2rem; margin: 0 0 1rem 0; color: var(--text); }
         .prose { font-family: 'Crimson Pro', serif; color: var(--text-dim); line-height: 1.9; font-weight: 300; font-size: 1.05rem; margin-bottom: 1rem; white-space: pre-wrap; }
         .eye-wrap { display:flex; justify-content:center; align-items:center; margin: 1.2rem 0 1.4rem; }
-        .infty { font-family: 'IM Fell English', serif; font-size: 10rem; color: transparent; -webkit-text-stroke: 1px var(--accent-dim); text-align: center; display:block; width:100%; opacity:0.9; animation: inftyFade 4s infinite ease-in-out; margin: 1rem 0; }
-        @keyframes inftyFade { 0% { opacity: 0.35 } 50% { opacity: 0.9 } 100% { opacity: 0.35 } }
-        .timeline { border-left: 2px solid var(--border); padding-left: 1.25rem; margin: 2rem 0; position: relative; }
-        .timeline-entry { position: relative; margin-bottom: 2rem; padding-left: 1rem; }
-        .timeline-dot { position: absolute; left: -12px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px rgba(91,196,214,0.12); }
-        .letter { border: 1px solid var(--border); background: var(--surface); padding: 3rem 2.5rem; max-width: 640px; margin: 0 auto; font-family: 'Crimson Pro', serif; color: var(--text-dim); line-height: 1.9; white-space: pre-wrap; box-sizing: border-box; }
+  /* large decorative infinity removed for simplicity */
+  /* simplified timeline removed; entries consolidated into prose */
+  .letter { border: 1px solid var(--border); background: var(--surface); padding: 3rem 2.5rem; max-width: 640px; margin: 0 auto; font-family: 'Crimson Pro', serif; color: var(--text); line-height: 1.9; white-space: pre-wrap; box-sizing: border-box; }
         @media (max-width: 640px) { .letter { padding: 2rem 1.5rem; } }
         .letter-heading { font-family: 'IM Fell English', serif; font-size: 1.6rem; margin-bottom: 1rem; color: var(--text); }
-        .letter-closing { font-family: 'Crimson Pro', serif; font-style: italic; color: var(--text-dim); text-align:center; margin-top:1.25rem; font-size:1rem; }
+  .letter-closing { font-family: 'Crimson Pro', serif; font-style: italic; color: var(--text); text-align:center; margin-top:1.25rem; font-size:1rem; }
         .m-footer { border-top: 1px solid var(--border); text-align:center; padding: 4rem 2rem; color: var(--text-dim); }
         .m-footer .title { font-family: 'IM Fell English', serif; color: var(--gold); font-size: 1.8rem; margin-bottom: 0.6rem; }
         .m-footer small { display:block; margin-top: 1rem; font-family: 'Courier Prime', monospace; color: var(--text-dim); }
@@ -125,39 +122,17 @@ A far-side love. Silent. Unannounced. Completely real.</div>
         <motion.section className="section" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
           <motion.div variants={sectionVariant}>
             <div className="label">CHAPTER II  .  THE MOST BEAUTIFUL THING</div>
-            <div className="eye-wrap" aria-hidden>{EyeSVG()}</div>
             <h2 className="m-heading">Those Eyes</h2>
             <div className="prose">He had a few photos of her. Not many.
-He would sit alone late at night and stare at those photos
-the way you look at a real person sitting right across from you.
-Sometimes he would spend one hour. Sometimes two. Just looking.
-And sometimes he cried. Not softly. Really hard.
-Not because he was broken. Just because loving something that completely
-without being able to say it
-has to go somewhere.
-Her eyes always held him the longest.
-Out of everything, out of everyone, out of every face he has ever seen,
-her eyes are the most beautiful thing he has witnessed in this entire world.
-That is not a metaphor. That is just true.</div>
+He would sit alone late at night and stare at those photos the way you look at a real person sitting right across from you. Sometimes he would spend one hour. Sometimes two. Just looking. Sometimes he would cry, not from being broken but because loving something so completely without saying it must go somewhere. Her eyes held him the longest; they were the most beautiful thing he had ever seen.</div>
           </motion.div>
         </motion.section>
 
         <motion.section className="section center" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
           <motion.div variants={sectionVariant}>
             <div className="label">CHAPTER III  .  MIDNIGHT</div>
-            <div className="infty" aria-hidden>∞</div>
-            <div style={{ fontFamily: "'Courier Prime', monospace", color: COLORS.textDim, textAlign: "center", marginBottom: 12 }}>nights spent thinking about her</div>
             <h2 className="m-heading">Philosophy at Midnight</h2>
-            <div className="prose">There is a kind of night that belongs only to people who love from a distance.
-The world gets quiet. Everyone is asleep.
-And you sit there with her photo and your own thoughts
-and the distance between you and her feels like the entire universe.
-He lived inside those nights for years.
-He would remember her name. Her face. Her eyes.
-And the thinking would deepen into something beyond sadness,
-closer to philosophy. Questions about love. About what it means
-that one person can change you this completely
-without ever knowing they did.</div>
+            <div className="prose">There is a kind of night that belongs only to people who love from a distance. The world gets quiet and you sit there with her photo and your thoughts. The distance feels like the entire universe. He lived inside those nights for years; the thinking deepened into something beyond sadness, closer to philosophy—questions about love and how one person can change you without knowing it.</div>
           </motion.div>
         </motion.section>
 
@@ -166,45 +141,7 @@ without ever knowing they did.</div>
             <div className="label">CHAPTER IV  .  CLASS SIX TO CLASS EIGHT</div>
             <h2 className="m-heading">Everything I Wrote Was For Her</h2>
 
-            <div className="timeline" role="list">
-              <div className="timeline-entry" role="listitem">
-                <div className="timeline-dot" />
-                <div style={{ fontFamily: "'Courier Prime', monospace", fontWeight: 600, color: COLORS.text }}>Class VI</div>
-                <div className="prose">He saw her in the microbus on the first month of high school.
-He never forgot her after that moment.</div>
-              </div>
-
-              <div className="timeline-entry">
-                <div className="timeline-dot" />
-                <div style={{ fontFamily: "'Courier Prime', monospace", fontWeight: 600, color: COLORS.text }}>Class VI to VIII</div>
-                <div className="prose">Every social media post. Every story. Every caption. Every line.
-Secretly, privately, completely dedicated to her.
-She never knew.</div>
-              </div>
-
-              <div className="timeline-entry">
-                <div className="timeline-dot" />
-                <div style={{ fontFamily: "'Courier Prime', monospace", fontWeight: 600, color: COLORS.text }}>Class VIII</div>
-                <div className="prose">She left.
-She moved on.
-His world did not.</div>
-              </div>
-
-              <div className="timeline-entry">
-                <div className="timeline-dot" />
-                <div style={{ fontFamily: "'Courier Prime', monospace", fontWeight: 600, color: COLORS.text }}>Six Years Later</div>
-                <div className="prose">He never entered a relationship after her.
-He never will.
-She is happy now. That is enough.</div>
-              </div>
-            </div>
-
-            <div className="prose">He had a habit, or maybe a delusion, that she was always watching.
-That when he posted something, she would see it.
-That she would feel something when she did.
-Would she be proud? Would it matter to her?
-He never found out. He just kept writing, toward her,
-even when she had no idea.</div>
+            <div className="prose">From Class VI onward he carried her in small ways—posts, captions, private lines written for nobody. She left in Class VIII; his world did not. Years passed. He continued to write toward her even when she had no idea.</div>
           </motion.div>
         </motion.section>
 
