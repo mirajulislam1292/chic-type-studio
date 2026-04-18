@@ -3,10 +3,12 @@ import { ArrowLeft, Droplets, Leaf, Wifi, BarChart3, Settings, Smartphone } from
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import Seo from "@/components/Seo";
 
 export default function NutriDripPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+  <Seo title="NutriDrip" description="NutriDrip — Automatic plant irrigation and NPK adjustment system (IoT) by M. Mahimmiraj." />
       <Navbar />
       
       <main className="pt-24 pb-16">

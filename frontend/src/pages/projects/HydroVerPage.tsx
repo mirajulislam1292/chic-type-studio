@@ -3,10 +3,12 @@ import { ArrowLeft, Droplets, Cpu, Wifi, Shield, ThermometerSun, Wind } from "lu
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import Seo from "@/components/Seo";
 
 export default function HydroVerPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+  <Seo title="HydroVer" description="HydroVer — Smart water pollution monitoring and treatment robotic boat by M. Mahimmiraj." />
       <Navbar />
       
       <main className="pt-24 pb-16">

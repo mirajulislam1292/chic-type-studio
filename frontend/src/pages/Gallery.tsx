@@ -2,6 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { galleryImages } from "@/data/galleryImages";
+import Seo from "@/components/Seo";
 
 export default function Gallery() {
   const ref = useRef(null);
@@ -9,6 +10,7 @@ export default function Gallery() {
 
   return (
     <div className="min-h-screen bg-background">
+  <Seo title="Photo Gallery" description="Photo gallery of projects and events by M. Mahimmiraj — environmental robotics, workshops, and community activities." />
       <Navbar />
       <section className="py-24" ref={ref}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -4,10 +4,12 @@ import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import certificateImg from "@/assets/qcec-silver-certificate.jpg";
+import Seo from "@/components/Seo";
 
 const QCECPage = () => {
   return (
     <div className="min-h-screen bg-background">
+  <Seo title={`River of Two Worlds — Essay`} description={`"River of Two Worlds" — Silver Award essay by Mirajul Islam (Mahim).`} />
       <Navbar />
       
       {/* Hero Section */}

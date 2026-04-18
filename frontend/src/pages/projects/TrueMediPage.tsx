@@ -3,10 +3,12 @@ import { ArrowLeft, Shield, Smartphone, Database, CheckCircle, Radio, Bell } fro
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import Seo from "@/components/Seo";
 
 export default function TrueMediPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+  <Seo title="TrueMedi" description="TrueMedi — NFC-based fake medicine detection system by M. Mahimmiraj." />
       <Navbar />
       
       <main className="pt-24 pb-16">

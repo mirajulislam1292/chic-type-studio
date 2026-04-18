@@ -1,0 +1,14 @@
+{
+  "baseUrl": "https://www.mahim.live",
+  "routes": [
+    "/",
+    "/gallery",
+    "/projects/hydrover",
+    "/projects/truemedi",
+    "/projects/a-eye",
+    "/projects/nutridrip",
+    "/essays/qcec"
+  ],
+  "changefreq": "weekly",
+  "priority": 0.7
+}

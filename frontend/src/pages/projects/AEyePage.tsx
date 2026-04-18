@@ -3,10 +3,12 @@ import { ArrowLeft, Eye, AlertTriangle, Zap, Camera, MapPin, Radio } from "lucid
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import Seo from "@/components/Seo";
 
 export default function AEyePage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+  <Seo title="AEYE" description="AEYE — Automatic accident detection system using computer vision by M. Mahimmiraj." />
       <Navbar />
       
       <main className="pt-24 pb-16">
