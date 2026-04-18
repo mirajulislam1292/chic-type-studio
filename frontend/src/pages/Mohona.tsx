@@ -41,7 +41,7 @@ export default function Mohona(): JSX.Element {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&family=Crimson+Pro:wght@300;400;600&family=Courier+Prime&display=swap');
         :root{ --bg: ${COLORS.bg}; --surface: ${COLORS.surface}; --text: ${COLORS.text}; --text-dim: ${COLORS.textDim}; --accent: ${COLORS.accent}; --accent-dim: ${COLORS.accentDim}; --gold: ${COLORS.gold}; --rose: ${COLORS.rose}; --border: ${COLORS.border}; }
-        .m-root { position: relative; min-height: 100vh; color: var(--text); background: transparent; font-family: 'Crimson Pro', serif; }
+  .m-root { position: relative; min-height: 100vh; color: var(--foreground); background: transparent; font-family: 'Crimson Pro', serif; }
         .m-stars { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
         .m-star { position: absolute; background: #ffffff; border-radius: 50%; transform: translate(-50%,-50%); box-shadow: 0 0 6px rgba(255,255,255,0.15); opacity: 0.85; }
         @keyframes twinkle { 0% { transform: translate(-50%,-50%) scale(1); opacity: 0.2; } 50% { transform: translate(-50%,-50%) scale(1.4); opacity: 1; } 100% { transform: translate(-50%,-50%) scale(1); opacity: 0.2; } }
@@ -49,27 +49,27 @@ export default function Mohona(): JSX.Element {
         .m-viewport { position: relative; z-index: 2; min-height: 100vh; display: flex; flex-direction: column; }
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; box-sizing: border-box; }
         .hero-inner { max-width: 1000px; margin: 0 auto; z-index: 3; }
-        .top-label { font-family: 'Courier Prime', monospace; color: var(--accent); letter-spacing: 0.3em; font-size: 0.9rem; margin-bottom: 1rem; opacity: 0.95; }
+  /* top label removed to match main site style */
         .name { font-family: 'IM Fell English', serif; color: var(--text); line-height: 0.9; margin: 0; }
-        .name .latin { font-size: clamp(4rem, 12vw, 9rem); }
-        .name .bangla { font-family: 'Crimson Pro', serif; font-style: italic; color: var(--gold); font-size: clamp(1.2rem, 4vw, 2.4rem); margin-top: 0.2rem; display:block; }
-        .subtitle { font-family: 'Crimson Pro', serif; font-style: italic; color: var(--text-dim); margin: 1.2rem auto 0; max-width: 480px; line-height: 1.8; }
+  .name .latin { font-size: clamp(3.2rem, 9vw, 6rem); }
+  .name .bangla { font-family: 'Crimson Pro', serif; font-style: italic; color: hsl(var(--primary)); font-size: clamp(1rem, 3.5vw, 1.8rem); margin-top: 0.2rem; display:block; }
+  .subtitle { font-family: 'Crimson Pro', serif; font-style: italic; color: var(--muted-foreground); margin: 0.8rem auto 0; max-width: 640px; line-height: 1.6; }
   /* scroll indicator removed for cleaner layout */
         @keyframes pulse { 0% { transform: translateX(-50%) scaleY(0.9); opacity: 0.7 } 50% { transform: translateX(-50%) scaleY(1.1); opacity: 1 } 100% { transform: translateX(-50%) scaleY(0.9); opacity: 0.7 } }
-        .section { padding: 6rem 1.25rem; max-width: 900px; margin: 0 auto; box-sizing: border-box; z-index: 3; position: relative; }
+  .section { padding: 3.5rem 1.25rem; max-width: 900px; margin: 0 auto; box-sizing: border-box; z-index: 3; position: relative; }
         .label { font-family: 'Courier Prime', monospace; color: var(--accent); letter-spacing: 0.12em; font-size: 0.85rem; margin-bottom: 0.6rem; }
-        h2.m-heading { font-family: 'IM Fell English', serif; font-size: 2.2rem; margin: 0 0 1rem 0; color: var(--text); }
-        .prose { font-family: 'Crimson Pro', serif; color: var(--text-dim); line-height: 1.9; font-weight: 300; font-size: 1.05rem; margin-bottom: 1rem; white-space: pre-wrap; }
+  h2.m-heading { font-family: 'IBM Plex Mono', 'Courier Prime', monospace; font-size: 1.6rem; margin: 0 0 0.75rem 0; color: var(--foreground); }
+  .prose { font-family: 'Crimson Pro', serif; color: var(--muted-foreground); line-height: 1.8; font-weight: 300; font-size: 1rem; margin-bottom: 0.9rem; white-space: pre-wrap; }
         .eye-wrap { display:flex; justify-content:center; align-items:center; margin: 1.2rem 0 1.4rem; }
   /* large decorative infinity removed for simplicity */
   /* simplified timeline removed; entries consolidated into prose */
-  .letter { border: 1px solid var(--border); background: var(--surface); padding: 3rem 2.5rem; max-width: 640px; margin: 0 auto; font-family: 'Crimson Pro', serif; color: var(--text); line-height: 1.9; white-space: pre-wrap; box-sizing: border-box; }
+  .letter { border: 1px solid rgba(var(--border),0.18); background: rgba(var(--card),0.04); padding: 2.2rem 1.75rem; max-width: 720px; margin: 0 auto; font-family: 'Crimson Pro', serif; color: var(--foreground); line-height: 1.7; white-space: pre-wrap; box-sizing: border-box; }
         @media (max-width: 640px) { .letter { padding: 2rem 1.5rem; } }
         .letter-heading { font-family: 'IM Fell English', serif; font-size: 1.6rem; margin-bottom: 1rem; color: var(--text); }
   .letter-closing { font-family: 'Crimson Pro', serif; font-style: italic; color: var(--text); text-align:center; margin-top:1.25rem; font-size:1rem; }
-        .m-footer { border-top: 1px solid var(--border); text-align:center; padding: 4rem 2rem; color: var(--text-dim); }
-        .m-footer .title { font-family: 'IM Fell English', serif; color: var(--gold); font-size: 1.8rem; margin-bottom: 0.6rem; }
-        .m-footer small { display:block; margin-top: 1rem; font-family: 'Courier Prime', monospace; color: var(--text-dim); }
+  .m-footer { border-top: 1px solid rgba(var(--border),0.12); text-align:center; padding: 2rem 1rem; color: var(--muted-foreground); }
+  .m-footer .title { font-family: 'IBM Plex Mono', 'Courier Prime', monospace; color: hsl(var(--primary)); font-size: 1.1rem; margin-bottom: 0.4rem; }
+  .m-footer small { display:block; margin-top: 0.5rem; font-family: 'Courier Prime', monospace; color: var(--muted-foreground); }
       `}</style>
 
       <div className="m-stars" aria-hidden>
@@ -91,7 +91,7 @@ export default function Mohona(): JSX.Element {
         <section className="hero" aria-label="Hero">
           <div className="hero-inner">
             <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.3 } } }}>
-              <motion.div variants={sectionVariant}><div className="top-label">mohona.mahim.live  .  a page that will never be deleted</div></motion.div>
+              {/* top label removed to match site theme */}
               <motion.div variants={sectionVariant} style={{ marginTop: 8 }}>
                 <h1 className="name" aria-hidden><span className="latin">Mohona</span><span className="bangla">মোহনা</span></h1>
               </motion.div>
@@ -100,22 +100,15 @@ She always was one step ahead.
 And I have spent every day since Class Six
 carrying something I never said out loud.</div></motion.div>
             </motion.div>
-            <div className="scroll-line" role="presentation" />
+            {/* simpler hero - no scroll indicator */}
           </div>
         </section>
 
-        <motion.section className="section" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
+    <motion.section className="section" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
           <motion.div variants={sectionVariant}>
-            <div className="label">CHAPTER I  .  CLASS SIX  .  DEMRA</div>
+      <div className="label">CHAPTER I  .  CLASS SIX  .  DEMRA</div>
             <h2 className="m-heading">The First Day I Saw Her</h2>
-            <div className="prose">It was the first month of Class Six at Samsul Haque School and College in Demra.
-New school. New people. Two shifts. A shared microbus going home.
-He saw her once in that microbus.
-He never forgot her after that.
-Not her name. Not her face. Not the feeling of that one moment.
-He never spoke to her properly about any of it.
-He just carried her, quietly, from that day forward.
-A far-side love. Silent. Unannounced. Completely real.</div>
+      <div className="prose">It was the first month of Class Six at Samsul Haque School and College in Demra. New school. New people. Two shifts. A shared microbus going home. He saw her once in that microbus and never forgot that moment. He never spoke to her; he only carried the memory quietly from that day forward.</div>
           </motion.div>
         </motion.section>
 
@@ -149,20 +142,7 @@ He would sit alone late at night and stare at those photos the way you look at a
           <motion.div variants={sectionVariant}>
             <div className="label">CHAPTER V  .  NOW</div>
             <h2 className="m-heading">I Am Glad She Is Happy</h2>
-            <div className="prose">She is with someone else now.
-She is happy.
-And Mahin, honestly, genuinely, is glad about that.
-No jealousy. No bitterness. Nothing like that.
-He loves her in a way that does not need her to come back.
-He will not interrupt her life. He will not appear.
-He will not make things harder for her.
-He will watch from a long distance, quietly, invisibly,
-and feel glad every time life is good to her.
-Six years have passed.
-She moved on in Class Eight.
-He is still watching from far away.
-That is what this kind of love looks like.
-It does not ask for anything back.</div>
+            <div className="prose">She is with someone else now and he is glad. No jealousy or bitterness — just a quiet happiness for her. He watches from a distance, content that she is well.</div>
           </motion.div>
         </motion.section>
 
@@ -235,10 +215,9 @@ She was everything.</div>
         </motion.section>
 
         <footer className="m-footer" role="contentinfo">
-          <div className="title">Mohona  .  মোহনা</div>
+          <div className="title">Mohona</div>
           <div>Samsul Haque School and College, Demra</div>
-          <div>Made by M. Mahimmiraj  .  mahim.live  .  mohona.mahim.live</div>
-          <div>This page will never be deleted.</div>
+          <div>Made by M. Mahimmiraj  ·  mahim.live</div>
           <small>{nowYear}</small>
         </footer>
 
