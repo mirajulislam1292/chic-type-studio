@@ -34,6 +34,7 @@ const App = () => (
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/whitepaper" element={<Whitepaper />} />
             <Route path="/mohona" element={<Mohona />} />
+            <Route path="/love" element={<Mohona />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
