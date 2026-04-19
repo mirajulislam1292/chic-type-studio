@@ -186,12 +186,12 @@ export function ProjectsSection() {
                 >
                   <span className="relative z-10 flex items-center gap-2">Visit TagWraps <ExternalLink className="h-4 w-4" /></span>
                 </motion.a>
-                <Link
-                  to="/whitepaper"
+                <a
+                  href="/#/whitepaper"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-transparent border-2 border-border text-foreground rounded-full font-semibold hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
                 >
                   <span className="relative z-10">Whitepaper of TagWraps</span>
-                </Link>
+                </a>
               </div>
             </div>
           </div>
