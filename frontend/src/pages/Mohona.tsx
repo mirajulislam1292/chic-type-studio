@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
 
 const COLORS = {
@@ -21,6 +21,8 @@ const sectionVariant = {
 };
 
 export default function Mohona(): JSX.Element {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
   const stars: Star[] = useMemo(() => {
     const arr: Star[] = [];
     for (let i = 0; i < 180; i++) {
@@ -34,6 +36,21 @@ export default function Mohona(): JSX.Element {
 
   useEffect(() => {
     // fonts imported in component CSS below
+  }, []);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const playAudio = async () => {
+      try {
+        await audio.play();
+      } catch {
+        // Browsers may block autoplay with sound until the user interacts.
+      }
+    };
+
+    playAudio();
   }, []);
 
   return (
@@ -70,6 +87,30 @@ export default function Mohona(): JSX.Element {
   .m-footer { border-top: 1px solid rgba(var(--border),0.12); text-align:center; padding: 2rem 1rem; color: var(--muted-foreground); }
   .m-footer .title { font-family: 'IBM Plex Mono', 'Courier Prime', monospace; color: hsl(var(--primary)); font-size: 1.1rem; margin-bottom: 0.4rem; }
   .m-footer small { display:block; margin-top: 0.5rem; font-family: 'Courier Prime', monospace; color: var(--muted-foreground); }
+  .profile-card { max-width: 460px; margin: 0 auto; padding: 1rem; }
+  .profile-frame {
+    position: relative;
+    padding: 0.9rem;
+    border-radius: 28px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(10px) saturate(1.15);
+    -webkit-backdrop-filter: blur(10px) saturate(1.15);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+    overflow: hidden;
+  }
+  .profile-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(255,255,255,0.24), transparent 34%), radial-gradient(circle at bottom right, rgba(91,196,214,0.12), transparent 38%);
+    pointer-events: none;
+  }
+  .profile-image { width: 100%; height: auto; display: block; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.18); transform: scale(0.96); }
+  .profile-meta { padding-top: 1rem; text-align: center; }
+  .profile-name { font-family: 'IM Fell English', serif; font-size: clamp(1.4rem, 3.2vw, 2rem); color: var(--text); margin: 0; }
+  .profile-date { margin-top: 0.35rem; font-family: 'Courier Prime', monospace; font-size: 0.9rem; color: var(--muted-foreground); letter-spacing: 0.08em; }
+  .profile-line { margin-top: 0.7rem; font-family: 'Crimson Pro', serif; font-style: italic; color: var(--text-dim); font-size: 1rem; line-height: 1.5; }
       `}</style>
 
       <div className="m-stars" aria-hidden>
@@ -87,13 +128,22 @@ export default function Mohona(): JSX.Element {
         <rect width="100%" height="100%" filter="url(#grain)" fill="#ffffff" />
       </svg>
 
+      <audio
+        ref={audioRef}
+        src="/NEW%20WEST%20-%20THOSE%20EYES%20(Instrumental).mp3"
+        autoPlay
+        loop
+        preload="auto"
+        aria-hidden="true"
+      />
+
       <div className="m-viewport">
         <section className="hero" aria-label="Hero">
           <div className="hero-inner">
             <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.3 } } }}>
               {/* top label removed to match site theme */}
               <motion.div variants={sectionVariant} style={{ marginTop: 8 }}>
-                <h1 className="name" aria-hidden><span className="latin">Mohona</span><span className="bangla">মোহনা</span></h1>
+                <h1 className="name" aria-hidden><span className="latin">Mohona</span></h1>
               </motion.div>
               <motion.div variants={sectionVariant}><div className="subtitle">She is one day older than me.
 She always was one step ahead.
@@ -169,9 +219,9 @@ And he is fine with that.</div>
 
         <motion.section className="section center" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
           <motion.div variants={sectionVariant}>
-            <div className="label">A LETTER  .  FOR মোহনা</div>
+            <div className="label">A LETTER  .  FOR MOHONA</div>
             <h2 className="m-heading">If You Are Ever Reading This</h2>
-            <div className="letter" role="article" aria-labelledby="letter-heading">{`মোহনা,
+            <div className="letter" role="article" aria-labelledby="letter-heading">{`Mohona,
 
 I do not know if you will ever find this page.
 Maybe you never will.
@@ -207,16 +257,31 @@ As the most beautiful thing
 that ever walked into my life
 without knowing it.
 
-Mahin
-mahim.live`}</div>
+`}</div>
             <div className="letter-closing">She was Class Six. She was one day older than me.
 She was everything.</div>
           </motion.div>
         </motion.section>
 
+        <motion.section className="section center" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
+          <motion.div variants={sectionVariant} className="profile-card">
+            <div className="profile-frame">
+              <img
+                src="/IMG_6733.jpeg"
+                alt="Hasbun Nahar Mohona"
+                className="profile-image"
+              />
+              <div className="profile-meta">
+                <h2 className="profile-name">Hasbun Nahar Mohona</h2>
+                <div className="profile-line">08 Sept 2006<br />The day the girl I loved was born,<br />and without knowing it, she would one day become the only one my heart never moved on from.</div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.section>
+
         <footer className="m-footer" role="contentinfo">
-          <div className="title">Mohona</div>
-          <small>{nowYear}</small>
+          <div className="title">Uploaded on April 2026</div>
+          <div>Made with love and respect by Alu Mota Bhalu</div>
         </footer>
 
       </div>
