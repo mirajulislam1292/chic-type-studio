@@ -186,16 +186,15 @@ export function ProjectsSection() {
                 >
                   <span className="relative z-10 flex items-center gap-2">Visit TagWraps <ExternalLink className="h-4 w-4" /></span>
                 </motion.a>
-                <motion.a 
-                  href="/#/whitepaper" 
-                  target="_self"
-                  whileHover={{ scale: 1.05, boxShadow: "0 5px 20px rgba(148, 130, 108, 0.2)" }}
-                  whileTap={{ scale: 0.95 }}
+                <Link
+                  to="/whitepaper"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-transparent border-2 border-border text-foreground rounded-full font-semibold hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
                 >
                   <span className="relative z-10">Whitepaper of TagWraps</span>
-                </motion.a>
-                
+                </Link>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Section Header */}
