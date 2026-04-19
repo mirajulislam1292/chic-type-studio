@@ -34,29 +34,45 @@ export default function Whitepaper() {
         if (!container || cancelled) return;
         container.innerHTML = '';
 
+        // Progressive rendering with smaller scale (0.8) for better performance
+        const scale = 0.8;
+        
         for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+          if (cancelled) break;
+          
           const page = await pdf.getPage(pageNum);
-          const viewport = page.getViewport({ scale: 1.25 });
+          const viewport = page.getViewport({ scale });
           const canvas = document.createElement('canvas');
           const context = canvas.getContext('2d');
           canvas.width = Math.floor(viewport.width);
           canvas.height = Math.floor(viewport.height);
           canvas.style.width = '100%';
           canvas.style.height = 'auto';
+          canvas.style.display = 'block';
+          
           const renderContext = {
             canvasContext: context,
             viewport: viewport,
           };
+          
           const wrapper = document.createElement('div');
-          wrapper.className = 'mb-6';
+          wrapper.className = 'mb-4 break-inside-avoid';
           wrapper.appendChild(canvas);
           container.appendChild(wrapper);
+          
+          // Render progressively
           await page.render(renderContext).promise;
         }
       } catch (err) {
-        console.error('PDF render error', err);
+        console.error('PDF render error:', err);
         if (containerRef.current) {
-          containerRef.current.innerHTML = `<p class="text-sm text-muted-foreground">PDF could not be rendered. <a href="${url}" target="_blank" rel="noopener noreferrer" class="underline">Open the whitepaper</a></p>`;
+          const errorMsg = err instanceof Error ? err.message : 'Unknown error';
+          containerRef.current.innerHTML = `
+            <div class="text-sm text-muted-foreground">
+              <p class="mb-2">PDF could not be rendered (<code class="text-xs bg-muted p-1 rounded">${errorMsg}</code>)</p>
+              <p><a href="${url}" target="_blank" rel="noopener noreferrer" class="text-primary underline hover:no-underline">Download the whitepaper PDF</a> instead</p>
+            </div>
+          `;
         }
       }
     }
