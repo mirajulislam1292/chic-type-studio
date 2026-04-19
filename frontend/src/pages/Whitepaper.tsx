@@ -5,7 +5,7 @@ import Seo from '@/components/Seo';
 
 export default function Whitepaper() {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const url = '/TagWraps_Whitepaper.pdf';
+  const url = '/TagWraps_Whitepaper_compressed.pdf';
 
   useEffect(() => {
     let cancelled = false;
@@ -108,7 +108,7 @@ export default function Whitepaper() {
           <div className="w-full h-[80vh] border border-border rounded-lg overflow-auto p-4" ref={containerRef} aria-label="Whitepaper viewer">
             <p className="text-sm text-muted-foreground">Loading whitepaper...</p>
           </div>
-          <p className="mt-4 text-sm text-muted-foreground">If the PDF doesn’t render, you can <a href="/TagWraps_Whitepaper.pdf" target="_blank" rel="noopener noreferrer" className="underline">open the PDF directly</a> or try reloading this page.</p>
+          <p className="mt-4 text-sm text-muted-foreground">If the PDF doesn’t render, you can <a href="/TagWraps_Whitepaper_compressed.pdf" target="_blank" rel="noopener noreferrer" className="underline">open the PDF directly</a> or try reloading this page.</p>
         </div>
       </main>
       <Footer />

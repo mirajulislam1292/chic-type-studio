@@ -108,7 +108,7 @@ carrying something I never said out loud.</div></motion.div>
           <motion.div variants={sectionVariant}>
       <div className="label">CHAPTER I  .  CLASS SIX  .  DEMRA</div>
             <h2 className="m-heading">The First Day I Saw Her</h2>
-      <div className="prose">It was the first month of Class Six at Samsul Haque School and College in Demra. New school. New people. Two shifts. A shared microbus going home. He saw her once in that microbus and never forgot that moment. He never spoke to her; he only carried the memory quietly from that day forward.</div>
+      <div className="prose">It was the first month of Class Six. New school. New people. Two shifts. A shared microbus going home. He saw her once in that microbus and never forgot that moment. He never spoke to her; he only carried the memory quietly from that day forward.</div>
           </motion.div>
         </motion.section>
 
@@ -209,15 +209,13 @@ without knowing it.
 
 Mahin
 mahim.live`}</div>
-            <div className="letter-closing">She was Class Six. She was a microbus. She was one day older than me.
+            <div className="letter-closing">She was Class Six. She was one day older than me.
 She was everything.</div>
           </motion.div>
         </motion.section>
 
         <footer className="m-footer" role="contentinfo">
           <div className="title">Mohona</div>
-          <div>Samsul Haque School and College, Demra</div>
-          <div>Made by M. Mahimmiraj  ·  mahim.live</div>
           <small>{nowYear}</small>
         </footer>
 
