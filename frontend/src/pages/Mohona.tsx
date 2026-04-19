@@ -22,6 +22,7 @@ const sectionVariant = {
 
 export default function Mohona(): JSX.Element {
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioSrc = "/mohona-theme.mp3";
 
   const stars: Star[] = useMemo(() => {
     const arr: Star[] = [];
@@ -45,12 +46,35 @@ export default function Mohona(): JSX.Element {
     const playAudio = async () => {
       try {
         await audio.play();
+        return true;
       } catch {
-        // Browsers may block autoplay with sound until the user interacts.
+        // Browsers may block autoplay with sound until user interaction.
+        return false;
       }
     };
 
-    playAudio();
+    const onFirstInteraction = async () => {
+      const started = await playAudio();
+      if (started) {
+        window.removeEventListener("pointerdown", onFirstInteraction);
+        window.removeEventListener("keydown", onFirstInteraction);
+        window.removeEventListener("touchstart", onFirstInteraction);
+      }
+    };
+
+    playAudio().then((started) => {
+      if (!started) {
+        window.addEventListener("pointerdown", onFirstInteraction, { once: true });
+        window.addEventListener("keydown", onFirstInteraction, { once: true });
+        window.addEventListener("touchstart", onFirstInteraction, { once: true });
+      }
+    });
+
+    return () => {
+      window.removeEventListener("pointerdown", onFirstInteraction);
+      window.removeEventListener("keydown", onFirstInteraction);
+      window.removeEventListener("touchstart", onFirstInteraction);
+    };
   }, []);
 
   return (
@@ -130,10 +154,11 @@ export default function Mohona(): JSX.Element {
 
       <audio
         ref={audioRef}
-        src="/NEW%20WEST%20-%20THOSE%20EYES%20(Instrumental).mp3"
+        src={audioSrc}
         autoPlay
         loop
         preload="auto"
+        playsInline
         aria-hidden="true"
       />
 
