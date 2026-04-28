@@ -42,10 +42,9 @@ import img35 from "@/assets/IMG_3143.JPG";
 import img36 from "@/assets/IMG_3612 3.jpg";
 import img37 from "@/assets/IMG_4720_Original.jpg";
 import img38 from "@/assets/IMG_C1E7806B13C8-1.jpeg";
-import img39 from "@/assets/IMG_EB5A4AB44D0A-1.jpeg";
 
 const galleryImages = [
-  { src: img3, alt: "Electronics Development" },
+  { src: "/images/gallery-extra-22.png", alt: "Art Gallery Photo" },
   { src: img4, alt: "Team Collaboration" },
   { src: img5, alt: "HydroVer Prototype" },
   { src: img6, alt: "Electronics Assembly" },

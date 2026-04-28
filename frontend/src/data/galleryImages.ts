@@ -53,7 +53,6 @@ import img54 from "@/assets/gallery-extra-18.png";
 import img55 from "@/assets/gallery-extra-19.png";
 import img56 from "@/assets/gallery-extra-20.png";
 import img57 from "@/assets/gallery-extra-21.png";
-import img58 from "@/assets/gallery-extra-22.png";
 
 export type GalleryImage = {
   src: string;
@@ -61,7 +60,7 @@ export type GalleryImage = {
 };
 
 export const galleryImages: GalleryImage[] = [
-  { src: img1, alt: "Science Festival" },
+  { src: "/images/gallery-extra-22.png", alt: "Art Gallery Photo" },
   { src: img2, alt: "About Photo" },
   { src: img3, alt: "Electronics Development" },
   { src: img4, alt: "Team Collaboration" },
@@ -112,5 +111,4 @@ export const galleryImages: GalleryImage[] = [
   { src: img55, alt: "Extra Photo 19" },
   { src: img56, alt: "Extra Photo 20" },
   { src: img57, alt: "Extra Photo 21" },
-  { src: img58, alt: "Art Gallery Photo" },
 ];
