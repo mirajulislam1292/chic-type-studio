@@ -60,6 +60,7 @@ export type GalleryImage = {
 };
 
 export const galleryImages: GalleryImage[] = [
+  { src: "/images/mahim-gtcsc-c5.png", alt: "MAHIM GTCSC C5" },
   { src: "/images/gallery-extra-22.png", alt: "Art Gallery Photo" },
   { src: img2, alt: "About Photo" },
   { src: img3, alt: "Electronics Development" },

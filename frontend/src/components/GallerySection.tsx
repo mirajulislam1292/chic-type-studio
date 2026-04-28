@@ -39,11 +39,11 @@ import img32 from "@/assets/f3a36a5d-383e-4f1d-9b25-5ce51c37cb5b 2.jpg";
 import img33 from "@/assets/IMG_0329.jpg";
 import img34 from "@/assets/IMG_2826.jpg";
 import img35 from "@/assets/IMG_3143.JPG";
-import img36 from "@/assets/IMG_3612 3.jpg";
 import img37 from "@/assets/IMG_4720_Original.jpg";
 import img38 from "@/assets/IMG_C1E7806B13C8-1.jpeg";
 
 const galleryImages = [
+  { src: "/images/mahim-gtcsc-c5.png", alt: "MAHIM GTCSC C5" },
   { src: "/images/gallery-extra-22.png", alt: "Art Gallery Photo" },
   { src: img4, alt: "Team Collaboration" },
   { src: img5, alt: "HydroVer Prototype" },
