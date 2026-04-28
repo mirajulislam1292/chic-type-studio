@@ -28,7 +28,6 @@ import img26 from "@/assets/club-activity.jpg";
 import img30 from "@/assets/IMG_0329.jpg";
 import img31 from "@/assets/IMG_2826.jpg";
 import img32 from "@/assets/IMG_3143.JPG";
-import img33 from "@/assets/IMG_3612 3.jpg";
 import img34 from "@/assets/IMG_4720_Original.jpg";
 import img35 from "@/assets/IMG_C1E7806B13C8-1.jpeg";
 import img36 from "@/assets/IMG_EB5A4AB44D0A-1.jpeg";
@@ -88,8 +87,7 @@ export const galleryImages: GalleryImage[] = [
   { src: img30, alt: "Photo 1" },
   { src: img31, alt: "Photo 2" },
   { src: img32, alt: "Photo 3" },
-  { src: img33, alt: "Photo 4" },
-  { src: img34, alt: "Photo 5" },
+  { src: img34, alt: "Photo 4" },
   { src: img35, alt: "Photo 6" },
   { src: img36, alt: "Photo 7" },
   { src: img37, alt: "Extra Photo 1" },
