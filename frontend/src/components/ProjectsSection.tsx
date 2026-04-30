@@ -8,7 +8,7 @@ const projects = [
     title: "HydroVer",
     slug: "hydrover",
     description:
-      "Smart water pollution monitoring system with remote controlled surface vehicle for water sampling, chemical treatment, environmental monitoring, and emergency life jacket deployment.",
+      "An RF-controlled aquatic rover built to tackle plastic pollution in Bangladeshi waterways. Handles water sampling, chemical treatment, and environmental monitoring. Winner, 45th National Science and Technology Week.",
     tags: ["Arduino Nano", "NRF24L01", "IoT", "Environmental"],
     color: "from-blue-500/20 to-cyan-500/20",
     icon: Droplets,
@@ -17,7 +17,7 @@ const projects = [
     title: "TrueMedi",
     slug: "truemedi",
     description:
-      "Fake medicine detection system using NFC technology and encrypted hash codes to verify medicine authenticity and protect public health.",
+      "A pharmaceutical authentication system using NFC and encrypted hash verification to confirm whether a medicine is genuine at the point of purchase. Now operating inside the TagWraps ecosystem.",
     tags: ["PN532 NFC", "Arduino", "Healthcare", "Security"],
     color: "from-green-500/20 to-emerald-500/20",
     icon: Shield,
@@ -27,7 +27,7 @@ const projects = [
     title: "AEYE",
     slug: "a-eye",
     description:
-      "Automatic accident detection system using OpenCV and ESP32-CAM achieving 92% accuracy for highway monitoring and emergency response.",
+      "An automatic road accident detection system using computer vision that achieved 92% accuracy in highway monitoring. Identifies accidents through a standard camera feed and triggers emergency alerts without human input.",
     tags: ["ESP32-CAM", "OpenCV", "Computer Vision", "Safety"],
     color: "from-red-500/20 to-orange-500/20",
     icon: Eye,
@@ -36,7 +36,7 @@ const projects = [
     title: "NutriDrip",
     slug: "nutridrip",
     description:
-      "Automatic plant irrigation and NPK adjustment system with IoT connectivity for remote monitoring and smart watering based on soil moisture levels.",
+      "An automated irrigation and soil nutrition system with IoT connectivity. Adjusts watering and NPK levels in real time based on live soil moisture readings.",
     tags: ["ESP8266", "IoT", "Agriculture", "Mobile App"],
     color: "from-green-500/20 to-lime-500/20",
     icon: Leaf,

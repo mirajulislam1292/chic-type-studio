@@ -69,9 +69,9 @@ export function HeroSection() {
               className="flex flex-wrap gap-2"
             >
               {[
-                { label: "Learner", icon: Cpu },
-                { label: "Robotics Enthusiast", icon: Sparkles },
-                { label: "Environmental Advocate", icon: Leaf },
+                { label: "Builder", icon: Cpu },
+                { label: "Problem Solver", icon: Sparkles },
+                { label: "Perpetually Curious", icon: Leaf },
               ].map((item, index) => (
                 <motion.span
                   key={item.label}
@@ -105,10 +105,7 @@ export function HeroSection() {
               className="space-y-4 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl"
             >
               <p>
-                Currently developing TagWraps, an innovative packaging system using NFC technology to protect the authenticity of a product through a secured cryptographic encryption method, helping the public buy and identify genuine products.
-              </p>
-              <p>
-                TrueMedi, a medicine-focused authentication prototype, is now operating under the TagWraps ecosystem.
+                I build things that solve problems nobody around me was solving. Right now that is TagWraps, an NFC-based product authentication system that helps people verify whether what they are buying is real. TrueMedi, my pharmaceutical authentication prototype, runs inside the same ecosystem.
               </p>
             </motion.div>
 

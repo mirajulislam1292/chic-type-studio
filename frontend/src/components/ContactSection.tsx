@@ -64,7 +64,7 @@ export function ContactSection() {
             Let's Connect
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            As a passionate learner and open project contributor, I am always eager to connect and collaborate. Feel free to reach out to me via email or connect with me on LinkedIn.
+            If you are working on something real and you think I can contribute, reach out. I respond to every serious message.
           </p>
         </motion.div>
 
@@ -95,6 +95,17 @@ export function ContactSection() {
             </motion.div>
           ))}
         </div>
+
+        {/* Legal Name */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="text-center mb-8"
+        >
+          <p className="text-sm text-muted-foreground">Legal name: Md. Mirajul Islam Mahim</p>
+        </motion.div>
 
         {/* CV Download Button */}
         <motion.div

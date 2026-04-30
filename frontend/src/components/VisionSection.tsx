@@ -31,22 +31,15 @@ export function VisionSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-4xl mx-auto p-8 sm:p-12 bg-card rounded-3xl border border-border"
         >
-          <blockquote className="text-2xl sm:text-3xl font-light italic leading-relaxed mb-8">
-            "In my dictionary, wealth doesn't mean money. It means doing something for humanity, becoming happy in life, and making people smile."
-          </blockquote>
-
           <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
             <p>
-              I dream of becoming an{" "}
-              <span className="text-primary font-medium">
-                unforgettable contributor to history
-              </span>{" "}
-              not for fame, but for impact. Among 8 billion people on this pale blue dot, only a few minds are remembered and recalled. Inspired by{" "}
-              <span className="text-primary font-medium">Nikola Tesla</span> who gave away free rights to his AC current invention for the betterment of humanity, I'm committed to creating innovations that serve people.
+              I am not building things to become famous. I am building things because the problems are real and I am standing close enough to see them.
             </p>
             <p>
-              My ultimate goal is to invent something significant for humanity and name it after my hidden surname{" "}
-              <span className="text-primary font-medium">"Howlader"</span> whether it's an effect, an equation, or a discovery. I want to make this name proud and renowned throughout the entire world through my contributions to science and technology.
+              Bangladesh needs engineers who understand hardware at depth. South Asia needs authentication infrastructure that works without expensive equipment. The world needs people who build for the places that usually get skipped.
+            </p>
+            <p>
+              That is what I am working toward. Everything I have built so far is practice for the thing I have not built yet.
             </p>
           </div>
         </motion.div>

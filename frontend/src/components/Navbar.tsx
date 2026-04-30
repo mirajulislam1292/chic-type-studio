@@ -71,15 +71,6 @@ export function Navbar() {
                 )}
               </li>
             ))}
-            <li>
-              <Link
-                to="/essays/qcec"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary/20 hover:border-primary/50 transition-all"
-              >
-                <Award className="w-4 h-4" />
-                QCEC '25
-              </Link>
-            </li>
           </ul>
 
           {/* Theme Toggle & Mobile Menu */}
@@ -134,16 +125,6 @@ export function Navbar() {
                   )}
                 </li>
               ))}
-              <li>
-                <Link
-                  to="/essays/qcec"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-2 py-3 px-4 text-primary hover:bg-primary/10 transition-all rounded-lg font-semibold"
-                >
-                  <Award className="w-4 h-4" />
-                  QCEC '25
-                </Link>
-              </li>
             </ul>
           </motion.div>
         )}

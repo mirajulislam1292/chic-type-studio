@@ -21,7 +21,7 @@ export function AboutSection() {
             My Story
           </h2>
           <p className="text-lg text-muted-foreground">
-            From Narayanganj to the World
+            The Story So Far
           </p>
         </motion.div>
 
@@ -35,13 +35,16 @@ export function AboutSection() {
             className="space-y-6 text-lg leading-relaxed text-muted-foreground"
           >
             <p>
-              I'm <strong className="text-foreground font-semibold">Mahim from Narayanganj, Bangladesh</strong> a technology enthusiast driven by curiosity and a passion for creating positive change through innovation.
+              I grew up in <strong className="text-foreground font-semibold">Narayanganj, a city defined by industry, rivers, and movement.</strong> My father runs an engineering firm. Long before I had any formal training, I was taking apart machines to understand how they worked. Not to fix them. Just to know.
             </p>
             <p>
-              I am a lifelong student who is always seeking knowledge. I enjoy learning from everyone, from younger individuals with fresh ideas to senior professionals with years of experience. From the beginning of my childhood, I have been fascinated by machines and constantly wondered how things work. I developed a unique hobby of taking apart electronic devices to explore their internal components and understand their functions.
+              That habit became projects. The projects became competition wins. The wins became a startup. None of it was planned. It was just what happens when you cannot stop asking how things work and why they fail.
             </p>
             <p>
-              Through attending various events and gaining hands-on experience with innovative engineering projects, I realized that there is a significant gap in automation and robotics development in my country. Being the son of a businessman, I have developed a vision to <strong className="text-foreground font-semibold">establish a robotics and automation company in Bangladesh</strong>.
+              I have represented Bangladesh in national olympiads across mathematics, physics, robotics, artificial intelligence, and environmental science. I have won national science championships with hardware I built myself. I founded TagWraps to fight counterfeit products in South Asia using NFC technology. I led a science club of hundreds of students as president.
+            </p>
+            <p>
+              <strong className="text-foreground font-semibold">I am nineteen years old and I am just getting started.</strong>
             </p>
           </motion.div>
 
