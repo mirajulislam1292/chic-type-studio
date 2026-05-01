@@ -54,7 +54,7 @@ export function AchievementsSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="achievements" className="py-24 bg-surface-subtle border-b border-border/40" ref={ref}>
+    <section id="achievements" className="py-24 bg-surface-subtle" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div

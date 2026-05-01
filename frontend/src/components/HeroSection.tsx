@@ -22,7 +22,7 @@ export function HeroSection() {
   }));
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative isolate overflow-hidden bg-background border-b border-border/40">
+    <section className="min-h-screen flex items-center justify-center relative isolate overflow-hidden bg-background">
       {/* Theme-aware robotics background image layer (place image in /public/assets/) */}
       <div
         aria-hidden="true"
