@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import aboutPhoto from "@/assets/about-photo.jpg";
+import aboutPhoto from "@/assets/image copy.png";
 
 export function AboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-24 bg-surface-subtle" ref={ref}>
+    <section id="about" className="py-24 bg-surface-subtle border-y border-border/40" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -53,12 +53,12 @@ export function AboutSection() {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="aspect-[4/5] bg-card rounded-3xl border border-border overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+            className="aspect-[4/5] bg-card rounded-3xl border border-border overflow-hidden shadow-lg hover:shadow-orange transition-shadow duration-300"
           >
             <img 
               src={aboutPhoto} 
               alt="Mahimmiraj teaching and working" 
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-500 brightness-90 contrast-110"
             />
           </motion.div>
         </div>

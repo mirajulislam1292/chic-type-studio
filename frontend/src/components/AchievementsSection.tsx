@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { Award, Trophy, Medal, Star, Users, Cpu, Heart, GraduationCap, Target, ExternalLink } from "lucide-react";
+import { Award, Trophy, Medal, Star, Users, Cpu, GraduationCap, Target, ExternalLink } from "lucide-react";
 
 const leadershipRoles = [
   "President, Govt. Tolaram College Science Club (2024-2025)",
@@ -54,7 +54,7 @@ export function AchievementsSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="achievements" className="py-24 bg-surface-subtle" ref={ref}>
+    <section id="achievements" className="py-24 bg-surface-subtle border-b border-border/40" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -91,7 +91,7 @@ export function AchievementsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-4 bg-card rounded-xl border border-border hover:border-primary/30 transition-colors"
+                className="p-4 bg-card rounded-3xl border border-border hover:border-primary/50 hover:shadow-orange transition-all"
               >
                 <p className="text-sm">{role}</p>
               </motion.div>
@@ -133,7 +133,7 @@ export function AchievementsSection() {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ y: -4 }}
-                    className="p-5 bg-card rounded-xl border border-border hover:shadow-lg hover:border-primary/30 transition-all duration-300 group h-full"
+                    className="p-5 bg-card rounded-3xl border border-border hover:shadow-orange hover:border-primary/50 transition-all duration-300 group h-full"
                   >
                     {CardContent}
                   </motion.div>
@@ -146,7 +146,7 @@ export function AchievementsSection() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ y: -4 }}
-                  className="p-5 bg-card rounded-xl border border-border hover:shadow-lg hover:border-primary/30 transition-all duration-300 group"
+                  className="p-5 bg-card rounded-3xl border border-border hover:shadow-orange hover:border-primary/50 transition-all duration-300 group"
                 >
                   {CardContent}
                 </motion.div>
@@ -175,7 +175,7 @@ export function AchievementsSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="p-4 bg-card rounded-lg border border-border hover:border-primary/30 transition-colors"
+                className="p-4 bg-card rounded-3xl border border-border hover:border-primary/50 hover:shadow-orange transition-all"
               >
                 <p className="text-sm">{ranking}</p>
               </motion.div>
@@ -203,7 +203,7 @@ export function AchievementsSection() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20 hover:bg-primary/20 transition-colors"
+                className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/30 hover:bg-primary/20 transition-colors"
               >
                 {olympiad}
               </motion.span>
@@ -230,7 +230,7 @@ export function AchievementsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.03 }}
-                className="p-3 bg-card rounded-lg border border-border hover:border-primary/30 transition-colors flex items-start gap-2"
+                className="p-3 bg-card rounded-3xl border border-border hover:border-primary/50 hover:shadow-orange transition-all flex items-start gap-2"
               >
                 <Cpu className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                 <p className="text-sm">{training}</p>

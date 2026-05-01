@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Moon, Sun, Menu, X, Award } from "lucide-react";
+import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
 import { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
@@ -50,7 +50,7 @@ export function Navbar() {
           {/* Logo */}
           <button
             onClick={goHome}
-            className="font-typewriter text-2xl font-bold text-primary tracking-widest hover:opacity-80 transition-opacity"
+            className="font-typewriter text-2xl font-bold text-primary tracking-tight hover:opacity-80 transition-opacity"
           >
             1292.
           </button>
@@ -64,7 +64,7 @@ export function Navbar() {
                 ) : (
                   <button
                     onClick={() => scrollToSection(link.href)}
-                    className="text-muted-foreground hover:text-foreground transition-colors font-medium"
+                    className="text-muted-foreground hover:text-primary transition-colors font-medium"
                   >
                     {link.label}
                   </button>
@@ -77,7 +77,7 @@ export function Navbar() {
           <div className="flex items-center gap-4">
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-full hover:bg-card transition-all duration-300 border border-transparent hover:border-border"
+              className="p-2.5 rounded-full hover:bg-card transition-all duration-300 border border-transparent hover:border-border hover:shadow-orange"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? (
@@ -90,7 +90,7 @@ export function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2.5 rounded-full hover:bg-card transition-all duration-300 border border-transparent hover:border-border"
+              className="md:hidden p-2.5 rounded-full hover:bg-card transition-all duration-300 border border-transparent hover:border-border hover:shadow-orange"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? (
@@ -108,7 +108,7 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden py-4 border-t border-border"
+            className="md:hidden py-4 border-t border-white/10"
           >
             <ul className="flex flex-col gap-2">
               {navLinks.map((link) => (
@@ -118,7 +118,7 @@ export function Navbar() {
                   ) : (
                     <button
                       onClick={() => scrollToSection(link.href)}
-                      className="w-full text-left py-3 px-4 text-muted-foreground hover:text-foreground hover:bg-card transition-all rounded-lg font-medium"
+                      className="w-full text-left py-3 px-4 text-muted-foreground hover:text-primary hover:bg-card transition-all rounded-xl font-medium"
                     >
                       {link.label}
                     </button>

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Sparkles, Cpu, Leaf } from "lucide-react";
 import profileImage from "@/assets/Mahim Linkedin.jpg";
+import roboticsBackground from "@/assets/image.png";
 
 export function HeroSection() {
   const scrollToSection = (href: string) => {
@@ -21,9 +22,16 @@ export function HeroSection() {
   }));
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background">
+    <section className="min-h-screen flex items-center justify-center relative isolate overflow-hidden bg-background border-b border-border/40">
+      {/* Theme-aware robotics background image layer (place image in /public/assets/) */}
+      <div
+        aria-hidden="true"
+        style={{ backgroundImage: `url(${roboticsBackground})` }}
+        className="absolute inset-0 z-0 pointer-events-none bg-center bg-no-repeat bg-cover bg-scroll md:bg-fixed opacity-[0.08] dark:opacity-[0.3] [filter:grayscale(100%)_brightness(1.5)_contrast(0.8)] dark:[filter:brightness(0.7)]"
+      />
+
       {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+      <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_20%_20%,rgba(255,107,0,0.16),transparent_40%),radial-gradient(circle_at_80%_15%,rgba(255,255,255,0.07),transparent_35%)]" />
       
       {/* Interactive particles - theme responsive */}
       {particles.map((particle) => (
@@ -41,7 +49,7 @@ export function HeroSection() {
             delay: particle.delay,
             ease: "easeInOut",
           }}
-          className="absolute rounded-full bg-primary/30 blur-[1px]"
+          className="absolute z-[2] rounded-full bg-foreground/20 blur-[1px]"
           style={{
             left: `${particle.x}%`,
             top: `${particle.y}%`,
@@ -79,7 +87,7 @@ export function HeroSection() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                   whileHover={{ scale: 1.1, y: -2 }}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border rounded-full text-xs font-medium text-muted-foreground hover:text-foreground hover:border-primary/50 hover:bg-primary/5 transition-all cursor-default"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border rounded-full text-xs font-medium text-muted-foreground hover:text-foreground hover:border-primary/60 hover:bg-primary/10 transition-all cursor-default"
                 >
                   <item.icon className="h-3.5 w-3.5 text-primary" />
                   {item.label}
@@ -120,7 +128,7 @@ export function HeroSection() {
                 onClick={() => scrollToSection("#projects")}
                 whileHover={{ scale: 1.05, boxShadow: "0 10px 40px rgba(255, 119, 0, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-7 py-3.5 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary-hover transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden group"
+                className="px-7 py-3.5 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary-hover transition-all duration-300 shadow-lg hover:shadow-orange relative overflow-hidden group"
               >
                 <span className="relative z-10">Explore My Work</span>
                 <motion.div
@@ -132,7 +140,7 @@ export function HeroSection() {
                 onClick={() => scrollToSection("#contact")}
                 whileHover={{ scale: 1.05, borderColor: "hsl(var(--primary))" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-7 py-3.5 bg-transparent border-2 border-border text-foreground rounded-full font-semibold hover:bg-card hover:border-primary/50 transition-all duration-300"
+                className="px-7 py-3.5 bg-transparent border-2 border-border text-foreground rounded-full font-semibold hover:bg-card hover:border-primary/60 hover:shadow-orange transition-all duration-300"
               >
                 Get In Touch
               </motion.button>
@@ -158,7 +166,7 @@ export function HeroSection() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute inset-0 bg-primary/20 rounded-full blur-3xl"
+                className="absolute inset-0 bg-primary/25 rounded-full blur-3xl"
               />
               
               {/* Orbiting particles around image - theme responsive */}
@@ -167,7 +175,7 @@ export function HeroSection() {
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 className="absolute inset-0"
               >
-                <div className="absolute top-0 left-1/2 w-2 h-2 bg-primary rounded-full -translate-x-1/2 shadow-lg shadow-primary/50" />
+                <div className="absolute top-0 left-1/2 w-2 h-2 bg-primary/90 rounded-full -translate-x-1/2 shadow-lg shadow-primary/40" />
                 <div className="absolute bottom-0 left-1/2 w-2 h-2 bg-primary/70 rounded-full -translate-x-1/2 shadow-lg shadow-primary/30" />
               </motion.div>
               <motion.div
@@ -175,8 +183,8 @@ export function HeroSection() {
                 transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                 className="absolute inset-0"
               >
-                <div className="absolute left-0 top-1/2 w-2 h-2 bg-primary/80 rounded-full -translate-y-1/2 shadow-lg shadow-primary/40" />
-                <div className="absolute right-0 top-1/2 w-2 h-2 bg-primary/60 rounded-full -translate-y-1/2 shadow-lg shadow-primary/30" />
+                <div className="absolute left-0 top-1/2 w-2 h-2 bg-primary/80 rounded-full -translate-y-1/2 shadow-lg shadow-primary/35" />
+                <div className="absolute right-0 top-1/2 w-2 h-2 bg-primary/60 rounded-full -translate-y-1/2 shadow-lg shadow-primary/25" />
               </motion.div>
               
               {/* Image container */}
@@ -185,7 +193,7 @@ export function HeroSection() {
                 transition={{ duration: 0.3 }}
                 className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent rounded-full p-1 shadow-2xl">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-hover to-accent rounded-full p-1 shadow-orange">
                   <div className="w-full h-full rounded-full overflow-hidden bg-card border-2 border-background">
                     <motion.img 
                       src={profileImage} 

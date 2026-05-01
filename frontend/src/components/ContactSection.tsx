@@ -51,7 +51,7 @@ export function ContactSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="contact" className="py-24 bg-surface-subtle" ref={ref}>
+    <section id="contact" className="py-24 bg-surface-subtle border-b border-border/40" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -77,8 +77,8 @@ export function ContactSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -6, scale: 1.02, borderColor: "rgba(0, 212, 255, 0.5)" }}
-              className="text-center p-8 bg-card rounded-3xl border border-border hover:shadow-xl hover:shadow-primary/10 transition-all"
+              whileHover={{ y: -6, scale: 1.02, borderColor: "rgba(255, 107, 0, 0.55)" }}
+              className="text-center p-8 bg-card rounded-3xl border border-border hover:shadow-orange transition-all"
             >
               <item.icon className="h-6 w-6 text-primary mx-auto mb-4" />
               <p className="text-sm text-muted-foreground mb-2">{item.label}</p>
@@ -118,14 +118,14 @@ export function ContactSection() {
           <a
             href="/MAHIM CV.pdf"
             download="M.Mahimmiraj_CV.pdf"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary-hover transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary-hover transition-all duration-300 hover:scale-105 hover:shadow-orange active:scale-95"
           >
             <Download className="h-5 w-5" />
             Download My CV
           </a>
           <Link
             to="/gallery"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-secondary text-secondary-foreground rounded-full font-medium hover:bg-secondary-hover transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-secondary text-secondary-foreground rounded-full font-medium hover:bg-primary/10 hover:border-primary/50 border border-border transition-all duration-300 hover:scale-105 hover:shadow-orange active:scale-95"
           >
             <Image className="h-5 w-5" />
             Open Photo Gallery
@@ -151,7 +151,7 @@ export function ContactSection() {
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
-              className="w-14 h-14 rounded-full bg-card border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/30 transition-all"
+              className="w-14 h-14 rounded-full bg-card border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground hover:shadow-orange transition-all"
               title={social.name}
             >
               {social.icon}

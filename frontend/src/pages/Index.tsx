@@ -10,7 +10,7 @@ import Seo from "@/components/Seo";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background text-foreground">
       <Seo
         title="Home"
         description="Portfolio of M. Mahimmiraj — Robotic projects, essays, and gallery showcasing work in environmental robotics and IoT."

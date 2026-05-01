@@ -7,7 +7,7 @@ export function VisionSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="vision" className="py-24" ref={ref}>
+    <section id="vision" className="py-24 border-b border-border/40" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -29,7 +29,7 @@ export function VisionSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-4xl mx-auto p-8 sm:p-12 bg-card rounded-3xl border border-border"
+          className="max-w-4xl mx-auto p-8 sm:p-12 bg-card rounded-3xl border border-border hover:shadow-orange transition-shadow duration-300"
         >
           <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
             <p>

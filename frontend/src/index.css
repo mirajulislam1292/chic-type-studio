@@ -1,130 +1,110 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Design System - Apple Aesthetic with Typewriter Fonts */
+/* Design System - Apple-inspired Black & Orange */
 
 @layer base {
   :root {
-    /* Core Colors - Light Mode */
+    /* Core Colors - Light */
     --background: 0 0% 100%;
-    --foreground: 220 15% 10%;
+    --foreground: 220 20% 10%;
     
-    --card: 0 0% 100%;
-    --card-foreground: 220 15% 10%;
+    --card: 0 0% 100% / 95%;
+    --card-foreground: 220 20% 10%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 10%;
+    --popover-foreground: 220 20% 10%;
     
-    /* Orange accent palette */
-    --primary: 17 100% 60%;
-    --primary-foreground: 0 0% 100%;
-    --primary-hover: 17 90% 52%;
-    --primary-glow: 17 100% 70%;
+    /* Accent Color - #FF6B00 */
+    --primary: 25 100% 50%;
+    --primary-foreground: 0 0% 0%;
+    --primary-hover: 25 100% 56%;
+    --primary-glow: 25 100% 50%;
     
-    --secondary: 30 10% 96%;
-    --secondary-foreground: 220 15% 20%;
+    --secondary: 30 25% 96%;
+    --secondary-foreground: 220 20% 16%;
     
-    --muted: 30 10% 96%;
-    --muted-foreground: 220 10% 45%;
+    --muted: 30 16% 95%;
+    --muted-foreground: 0 0% 43%;
     
-    --accent: 17 100% 60%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 25 100% 50%;
+    --accent-foreground: 0 0% 0%;
     
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 17 100% 60%;
+    --border: 220 16% 86%;
+    --input: 220 16% 86%;
+    --ring: 25 100% 50%;
     
-    --radius: 0.75rem;
+    --radius: 1rem;
     
     /* Surface colors */
     --surface-elevated: 0 0% 100%;
-    --surface-subtle: 30 10% 98%;
+    --surface-subtle: 30 25% 98%;
     
     /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(220 10% 10% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(220 10% 10% / 0.08), 0 2px 4px -1px hsl(220 10% 10% / 0.04);
-    --shadow-lg: 0 10px 15px -3px hsl(220 10% 10% / 0.08), 0 4px 6px -2px hsl(220 10% 10% / 0.04);
-    --shadow-xl: 0 20px 25px -5px hsl(220 10% 10% / 0.08), 0 10px 10px -5px hsl(220 10% 10% / 0.02);
-    --shadow-orange: 0 8px 24px -4px hsl(17 100% 60% / 0.25);
+    --shadow-sm: 0 1px 2px 0 hsl(220 18% 12% / 0.08);
+    --shadow-md: 0 8px 20px -10px hsl(220 18% 12% / 0.18);
+    --shadow-lg: 0 14px 28px -14px hsl(220 18% 12% / 0.24);
+    --shadow-xl: 0 22px 40px -20px hsl(220 18% 12% / 0.28);
+    --shadow-orange: 0 0 20px 5px hsl(25 100% 50% / 0.4);
     
     /* Glass effect */
-    --glass-bg: hsl(0 0% 100% / 0.8);
-    --glass-border: hsl(220 13% 91% / 0.6);
+    --glass-bg: hsl(0 0% 100% / 0.78);
+    --glass-border: hsl(220 16% 86% / 0.8);
     
     /* Sidebar */
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 220 10% 25%;
-    --sidebar-primary: 17 100% 60%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 30 10% 95%;
-    --sidebar-accent-foreground: 220 10% 25%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 17 100% 60%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 20% 12%;
+    --sidebar-primary: 25 100% 50%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 30 25% 96%;
+    --sidebar-accent-foreground: 220 20% 12%;
+    --sidebar-border: 220 16% 86%;
+    --sidebar-ring: 25 100% 50%;
   }
 
   .dark {
-    /* Core Colors - Dark Mode */
-    --background: 220 20% 7%;
-    --foreground: 30 10% 96%;
-    
-    --card: 220 18% 10%;
-    --card-foreground: 30 10% 96%;
-    
-    --popover: 220 18% 10%;
-    --popover-foreground: 30 10% 96%;
-    
-    /* Orange accent - slightly brighter in dark mode */
-    --primary: 17 100% 60%;
-    --primary-foreground: 220 20% 7%;
-    --primary-hover: 17 100% 65%;
-    --primary-glow: 17 100% 50%;
-    
-    --secondary: 220 15% 15%;
-    --secondary-foreground: 30 10% 96%;
-    
-    --muted: 220 15% 15%;
-    --muted-foreground: 220 10% 60%;
-    
-    --accent: 17 100% 60%;
-    --accent-foreground: 220 20% 7%;
-    
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 100% / 5%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 100% / 8%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 25 100% 50%;
+    --primary-foreground: 0 0% 0%;
+    --primary-hover: 25 100% 56%;
+    --primary-glow: 25 100% 50%;
+    --secondary: 0 0% 100% / 7%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 100% / 7%;
+    --muted-foreground: 0 0% 63%;
+    --accent: 25 100% 50%;
+    --accent-foreground: 0 0% 0%;
     --destructive: 0 70% 45%;
-    --destructive-foreground: 30 10% 96%;
-    
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 17 100% 60%;
-    
-    /* Surface colors */
-    --surface-elevated: 220 18% 12%;
-    --surface-subtle: 220 18% 9%;
-    
-    /* Shadows - more subtle in dark mode */
-    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.2);
-    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.25), 0 2px 4px -1px hsl(0 0% 0% / 0.15);
-    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.25), 0 4px 6px -2px hsl(0 0% 0% / 0.15);
-    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.3), 0 10px 10px -5px hsl(0 0% 0% / 0.15);
-    --shadow-orange: 0 8px 24px -4px hsl(17 100% 60% / 0.35);
-    
-    /* Glass effect */
-    --glass-bg: hsl(220 18% 10% / 0.85);
-    --glass-border: hsl(220 15% 25% / 0.5);
-    
-    /* Sidebar */
-    --sidebar-background: 220 20% 8%;
-    --sidebar-foreground: 30 10% 90%;
-    --sidebar-primary: 17 100% 60%;
-    --sidebar-primary-foreground: 220 20% 7%;
-    --sidebar-accent: 220 15% 15%;
-    --sidebar-accent-foreground: 30 10% 90%;
-    --sidebar-border: 220 15% 18%;
-    --sidebar-ring: 17 100% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 100% / 10%;
+    --input: 0 0% 100% / 10%;
+    --ring: 25 100% 50%;
+    --surface-elevated: 0 0% 1%;
+    --surface-subtle: 0 0% 2%;
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.25);
+    --shadow-md: 0 4px 10px -2px hsl(0 0% 0% / 0.4);
+    --shadow-lg: 0 10px 22px -8px hsl(0 0% 0% / 0.55);
+    --shadow-xl: 0 22px 36px -12px hsl(0 0% 0% / 0.65);
+    --shadow-orange: 0 0 20px 5px hsl(25 100% 50% / 0.4);
+    --glass-bg: hsl(0 0% 100% / 0.05);
+    --glass-border: hsl(0 0% 100% / 0.1);
+    --sidebar-background: 0 0% 1%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 25 100% 50%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 100% / 7%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 100% / 10%;
+    --sidebar-ring: 25 100% 50%;
   }
 }
 
@@ -139,12 +119,18 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
   }
 
-  /* Typewriter font for headings */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'IBM Plex Mono', 'Courier Prime', monospace;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  p {
+    line-height: 1.75;
+    color: hsl(var(--muted-foreground));
   }
 
   /* Custom scrollbar */
@@ -161,7 +147,7 @@
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary;
+    @apply bg-primary/80;
   }
 }
 
@@ -183,6 +169,6 @@
   }
 
   .font-typewriter {
-    font-family: 'IBM Plex Mono', 'Courier Prime', monospace;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
   }
 }
