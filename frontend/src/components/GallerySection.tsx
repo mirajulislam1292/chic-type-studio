@@ -4,70 +4,7 @@ import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect } from "react";
-
-// Import all gallery images
-import img3 from "@/assets/project-electronics.jpg";
-import img4 from "@/assets/team-work.jpg";
-import img5 from "@/assets/hydrover-prototype.jpg";
-import img6 from "@/assets/hydrover-electronics.jpg";
-import img7 from "@/assets/robot-car.jpg";
-import img8 from "@/assets/award-ceremony.jpg";
-import img9 from "@/assets/trophy-photo.jpg";
-import img10 from "@/assets/childhood-photo.jpg";
-import img11 from "@/assets/mountain-photo.jpg";
-import img12 from "@/assets/truemedi-prototype.jpg";
-import img13 from "@/assets/bdrcs-volunteer.jpg";
-import img14 from "@/assets/science-fair-presentation.jpg";
-import img15 from "@/assets/robotics-workspace.jpg";
-import img16 from "@/assets/startup-summit.jpg";
-import img17 from "@/assets/family-childhood.jpg";
-import img18 from "@/assets/siblings-swing.jpg";
-import img19 from "@/assets/night-selfie.jpg";
-import img20 from "@/assets/science-fair-team.jpg";
-import img21 from "@/assets/electronics-experiment.jpg";
-import img22 from "@/assets/smart-city-model.jpg";
-import img23 from "@/assets/aquaguard-device.jpg";
-import img24 from "@/assets/truemedi-full-setup.jpg";
-import img25 from "@/assets/robot-car-selfie.jpg";
-import img26 from "@/assets/club-activity.jpg";
-import img27 from "@/assets/dev-workspace.jpg";
-import img28 from "@/assets/qcec-silver-certificate.jpg";
-import img29 from "@/assets/science-festival.jpg";
-import img30 from "@/assets/about-photo.jpg";
-import img31 from "@/assets/Mahim Linkedin.jpg";
-import img32 from "@/assets/f3a36a5d-383e-4f1d-9b25-5ce51c37cb5b 2.jpg";
-import img33 from "@/assets/IMG_0329.jpg";
-import img34 from "@/assets/IMG_2826.jpg";
-import img35 from "@/assets/IMG_3143.JPG";
-import img37 from "@/assets/IMG_4720_Original.jpg";
-import img38 from "@/assets/IMG_C1E7806B13C8-1.jpeg";
-
-const galleryImages = [
-  { src: "/images/mahim-gtcsc-c5.png", alt: "MAHIM GTCSC C5" },
-  { src: "/images/gallery-extra-22.png", alt: "Art Gallery Photo" },
-  { src: img4, alt: "Team Collaboration" },
-  { src: img5, alt: "HydroVer Prototype" },
-  { src: img6, alt: "Electronics Assembly" },
-  { src: img7, alt: "Robot Car Project" },
-  { src: img8, alt: "Award Ceremony" },
-  { src: img9, alt: "Trophy Achievement" },
-  { src: img10, alt: "Childhood Curiosity" },
-  { src: img11, alt: "Mountain Adventure" },
-  { src: img12, alt: "TrueMedi Prototype" },
-  { src: img13, alt: "BDRCS Volunteer" },
-  { src: img14, alt: "Science Fair Presentation" },
-  { src: img15, alt: "Robotics Workspace" },
-  { src: img16, alt: "Bangladesh Startup Summit" },
-  { src: img17, alt: "Family Moments" },
-  { src: img18, alt: "Childhood Memories" },
-  { src: img19, alt: "Night Life" },
-  { src: img20, alt: "Science Fair Team Award" },
-  { src: img21, alt: "Electronics Experiment" },
-  { src: img22, alt: "Smart City Model" },
-  { src: img23, alt: "AquaGuard Device" },
-  { src: img24, alt: "TrueMedi Full Setup" },
-  { src: img25, alt: "Robot Car Project Selfie" },
-];
+import { galleryImages } from "@/data/galleryImages";
 
 export function GallerySection() {
   const ref = useRef(null);
