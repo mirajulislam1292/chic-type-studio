@@ -112,7 +112,7 @@ export function GallerySection() {
   }, [emblaApi]);
 
   return (
-    <section id="gallery" className="py-24 bg-surface-subtle border-y border-border/40" ref={ref}>
+    <section id="gallery" className="py-24 bg-surface-subtle" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -142,12 +142,12 @@ export function GallerySection() {
                 >
                   <motion.div
                     whileHover={{ scale: 1.02 }}
-                    className="aspect-[4/3] rounded-3xl overflow-hidden bg-card border border-border hover:shadow-orange transition-all"
+                    className="aspect-[4/3] rounded-2xl overflow-hidden bg-secondary"
                   >
                     <img
                       src={image.src}
                       alt={image.alt}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110 brightness-90 contrast-110"
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                     />
                   </motion.div>
                 </div>
@@ -158,14 +158,14 @@ export function GallerySection() {
           {/* Navigation Buttons */}
           <button
             onClick={scrollPrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground transition-all hover:scale-110 hover:shadow-orange"
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground transition-all hover:scale-110"
             aria-label="Previous slide"
           >
             <ChevronLeft className="h-6 w-6" />
           </button>
           <button
             onClick={scrollNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground transition-all hover:scale-110 hover:shadow-orange"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground transition-all hover:scale-110"
             aria-label="Next slide"
           >
             <ChevronRight className="h-6 w-6" />

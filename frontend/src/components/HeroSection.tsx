@@ -102,7 +102,7 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground leading-tight tracking-tight"
             >
-              M.Mahimmiraj
+              M. Mahimmiraj
             </motion.h1>
 
             {/* Description with no hyperlinks */}
@@ -197,7 +197,7 @@ export function HeroSection() {
                   <div className="w-full h-full rounded-full overflow-hidden bg-card border-2 border-background">
                     <motion.img 
                       src={profileImage} 
-                      alt="M.Mahimmiraj"
+                      alt="M. Mahimmiraj"
                       className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                       whileHover={{ scale: 1.1 }}
                     />
