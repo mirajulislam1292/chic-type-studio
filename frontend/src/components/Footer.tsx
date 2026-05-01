@@ -39,7 +39,7 @@ export function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-primary/30 py-6">
+        <div className="border-t-2 border-border/40 py-6">
           {/* Thank You Message */}
           <div className="text-center mb-6 space-y-3">
             <p className="text-lg font-semibold text-foreground">
@@ -51,7 +51,7 @@ export function Footer() {
           </div>
 
           {/* Footer Bottom */}
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-muted-foreground pt-6 border-t border-border/20">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-muted-foreground pt-6 border-t-2 border-border/40">
             <p>© {currentYear} M. Mahimmiraj. All rights reserved.</p>
             <div className="flex gap-6">
               <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
@@ -60,7 +60,7 @@ export function Footer() {
           </div>
 
           {/* Legal Name Note */}
-          <p className="text-xs text-muted-foreground/70 text-center pt-4 border-t border-primary/30 mt-4">
+          <p className="text-xs text-muted-foreground/70 text-center pt-4 border-t-2 border-border/40 mt-4">
             Md. Mirajul Islam Mahim is my full legal name.
           </p>
         </div>
