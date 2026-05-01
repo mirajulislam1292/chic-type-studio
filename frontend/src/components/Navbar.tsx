@@ -50,9 +50,10 @@ export function Navbar() {
           {/* Logo */}
           <button
             onClick={goHome}
-            className="font-typewriter text-2xl font-bold text-primary tracking-tight hover:opacity-80 transition-opacity"
+            className="h-10 hover:opacity-80 transition-opacity"
+            aria-label="Go to home"
           >
-            1292.
+            <img src="/mahim-signature-logo.png" alt="Mahim Signature" className="h-full w-auto" />
           </button>
 
           {/* Desktop Navigation */}
