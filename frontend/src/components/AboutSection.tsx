@@ -35,7 +35,7 @@ export function AboutSection() {
             className="space-y-6 text-lg leading-relaxed text-muted-foreground"
           >
             <p>
-              I grew up in Narayanganj, a city defined by industry, rivers, and movement. My father runs an engineering firm. Long before I had any formal training, I was taking apart machines to understand how they worked. Not to fix them. Just to know.
+              I grew up in <strong className="text-foreground font-semibold">Narayanganj, a city defined by industry, rivers, and movement.</strong> My father runs an engineering firm. Long before I had any formal training, I was taking apart machines to understand how they worked. Not to fix them. Just to know.
             </p>
             <p>
               That habit became projects. The projects became competition wins. The wins became a startup. None of it was planned. It was just what happens when you cannot stop asking how things work and why they fail.
@@ -44,7 +44,7 @@ export function AboutSection() {
               I have represented Bangladesh in national olympiads across mathematics, physics, robotics, artificial intelligence, and environmental science. I have won national science championships with hardware I built myself. I founded TagWraps to fight counterfeit products in South Asia using NFC technology. I led a science club of hundreds of students as president.
             </p>
             <p>
-              I am nineteen years old and I am just getting started.
+              <strong className="text-foreground font-semibold">I am nineteen years old and I am just getting started.</strong>
             </p>
           </motion.div>
 
