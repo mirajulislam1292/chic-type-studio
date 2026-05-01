@@ -3,7 +3,7 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
 import { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import logoSignature from "@/assets/image copy 2.png";
+import logoUniversal from "@/assets/image copy 3.png";
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -54,7 +54,7 @@ export function Navbar() {
             className="h-16 hover:opacity-80 transition-opacity"
             aria-label="Go to home"
           >
-            <img src={logoSignature} alt="Mahim Logo" className="h-full w-auto object-contain" />
+            <img src={logoUniversal} alt="Mahim Logo" className="h-full w-auto object-contain" />
           </button>
 
           {/* Desktop Navigation */}
