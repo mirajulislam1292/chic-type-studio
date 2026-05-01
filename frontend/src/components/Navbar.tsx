@@ -56,7 +56,7 @@ export function Navbar() {
             aria-label="Go to home"
           >
             <img
-              src={theme === "dark" ? logoLight : logoDark}
+              src={theme === "dark" ? logoDark : logoLight}
               alt="Mahim Signature"
               className="h-full w-auto object-contain"
             />
