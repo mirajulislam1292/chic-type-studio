@@ -21,7 +21,12 @@ export function Navbar() {
 
   const scrollToSection = (href: string) => {
     if (location.pathname !== "/") {
-      navigate("/" + href);
+      // Navigate to root first, then scroll to the section after navigation completes
+      navigate("/");
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 120);
     } else {
       const element = document.querySelector(href);
       if (element) {
