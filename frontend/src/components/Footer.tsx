@@ -7,7 +7,7 @@ export function Footer() {
         {/* Main Content Grid */}
         <div className="grid sm:grid-cols-3 gap-8 mb-6">
           {/* Brand Section */}
-          <div className="space-y-4">
+          <div className="space-y-4 border-l-2 border-primary/60 pl-6">
             <h3 className="text-lg font-bold text-foreground">M. Mahimmiraj</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Building technologies that solve real problems. Robotics, IoT, and environmental innovation from Bangladesh.
@@ -15,7 +15,7 @@ export function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-4">
+          <div className="space-y-4 border-l-2 border-primary/60 pl-6">
             <h4 className="text-sm font-semibold text-foreground uppercase tracking-wide">Navigation</h4>
             <ul className="space-y-2 text-sm">
               <li><a href="#about" className="text-muted-foreground hover:text-primary transition-colors">About</a></li>
@@ -26,7 +26,7 @@ export function Footer() {
           </div>
 
           {/* Connect Section */}
-          <div className="space-y-4">
+          <div className="space-y-4 border-l-2 border-primary/60 pl-6">
             <h4 className="text-sm font-semibold text-foreground uppercase tracking-wide">Connect</h4>
             <ul className="space-y-2 text-sm">
               <li><a href="https://www.linkedin.com/in/mahimmiraj1292/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">LinkedIn</a></li>
