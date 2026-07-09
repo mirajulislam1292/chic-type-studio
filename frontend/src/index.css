@@ -1,134 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;500&family=Inter+Tight:wght@600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Design System - Apple Aesthetic with Typewriter Fonts */
-
 @layer base {
   :root {
-    /* Core Colors - Light Mode */
-    --background: 0 0% 100%;
-    --foreground: 220 15% 10%;
+    --background: 240 33% 99%; /* #FBFBFD */
+    --foreground: 0 0% 11%; /* #1D1D1F */
     
-    --card: 0 0% 100%;
-    --card-foreground: 220 15% 10%;
+    --secondary-foreground: 240 2% 43%; /* #6E6E73 */
+    --muted-foreground: 240 2% 43%; /* #6E6E73 */
     
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 10%;
+    --accent: 0 0% 100%; /* #FFFFFF */
+    --accent-foreground: 0 0% 0%; /* #000000 */
     
-    /* Orange accent palette */
-    --primary: 17 100% 60%;
+    --border: 240 14% 92%; /* #E8E8ED */
+    
+    --card: 240 33% 99%;
+    --card-foreground: 0 0% 11%;
+    --popover: 240 33% 99%;
+    --popover-foreground: 0 0% 11%;
+    --primary: 0 0% 11%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 17 90% 52%;
-    --primary-glow: 17 100% 70%;
-    
-    --secondary: 30 10% 96%;
-    --secondary-foreground: 220 15% 20%;
-    
-    --muted: 30 10% 96%;
-    --muted-foreground: 220 10% 45%;
-    
-    --accent: 17 100% 60%;
-    --accent-foreground: 0 0% 100%;
-    
+    --secondary: 240 14% 92%;
+    --muted: 240 14% 92%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 17 100% 60%;
-    
-    --radius: 0.75rem;
-    
-    /* Surface colors */
-    --surface-elevated: 0 0% 100%;
-    --surface-subtle: 30 10% 98%;
-    
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(220 10% 10% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(220 10% 10% / 0.08), 0 2px 4px -1px hsl(220 10% 10% / 0.04);
-    --shadow-lg: 0 10px 15px -3px hsl(220 10% 10% / 0.08), 0 4px 6px -2px hsl(220 10% 10% / 0.04);
-    --shadow-xl: 0 20px 25px -5px hsl(220 10% 10% / 0.08), 0 10px 10px -5px hsl(220 10% 10% / 0.02);
-    --shadow-orange: 0 8px 24px -4px hsl(17 100% 60% / 0.25);
-    
-    /* Glass effect */
-    --glass-bg: hsl(0 0% 100% / 0.8);
-    --glass-border: hsl(220 13% 91% / 0.6);
-    
-    /* Sidebar */
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 220 10% 25%;
-    --sidebar-primary: 17 100% 60%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 30 10% 95%;
-    --sidebar-accent-foreground: 220 10% 25%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 17 100% 60%;
+    --input: 240 14% 92%;
+    --ring: 131 22% 30%;
+    --radius: 9999px;
   }
 
   .dark {
-    /* Core Colors - Dark Mode */
-    --background: 220 20% 7%;
-    --foreground: 30 10% 96%;
-    
-    --card: 220 18% 10%;
-    --card-foreground: 30 10% 96%;
-    
-    --popover: 220 18% 10%;
-    --popover-foreground: 30 10% 96%;
-    
-    /* Orange accent - slightly brighter in dark mode */
-    --primary: 17 100% 60%;
-    --primary-foreground: 220 20% 7%;
-    --primary-hover: 17 100% 65%;
-    --primary-glow: 17 100% 50%;
-    
-    --secondary: 220 15% 15%;
-    --secondary-foreground: 30 10% 96%;
-    
-    --muted: 220 15% 15%;
-    --muted-foreground: 220 10% 60%;
-    
-    --accent: 17 100% 60%;
-    --accent-foreground: 220 20% 7%;
-    
-    --destructive: 0 70% 45%;
-    --destructive-foreground: 30 10% 96%;
-    
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 17 100% 60%;
-    
-    /* Surface colors */
-    --surface-elevated: 220 18% 12%;
-    --surface-subtle: 220 18% 9%;
-    
-    /* Shadows - more subtle in dark mode */
-    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.2);
-    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.25), 0 2px 4px -1px hsl(0 0% 0% / 0.15);
-    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.25), 0 4px 6px -2px hsl(0 0% 0% / 0.15);
-    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.3), 0 10px 10px -5px hsl(0 0% 0% / 0.15);
-    --shadow-orange: 0 8px 24px -4px hsl(17 100% 60% / 0.35);
-    
-    /* Glass effect */
-    --glass-bg: hsl(220 18% 10% / 0.85);
-    --glass-border: hsl(220 15% 25% / 0.5);
-    
-    /* Sidebar */
-    --sidebar-background: 220 20% 8%;
-    --sidebar-foreground: 30 10% 90%;
-    --sidebar-primary: 17 100% 60%;
-    --sidebar-primary-foreground: 220 20% 7%;
-    --sidebar-accent: 220 15% 15%;
-    --sidebar-accent-foreground: 30 10% 90%;
-    --sidebar-border: 220 15% 18%;
-    --sidebar-ring: 17 100% 60%;
+    /* Forcing light mode colors even in dark mode as requested for strict styling */
+    --background: 240 33% 99%;
+    --foreground: 0 0% 11%;
+    --secondary-foreground: 240 2% 43%;
+    --muted-foreground: 240 2% 43%;
+    --accent: 0 0% 100%;
+    --accent-foreground: 0 0% 0%;
+    --border: 240 14% 92%;
+    --card: 240 33% 99%;
+    --card-foreground: 0 0% 11%;
+    --popover: 240 33% 99%;
+    --popover-foreground: 0 0% 11%;
+    --primary: 0 0% 11%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 14% 92%;
+    --muted: 240 14% 92%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --input: 240 14% 92%;
+    --ring: 131 22% 30%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
@@ -139,50 +65,19 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
   }
 
-  /* Typewriter font for headings */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'IBM Plex Mono', 'Courier Prime', monospace;
-  }
-
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-background;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-muted-foreground/30 rounded-full;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter Tight", sans-serif;
+    font-weight: 600;
   }
 }
 
-/* Utility classes using design system */
 @layer utilities {
-  .glass-effect {
-    background: var(--glass-bg);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-color: var(--glass-border);
-  }
-
-  .text-gradient-orange {
-    @apply bg-gradient-to-r from-primary to-[hsl(30,100%,65%)] bg-clip-text text-transparent;
-  }
-
-  .shadow-glow-orange {
-    box-shadow: var(--shadow-orange);
-  }
-
-  .font-typewriter {
-    font-family: 'IBM Plex Mono', 'Courier Prime', monospace;
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 400;
+    letter-spacing: 0.06em;
   }
 }

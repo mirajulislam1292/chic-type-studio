@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { Moon, Sun, Menu, X, Award } from "lucide-react";
-import { useTheme } from "@/hooks/useTheme";
+import { Menu, X, Award } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 
@@ -13,7 +12,6 @@ const navLinks = [
 ];
 
 export function Navbar() {
-  const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -43,25 +41,23 @@ export function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border"
+      className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/12"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[720px] mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <button
             onClick={goHome}
-            className="font-typewriter text-2xl font-bold text-primary tracking-widest hover:opacity-80 transition-opacity"
+            className="font-mono text-xl font-bold text-white tracking-widest hover:opacity-80 transition-opacity"
           >
             1292.
           </button>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8">
+          <ul className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <button
                   onClick={() => scrollToSection(link.href)}
-                  className="text-muted-foreground hover:text-foreground transition-colors font-medium"
+                  className="text-sm text-muted-foreground hover:text-white transition-colors"
                 >
                   {link.label}
                 </button>
@@ -70,57 +66,37 @@ export function Navbar() {
             <li>
               <Link
                 to="/essays/qcec"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary border border-primary/30 rounded-full text-sm font-semibold hover:bg-primary/20 hover:border-primary/50 transition-all"
+                className="inline-flex items-center gap-2 px-3 py-1 bg-transparent border border-white/12 rounded-[2px] text-xs font-semibold hover:bg-white hover:text-black transition-colors"
               >
-                <Award className="w-4 h-4" />
+                <Award className="w-3 h-3" />
                 QCEC '25
               </Link>
             </li>
           </ul>
 
-          {/* Theme Toggle & Mobile Menu */}
-          <div className="flex items-center gap-4">
-            <button
-              onClick={toggleTheme}
-              className="p-2.5 rounded-full hover:bg-card transition-all duration-300 border border-transparent hover:border-border"
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? (
-                <Sun className="h-5 w-5 text-primary" />
-              ) : (
-                <Moon className="h-5 w-5 text-muted-foreground" />
-              )}
-            </button>
-
-            {/* Mobile Menu Button */}
+          <div className="flex items-center md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2.5 rounded-full hover:bg-card transition-all duration-300 border border-transparent hover:border-border"
-              aria-label="Toggle menu"
+              className="p-2 text-white"
             >
-              {mobileMenuOpen ? (
-                <X className="h-5 w-5 text-foreground" />
-              ) : (
-                <Menu className="h-5 w-5 text-foreground" />
-              )}
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden py-4 border-t border-border"
+            className="md:hidden py-4 border-t border-white/12"
           >
             <ul className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <button
                     onClick={() => scrollToSection(link.href)}
-                    className="w-full text-left py-3 px-4 text-muted-foreground hover:text-foreground hover:bg-card transition-all rounded-lg font-medium"
+                    className="w-full text-left py-2 px-2 text-sm text-muted-foreground hover:text-white transition-colors"
                   >
                     {link.label}
                   </button>
@@ -130,7 +106,7 @@ export function Navbar() {
                 <Link
                   to="/essays/qcec"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-2 py-3 px-4 text-primary hover:bg-primary/10 transition-all rounded-lg font-semibold"
+                  className="flex items-center gap-2 py-2 px-2 text-sm text-white hover:opacity-80 transition-opacity"
                 >
                   <Award className="w-4 h-4" />
                   QCEC '25
