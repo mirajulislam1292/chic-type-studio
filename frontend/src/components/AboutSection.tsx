@@ -26,7 +26,7 @@ export function AboutSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="space-y-6 text-base sm:text-lg leading-relaxed text-muted-foreground"
+          className="space-y-6 text-[14px] leading-relaxed text-muted-foreground"
         >
           <p>
             I'm <strong className="text-white font-semibold">Mahim from Narayanganj, Bangladesh</strong> a technology enthusiast driven by curiosity and a passion for creating positive change through innovation.

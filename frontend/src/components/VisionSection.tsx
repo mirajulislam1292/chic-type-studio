@@ -19,7 +19,7 @@ export function VisionSection() {
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-2">
             Vision & Philosophy
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-[14px] text-muted-foreground">
             What Drives Me Forward
           </p>
         </motion.div>
@@ -35,7 +35,7 @@ export function VisionSection() {
             "In my dictionary, wealth doesn't mean money. It means doing something for humanity, becoming happy in life, and making people smile."
           </blockquote>
 
-          <div className="space-y-6 text-base text-muted-foreground leading-relaxed">
+          <div className="space-y-6 text-[14px] text-muted-foreground leading-relaxed">
             <p>
               I dream of becoming an{" "}
               <span className="text-white font-medium">

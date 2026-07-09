@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import profileImage from "@/assets/new-profile.jpg";
-import { NeuralNetworkBackground } from "./NeuralNetworkBackground";
 
 export function HeroSection() {
   const scrollToSection = (href: string) => {
@@ -12,9 +11,6 @@ export function HeroSection() {
 
   return (
     <section className="min-h-screen flex flex-col justify-center relative overflow-hidden">
-      {/* Interactive Neural Network Background */}
-      <NeuralNetworkBackground />
-
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 py-20 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -33,7 +29,7 @@ export function HeroSection() {
           </h1>
 
           {/* Description */}
-          <div className="space-y-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
+          <div className="space-y-4 text-[14px] text-muted-foreground leading-relaxed">
             <p>
               Currently developing TagWraps, an innovative packaging system using NFC technology to protect the authenticity of a product through a secured cryptographic encryption method, helping the public buy and identify genuine products.
             </p>

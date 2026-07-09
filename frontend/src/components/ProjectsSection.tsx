@@ -56,7 +56,7 @@ export function ProjectsSection() {
 
               <div>
                 <h3 className="text-2xl font-bold mb-4 text-foreground">TagWraps</h3>
-                <div className="space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
+                <div className="space-y-4 text-muted-foreground leading-relaxed text-[14px]">
                   <p>In Bangladesh and across South Asia, counterfeit medicines, fake cosmetics, and fraudulent goods cause real harm to real people every day. I built TagWraps to solve that with something simple and affordable.</p>
                   
                   <p>TagWraps is a smart NFC authentication tag embedded in a product wrapper. Each chip is cryptographically locked and registered in a cloud database. When a customer taps the tag with their smartphone, the system verifies the product as genuine or flags it as fake in real time. No app required. No special scanner. Just a phone tap.</p>
@@ -92,7 +92,7 @@ export function ProjectsSection() {
           <h2 className="text-3xl font-bold tracking-tight mb-2">
             Selected Work
           </h2>
-          <p className="text-base text-muted-foreground">
+          <p className="text-[14px] text-muted-foreground">
             Building Solutions for Real World Problems
           </p>
         </div>

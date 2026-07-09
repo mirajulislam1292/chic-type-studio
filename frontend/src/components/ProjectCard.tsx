@@ -25,7 +25,7 @@ export function ProjectCard({ title, description, tags, slug, delay = 0 }: Proje
           <h3 className="text-xl font-semibold text-foreground group-hover:text-white transition-colors">
             {title}
           </h3>
-          <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+          <p className="text-muted-foreground leading-relaxed text-[14px]">
             {description}
           </p>
           <div className="flex flex-wrap gap-3 mt-2">
