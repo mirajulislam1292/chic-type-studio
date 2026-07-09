@@ -36,7 +36,8 @@ export function ProjectsSection() {
 
   return (
     <section id="projects" className="py-24" ref={ref}>
-      <div className="max-w-[720px] mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="max-w-3xl">
         
         {/* Currently Building Section - TagWraps */}
         <motion.div
@@ -69,14 +70,14 @@ export function ProjectsSection() {
                   href="https://tagwraps.vercel.app/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-black rounded-[2px] font-medium hover:bg-neutral-200 transition-colors duration-200 text-sm"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-black rounded-lg font-semibold hover:bg-neutral-100 transition-all duration-200 text-sm shadow-lg shadow-white/10"
                 >
                   Visit TagWraps <ExternalLink className="h-4 w-4" />
                 </a>
                 <a 
                   href="/TagWraps_Whitepaper.pdf"
                   download
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent border border-white/12 text-white rounded-[2px] font-medium hover:bg-white hover:text-black transition-colors duration-200 text-sm"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-transparent border border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-all duration-200 text-sm"
                 >
                   Whitepaper
                   <Download className="h-4 w-4" />
@@ -101,6 +102,7 @@ export function ProjectsSection() {
           {projects.map((project, index) => (
             <ProjectCard key={project.title} {...project} delay={index * 0.1} />
           ))}
+        </div>
         </div>
       </div>
     </section>

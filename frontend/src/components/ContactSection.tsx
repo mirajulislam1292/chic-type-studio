@@ -52,7 +52,7 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="py-24 bg-surface-subtle" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

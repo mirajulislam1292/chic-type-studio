@@ -7,8 +7,8 @@ export function AboutSection() {
 
   return (
     <section id="about" className="py-24" ref={ref}>
-      <div className="max-w-[720px] mx-auto px-4 sm:px-6">
-        
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="max-w-3xl">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -38,6 +38,7 @@ export function AboutSection() {
             Through attending various events and gaining hands-on experience with innovative engineering projects, I realized that there is a significant gap in automation and robotics development in my country. Being the son of a businessman, I have developed a vision to <strong className="text-white font-semibold">establish a robotics and automation company in Bangladesh</strong>.
           </p>
         </motion.div>
+      </div>
       </div>
     </section>
   );

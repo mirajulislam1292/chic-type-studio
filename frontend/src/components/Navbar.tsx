@@ -43,13 +43,17 @@ export function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/12"
     >
-      <div className="max-w-[720px] mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex justify-between items-center h-16">
           <button
             onClick={goHome}
-            className="font-mono text-xl font-bold text-white tracking-widest hover:opacity-80 transition-opacity"
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
-            1292.
+            <img
+              src="/mahim-logo-dark.png"
+              alt="Logo"
+              className="w-8 h-8 object-contain"
+            />
           </button>
 
           <ul className="hidden md:flex items-center gap-6">
