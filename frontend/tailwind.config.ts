@@ -19,8 +19,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["-apple-system", "BlinkMacSystemFont", "Inter", "sans-serif"],
-        display: ["-apple-system", "BlinkMacSystemFont", "Inter Tight", "sans-serif"],
+        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        display: ["Inter Tight", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
         mono: ["IBM Plex Mono", "monospace"],
       },
       colors: {
@@ -29,6 +29,10 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        orange: {
+          DEFAULT: "hsl(var(--orange))",
+          foreground: "hsl(var(--orange-foreground))",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
