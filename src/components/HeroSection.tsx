@@ -1,8 +1,12 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import profileImage from "@/assets/new-profile.jpg";
+import { useState } from "react";
+
+const profileImage = "/assets/new-profile.jpg";
 
 export function HeroSection() {
+  const [imgError, setImgError] = useState(false);
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -45,15 +49,14 @@ export function HeroSection() {
                 Explore My Work
                 <ArrowUpRight className="w-4 h-4" />
               </button>
-              
+
               <button
                 onClick={() => scrollToSection("#contact")}
-                className="px-6 py-3 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 text-zinc-200 font-medium rounded-lg transition-all duration-200 text-sm"
+                className="px-5 py-3 text-zinc-400 hover:text-white transition-colors duration-200 text-sm"
               >
                 Get In Touch
               </button>
             </div>
-
 
           </motion.div>
 
@@ -65,12 +68,21 @@ export function HeroSection() {
             className="shrink-0 self-center md:self-auto"
           >
             <div className="relative">
-              <div className="w-40 h-40 sm:w-56 sm:h-56 rounded-full overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl">
-                <img
-                  src={profileImage}
-                  alt="M. Mahimmiraj"
-                  className="w-full h-full object-cover"
-                />
+              <div className="w-40 h-40 sm:w-56 sm:h-56 rounded-full overflow-hidden border border-zinc-800 bg-[#0f0f15] shadow-2xl flex items-center justify-center relative">
+                {!imgError ? (
+                  <img
+                    src={profileImage}
+                    alt="M. Mahimmiraj"
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                    onError={() => setImgError(true)}
+                  />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-zinc-800 to-zinc-900 text-zinc-300">
+                    <span className="text-3xl sm:text-5xl font-black text-white tracking-wider">MM</span>
+                    <span className="text-[10px] font-mono text-zinc-400 mt-1 uppercase">Mahimmiraj</span>
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>

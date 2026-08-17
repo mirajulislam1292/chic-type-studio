@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Menu, X, Award, Sparkles } from "lucide-react";
+import { Menu, X, Award, Image as ImageIcon } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 
@@ -49,16 +49,11 @@ export function Navbar() {
           {/* Logo / Brand Name */}
           <button
             onClick={goHome}
-            className="flex items-center gap-3 group text-left focus:outline-none"
+            className="flex items-center group text-left focus:outline-none"
           >
-            <div className="w-8 h-8 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xs font-bold font-mono text-zinc-200 group-hover:border-zinc-500 transition-all">
-              M
-            </div>
-            <div className="flex flex-col">
-              <span className="text-sm font-semibold tracking-tight text-white group-hover:text-zinc-200 transition-colors">
-                M. Mahimmiraj
-              </span>
-            </div>
+            <span className="text-sm font-semibold tracking-tight text-white group-hover:text-zinc-200 transition-colors">
+              M. Mahimmiraj
+            </span>
           </button>
 
           {/* Desktop Nav Links */}
@@ -67,12 +62,21 @@ export function Navbar() {
               <li key={link.href}>
                 <button
                   onClick={() => scrollToSection(link.href)}
-                  className="px-3.5 py-1.5 text-xs font-medium text-zinc-400 hover:text-white hover:bg-zinc-800/60 rounded-full transition-all"
+                  className="px-3 py-1.5 text-xs font-medium text-zinc-400 hover:text-white hover:bg-zinc-800/60 rounded-full transition-all"
                 >
                   {link.label}
                 </button>
               </li>
             ))}
+            <li>
+              <Link
+                to="/gallery"
+                className="px-3 py-1.5 text-xs font-medium text-orange-400 hover:text-orange-300 hover:bg-zinc-800/60 rounded-full transition-all inline-flex items-center gap-1"
+              >
+                <ImageIcon className="w-3 h-3" />
+                Gallery
+              </Link>
+            </li>
           </ul>
 
           {/* QCEC Badge / Essay Link */}
@@ -89,11 +93,11 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 md:hidden">
             <Link
-              to="/essays/qcec"
-              className="inline-flex items-center gap-1 px-2.5 py-1 bg-zinc-900 border border-zinc-700/80 rounded-full text-[11px] font-mono text-zinc-300"
+              to="/gallery"
+              className="inline-flex items-center gap-1 px-2.5 py-1 bg-zinc-900 border border-zinc-700/80 rounded-full text-[11px] font-mono text-orange-400"
             >
-              <Award className="w-3 h-3 text-zinc-400" />
-              QCEC
+              <ImageIcon className="w-3 h-3" />
+              Photos
             </Link>
 
             <button
@@ -125,13 +129,21 @@ export function Navbar() {
                   </button>
                 </li>
               ))}
-              <li className="pt-2 border-t border-zinc-800/80 mt-1">
+              <li className="pt-2 border-t border-zinc-800/80 mt-1 flex flex-col gap-2">
                 <Link
-                  to="/essays/qcec"
+                  to="/gallery"
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center gap-2 py-2 px-3 text-sm font-medium text-orange-400 bg-orange-500/10 rounded-lg border border-orange-500/20"
                 >
-                  <Award className="w-4 h-4" />
+                  <ImageIcon className="w-4 h-4" />
+                  Full Photo Archive & Gallery
+                </Link>
+                <Link
+                  to="/essays/qcec"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-2 py-2 px-3 text-sm font-medium text-zinc-200 bg-zinc-900 rounded-lg border border-zinc-800"
+                >
+                  <Award className="w-4 h-4 text-zinc-400" />
                   QCEC '25 Silver Essay
                 </Link>
               </li>

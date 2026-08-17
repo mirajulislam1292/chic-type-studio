@@ -1,19 +1,16 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Quote, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import { Quote } from "lucide-react";
 
 export function VisionSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="vision" className="py-24 relative" ref={ref}>
+    <section id="vision" className="py-24 relative">
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.5 }}
           className="mb-12 space-y-3"
         >
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
@@ -26,9 +23,10 @@ export function VisionSection() {
 
         {/* Vision Content */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
           className="bg-[#0b0b0e] border border-zinc-800/80 rounded-2xl p-8 sm:p-12 shadow-2xl relative overflow-hidden group"
         >
           <div className="relative z-10 space-y-8">

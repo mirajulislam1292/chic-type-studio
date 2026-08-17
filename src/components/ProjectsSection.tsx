@@ -1,9 +1,15 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { ExternalLink, Download, Rocket, FolderGit2 } from "lucide-react";
-import { ProjectCard } from "./ProjectCard";
+import { motion } from "framer-motion";
+import { ExternalLink, FileText, ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const projects = [
+interface ProjectItem {
+  title: string;
+  slug: string;
+  description: string;
+  tags: string[];
+}
+
+const projectsList: ProjectItem[] = [
   {
     title: "HydroVer",
     slug: "hydrover",
@@ -31,86 +37,119 @@ const projects = [
 ];
 
 export function ProjectsSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="projects" className="py-24 relative" ref={ref}>
-      <div className="max-w-6xl mx-auto px-6 lg:px-12">
-        
-        {/* Currently Building Flagship Showcase - TagWraps */}
-        <motion.div
-           initial={{ opacity: 0, y: 30 }}
-           animate={isInView ? { opacity: 1, y: 0 } : {}}
-           transition={{ duration: 0.6 }}
-           className="mb-20"
-        >
-          <div className="bg-[#0c0c10] border border-zinc-800 rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden group">
-            <div className="flex flex-col gap-6 relative z-10">
-              <div className="flex items-center justify-between flex-wrap gap-3">
-                <span className="text-xs font-mono text-zinc-400">NFC Cryptographic Authentication</span>
-              </div>
+    <section id="projects" className="py-24">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="max-w-3xl">
+          
+          {/* Currently Building - TagWraps */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-24"
+          >
+            <div className="border-b border-white/12 pb-12 transition-all group">
+              <div className="flex flex-col gap-6">
+                <div className="flex flex-col items-start gap-4">
+                  <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground border border-white/12 px-3 py-1 rounded-[2px]">
+                    Currently Building
+                  </span>
+                </div>
+                
+                <div>
+                  <h3 className="text-2xl font-bold mb-4 text-foreground">
+                    TagWraps
+                  </h3>
+                  <div className="space-y-4 text-muted-foreground leading-relaxed text-[14px]">
+                    <p>
+                      In Bangladesh and across South Asia, counterfeit medicines, fake cosmetics, and fraudulent goods cause real harm to real people every day. I built TagWraps to solve that with something simple and affordable.
+                    </p>
+                    <p>
+                      TagWraps is a smart NFC authentication tag embedded in a product wrapper. Each chip is cryptographically locked and registered in a cloud database. When a customer taps the tag with their smartphone, the system verifies the product as genuine or flags it as fake in real time. No app required. No special scanner. Just a phone tap.
+                    </p>
+                    <p>
+                      The cost per tag is 5 to 10 taka. The protection it provides is priceless.
+                    </p>
+                  </div>
+                </div>
 
-              <div>
-                <h3 className="text-3xl sm:text-4xl font-extrabold text-white mb-4 tracking-tight">
-                  TagWraps
-                </h3>
-                <div className="space-y-4 text-zinc-300 leading-relaxed text-base sm:text-lg">
-                  <p>
-                    In Bangladesh and across South Asia, counterfeit medicines, fake cosmetics, and fraudulent goods cause real harm to real people every day. I built TagWraps to solve that with something simple and affordable.
-                  </p>
-                  <p className="text-zinc-400 text-sm sm:text-base">
-                    TagWraps is a smart NFC authentication tag embedded in a product wrapper. Each chip is cryptographically locked and registered in a cloud database. When a customer taps the tag with their smartphone, the system verifies the product as genuine or flags it as fake in real time. No app required. No special scanner. Just a phone tap.
-                  </p>
-                  <p className="text-zinc-200 font-mono text-sm font-medium pt-1">
-                    The cost per tag is 15 to 25 taka. The protection it provides is priceless.
-                  </p>
+                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                  <a
+                    href="https://tagwraps.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-black rounded-lg font-semibold hover:bg-neutral-100 transition-all duration-200 text-sm shadow-lg shadow-white/10"
+                  >
+                    <span>Visit TagWraps</span>
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                  <a
+                    href="/TagWraps_Whitepaper.pdf"
+                    download
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-transparent border border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-all duration-200 text-sm"
+                  >
+                    <span>Whitepaper</span>
+                    <FileText className="h-4 w-4" />
+                  </a>
                 </div>
               </div>
-
-              <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-zinc-800/80">
-                <a 
-                  href="https://tagwraps.vercel.app/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-zinc-200 text-black rounded-lg font-semibold transition-all duration-200 text-sm shadow-md"
-                >
-                  Visit TagWraps <ExternalLink className="h-4 w-4" />
-                </a>
-                <a 
-                  href="/TagWraps_Whitepaper.pdf"
-                  download
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-200 rounded-lg font-medium transition-all duration-200 text-sm"
-                >
-                  Download Whitepaper
-                  <Download className="h-4 w-4 text-zinc-400" />
-                </a>
-              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
 
-        {/* Section Header for Selected Work */}
-        <div className="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-              Hardware & Systems
+          {/* Selected Work Header */}
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold tracking-tight mb-2 text-foreground">
+              Selected Work
             </h2>
+            <p className="text-[14px] text-muted-foreground">
+              Building Solutions for Real World Problems
+            </p>
           </div>
-          <p className="text-sm text-zinc-400 font-mono">
-            Engineering hardware & software solutions for real-world problems.
-          </p>
-        </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
-            <ProjectCard key={project.title} {...project} delay={index * 0.1} />
-          ))}
-        </div>
+          {/* Selected Work List - Exact 4 Projects */}
+          <div className="flex flex-col border-t border-white/12">
+            {projectsList.map((project, index) => (
+              <motion.div
+                key={project.slug}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+              >
+                <Link
+                  to={`/projects/${project.slug}`}
+                  className="block p-4 sm:p-6 rounded-[2px] hover:bg-[#1C1C1E] transition-colors border-b border-white/12 group"
+                >
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-xl font-semibold text-foreground group-hover:text-white transition-colors">
+                        {project.title}
+                      </h3>
+                      <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-white transition-colors" />
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed text-[14px]">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-3 mt-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-xs font-mono text-muted-foreground uppercase tracking-wider"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
 
+        </div>
       </div>
     </section>
   );
 }
-

@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { Award, Trophy, Medal, Star, Users, Cpu, GraduationCap, Target, ExternalLink, ShieldAlert } from "lucide-react";
+import { Award, Trophy, Medal, Star, Users, Cpu, GraduationCap, Target, ExternalLink } from "lucide-react";
 
 const leadershipRoles = [
   "President, Govt. Tolaram College Science Club (2024-2025)",
@@ -50,25 +48,20 @@ const technicalTraining = [
 ];
 
 export function AchievementsSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="achievements" className="py-24 relative" ref={ref}>
-      <div className="max-w-6xl mx-auto px-6 lg:px-12">
+    <section id="achievements" className="py-24 relative">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-16 space-y-3"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-12 border-b border-white/10 pb-8"
         >
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+          <h2 className="text-3xl font-bold tracking-tight text-white">
             Achievements & Experience
           </h2>
-          <p className="text-base text-zinc-400 font-mono">
-            Recognition, Milestones, Olympiads, and Technical Training
-          </p>
         </motion.div>
 
         <div className="space-y-16">
@@ -79,19 +72,19 @@ export function AchievementsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center gap-3 mb-6 pb-2 border-b border-zinc-800">
-              <Trophy className="h-5 w-5 text-zinc-300" />
-              <h3 className="text-xl sm:text-2xl font-bold text-white">Major Awards & Championships</h3>
+            <div className="flex items-center gap-3 mb-6">
+              <Trophy className="h-6 w-6 text-orange-400" />
+              <h3 className="text-2xl font-bold text-white">Major Awards & Championships</h3>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {majorAwards.map((award, index) => {
                 const IconComponent = award.icon;
                 const CardContent = (
-                  <div className="bg-[#0b0b0e] border border-zinc-800/80 hover:border-zinc-700 rounded-xl p-5 transition-all duration-300 group h-full flex flex-col justify-between">
+                  <div className="bg-[#0b0b0e] border border-zinc-800/80 hover:border-zinc-700 rounded-xl p-5 transition-all duration-300 group h-full flex flex-col justify-between hover:shadow-lg">
                     <div>
                       <div className="flex items-center justify-between mb-3">
-                        <div className="w-9 h-9 rounded-lg bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-200">
-                          <IconComponent className="h-5 w-5" />
+                        <div className="w-9 h-9 rounded-lg bg-[#14141d] border border-zinc-800 flex items-center justify-center text-zinc-200">
+                          <IconComponent className="h-5 w-5 text-orange-400" />
                         </div>
                         {award.link && (
                           <span className="inline-flex items-center gap-1 text-xs font-mono text-zinc-300 bg-zinc-800 px-2 py-0.5 rounded border border-zinc-700">
@@ -123,9 +116,9 @@ export function AchievementsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center gap-3 mb-6 pb-2 border-b border-zinc-800">
-              <Users className="h-5 w-5 text-zinc-300" />
-              <h3 className="text-xl sm:text-2xl font-bold text-white">Leadership & Organizational Roles</h3>
+            <div className="flex items-center gap-3 mb-6">
+              <Users className="h-6 w-6 text-zinc-300" />
+              <h3 className="text-2xl font-bold text-white">Leadership & Organizational Roles</h3>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {leadershipRoles.map((role, index) => (
@@ -146,9 +139,9 @@ export function AchievementsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center gap-3 mb-6 pb-2 border-b border-zinc-800">
-              <Target className="h-5 w-5 text-zinc-300" />
-              <h3 className="text-xl sm:text-2xl font-bold text-white">National & District Rankings</h3>
+            <div className="flex items-center gap-3 mb-6">
+              <Target className="h-6 w-6 text-zinc-300" />
+              <h3 className="text-2xl font-bold text-white">National & District Rankings</h3>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {nationalRankings.map((ranking, index) => (
@@ -156,63 +149,62 @@ export function AchievementsSection() {
                   key={index}
                   className="p-4 bg-[#0b0b0e] rounded-xl border border-zinc-800/80 hover:border-zinc-700 transition-all flex items-start gap-3"
                 >
-                  <div className="w-2 h-2 rounded-full bg-zinc-400 mt-2 shrink-0" />
+                  <div className="w-2 h-2 rounded-full bg-orange-400 mt-2 shrink-0" />
                   <p className="text-sm text-zinc-300 font-medium leading-relaxed">{ranking}</p>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          {/* Olympiad Finalist */}
+          {/* Olympiad Participation */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center gap-3 mb-6 pb-2 border-b border-zinc-800">
-              <Star className="h-5 w-5 text-zinc-300" />
-              <h3 className="text-xl sm:text-2xl font-bold text-white">National Olympiad Finalist</h3>
+            <div className="flex items-center gap-3 mb-6">
+              <Star className="h-6 w-6 text-zinc-300" />
+              <h3 className="text-2xl font-bold text-white">Olympiad Finalist & Participation</h3>
             </div>
-            <div className="flex flex-wrap gap-2.5">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {olympiadFinalist.map((olympiad, index) => (
-                <span
+                <div
                   key={index}
-                  className="px-3.5 py-2 bg-[#0d0d12] text-zinc-200 rounded-lg text-xs font-mono border border-zinc-800 hover:border-zinc-600 hover:text-white transition-all"
+                  className="p-3.5 bg-[#0b0b0e] rounded-lg border border-zinc-800/80 hover:border-zinc-700 transition-all text-center"
                 >
-                  {olympiad}
-                </span>
+                  <p className="text-xs sm:text-sm text-zinc-300 font-mono">{olympiad}</p>
+                </div>
               ))}
             </div>
           </motion.div>
 
-          {/* Technical Training */}
+          {/* Technical Training & Certifications */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center gap-3 mb-6 pb-2 border-b border-zinc-800">
-              <GraduationCap className="h-5 w-5 text-zinc-300" />
-              <h3 className="text-xl sm:text-2xl font-bold text-white">Technical & Specialized Training</h3>
+            <div className="flex items-center gap-3 mb-6">
+              <GraduationCap className="h-6 w-6 text-zinc-300" />
+              <h3 className="text-2xl font-bold text-white">Technical Training & Certifications</h3>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {technicalTraining.map((training, index) => (
                 <div
                   key={index}
-                  className="p-3.5 bg-[#0b0b0e] rounded-lg border border-zinc-800/80 hover:border-zinc-700 transition-all flex items-start gap-3"
+                  className="p-3.5 bg-[#0b0b0e] rounded-lg border border-zinc-800/80 hover:border-zinc-700 transition-all flex items-start gap-2.5"
                 >
-                  <Cpu className="h-4 w-4 text-zinc-400 mt-0.5 shrink-0" />
-                  <p className="text-xs sm:text-sm text-zinc-300 font-medium">{training}</p>
+                  <Cpu className="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" />
+                  <p className="text-xs sm:text-sm text-zinc-300">{training}</p>
                 </div>
               ))}
             </div>
           </motion.div>
-        </div>
 
+        </div>
       </div>
     </section>
   );
 }
-

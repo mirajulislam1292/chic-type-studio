@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Mail, Phone, MapPin, Download, Image, Send, Linkedin, Github, Facebook, Instagram } from "lucide-react";
+import { Mail, Phone, MapPin, Image, Linkedin, Github, Facebook, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const contactInfo = [
@@ -49,17 +47,15 @@ const socialLinks = [
 ];
 
 export function ContactSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="contact" className="py-24 relative" ref={ref}>
+    <section id="contact" className="py-24 relative">
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.05 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16 space-y-4"
         >
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
@@ -99,27 +95,19 @@ export function ContactSection() {
           ))}
         </div>
 
-        {/* CV Download & Gallery Button */}
+        {/* Gallery Action Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+          className="flex items-center justify-center mb-16"
         >
-          <a
-            href="/MAHIM CV.pdf"
-            download="M.Mahimmiraj_CV.pdf"
-            className="inline-flex items-center gap-3 px-8 py-3.5 bg-white text-black font-semibold rounded-xl hover:bg-zinc-200 transition-all duration-300 shadow-md text-sm"
-          >
-            <Download className="h-4 w-4" />
-            Download My CV
-          </a>
           <Link
             to="/gallery"
-            className="inline-flex items-center gap-3 px-8 py-3.5 bg-zinc-900 text-zinc-200 border border-zinc-800 hover:border-zinc-700 font-semibold rounded-xl transition-all duration-300 text-sm"
+            className="inline-flex items-center gap-3 px-8 py-3.5 bg-zinc-900 text-zinc-200 border border-zinc-800 hover:border-zinc-700 hover:text-white font-semibold rounded-xl transition-all duration-300 text-sm shadow-md"
           >
-            <Image className="h-4 w-4 text-zinc-400" />
+            <Image className="h-4 w-4 text-orange-400" />
             Open Photo Gallery
           </Link>
         </motion.div>

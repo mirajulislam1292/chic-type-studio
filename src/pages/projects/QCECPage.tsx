@@ -1,11 +1,15 @@
 import { ArrowLeft, Award, BookOpen, FileText, Calendar, MapPin, Trophy } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import certificateImg from "@/assets/qcec-silver-certificate.jpg";
+
+const certificateImg = "/assets/qcec-silver-certificate.jpg";
 
 const QCECPage = () => {
+  const [certError, setCertError] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -72,11 +76,20 @@ const QCECPage = () => {
               Silver Award Certificate
             </h2>
             <div className="rounded-xl overflow-hidden shadow-2xl border border-border bg-card">
-              <img 
-                src={certificateImg} 
-                alt="Queen's Commonwealth Essay Competition 2025 Silver Award Certificate for Mirajul Islam Mahim" 
-                className="w-full h-auto"
-              />
+              {!certError ? (
+                <img 
+                  src={certificateImg} 
+                  alt="Queen's Commonwealth Essay Competition 2025 Silver Award Certificate for Mirajul Islam Mahim" 
+                  className="w-full h-auto"
+                  onError={() => setCertError(true)}
+                />
+              ) : (
+                <div className="p-12 text-center bg-card flex flex-col items-center justify-center">
+                  <Award className="w-16 h-16 text-primary mb-4" />
+                  <h3 className="text-xl font-bold text-foreground">Royal Commonwealth Society Certificate</h3>
+                  <p className="text-muted-foreground text-sm mt-1">Silver Award • Senior Category 2025</p>
+                </div>
+              )}
             </div>
             <p className="text-center text-muted-foreground mt-4 text-sm">
               Awarded by the Royal Commonwealth Society, signed by Sir Ben Okri OBE and Imtiaz Dharker

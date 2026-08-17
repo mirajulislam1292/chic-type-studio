@@ -15,16 +15,17 @@ const experiences = [
     link: { label: "tagwraps.vercel.app", href: "https://tagwraps.vercel.app/" },
   },
   {
-    role: "Web Contributor & Intern Team Lead",
+    role: "Lead Developer & Technical Architect",
     company: "Scholars Cafe - Student Consulting Platform",
     period: "Jan 2026 - Present",
     type: null,
     location: null,
     points: [
-      "Contributing to web development as an intern, coordinating a team of fellow interns and supporting technical project tasks including code reviews and deployment.",
-      "Assisting platform operations that help students with EPT, SAT preparation, university applications, and scholarship pathways.",
+      "Built the entire Scholars Cafe platform from scratch as the primary developer and technical architect behind the website.",
+      "Engineered frontend interfaces, backend services, responsive design, and deployment pipelines from the ground up.",
+      "Coordinating the intern technical team, conducting code reviews, and maintaining platform operations that empower students with EPT, SAT prep, university applications, and scholarship pathways.",
     ],
-    link: null,
+    link: { label: "scholarscafe.com", href: "https://www.scholarscafe.com/" },
   },
   {
     role: "Graphic Design Intern",
@@ -126,15 +127,17 @@ export function WorkExperience() {
                     </ul>
 
                     {exp.link && (
-                      <a
-                        href={exp.link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white hover:underline pt-2 border-t border-zinc-800/60 w-full"
-                      >
-                        <span>Visit {exp.link.label}</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </a>
+                      <div className="pt-3 mt-2 border-t border-zinc-800/80 flex items-center justify-end">
+                        <a
+                          href={exp.link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#14141d] hover:bg-zinc-800 text-zinc-200 hover:text-white border border-zinc-700/80 hover:border-zinc-600 rounded-lg text-xs font-mono transition-all duration-200 shadow-sm group/btn"
+                        >
+                          <span>Visit {exp.link.label}</span>
+                          <ArrowUpRight className="w-3.5 h-3.5 text-orange-400 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                        </a>
+                      </div>
                     )}
                   </div>
                 </motion.div>
