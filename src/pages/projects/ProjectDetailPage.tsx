@@ -149,7 +149,7 @@ const projectDetailsData: Record<string, {
     category: "Computer Vision & Edge AI",
     tags: ["ESP32-CAM", "OpenCV", "Computer Vision", "Highway Safety"],
     image: "/assets/electronics-experiment.jpg",
-    secondaryImage: "/assets/dev-workspace.jpg",
+    secondaryImage: "/assets/robotics-workspace.jpg",
     secondaryTitle: "Edge AI Model Calibration & Firmware Testing",
     overview: "AEYE is a low-latency accident detection system that analyzes road traffic camera streams to automatically detect vehicle collisions and alert emergency services.",
     problem: "Delayed emergency response times during road accidents significantly increase fatality rates, especially on remote highway segments.",

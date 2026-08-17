@@ -31,7 +31,7 @@ export const galleryImages: GalleryImage[] = [
   { src: "/assets/IMG_0329-BHuw-k9u.jpg", alt: "Photo 1" },
   { src: "/assets/IMG_2826-Dedb1WXJ.jpg", alt: "Photo 2" },
   { src: "/assets/IMG_3143-C7-gqZZX.JPG", alt: "Photo 3" },
-  { src: "/assets/IMG_3612%203-Cbw7tIIp.jpg", alt: "Photo 4" },
+  { src: "/assets/IMG_3612%203.jpg", alt: "Photo 4" },
   { src: "/assets/IMG_4720_Original-DGd8wrYL.jpg", alt: "Photo 5" },
   { src: "/assets/IMG_C1E7806B13C8-1-C9agABF_.jpeg", alt: "Photo 6" },
   { src: "/assets/IMG_EB5A4AB44D0A-1-CT-gRd63.jpeg", alt: "Photo 7" },
