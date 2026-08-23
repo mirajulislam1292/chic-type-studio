@@ -17,12 +17,6 @@ const previewPhotos = [
     desc: "Field testing water sampling telemetry and surface hull design"
   },
   {
-    src: "/assets/qcec-silver-certificate.jpg",
-    title: "QCEC 2025 Silver Award",
-    category: "Achievements",
-    desc: "Royal Commonwealth Society international recognition"
-  },
-  {
     src: "/assets/award-ceremony.jpg",
     title: "National Tech Recognition",
     category: "Achievements",
