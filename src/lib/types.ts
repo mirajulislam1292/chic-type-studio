@@ -131,3 +131,47 @@ export type CollectionName =
 
 export type CmsRecord = Project | Achievement | Certificate | BlogPost | GalleryItem | Experience | Education | Skill;
 
+export interface AnalyticsBreakdown {
+  label: string;
+  count: number;
+}
+
+export interface VisitorAnalytics {
+  total_visits: number;
+  unique_visitors: number;
+  today_visits: number;
+  week_visits: number;
+  month_visits: number;
+  top_pages: AnalyticsBreakdown[];
+  devices: AnalyticsBreakdown[];
+  browsers: AnalyticsBreakdown[];
+  operating_systems: AnalyticsBreakdown[];
+  countries: AnalyticsBreakdown[];
+}
+
+export interface VisitorProfile {
+  id: string;
+  ip_address: string;
+  first_visit_at: string;
+  last_visit_at: string;
+  visit_count: number;
+  browser: string | null;
+  operating_system: string | null;
+  device_type: string | null;
+  country_code: string | null;
+  country: string | null;
+  region: string | null;
+  city: string | null;
+}
+
+export interface VisitorEvent {
+  id: number;
+  visitor_id: string;
+  visited_at: string;
+  path: string;
+  referrer: string | null;
+  user_agent: string | null;
+  browser: string | null;
+  operating_system: string | null;
+  device_type: string | null;
+}

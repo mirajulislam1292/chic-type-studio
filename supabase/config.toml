@@ -1,0 +1,2 @@
+[functions.track-visitor]
+verify_jwt = false

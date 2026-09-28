@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import IndexPage from "./pages/Index";
 import QCECPage from "./pages/projects/QCECPage";
+import VisitorTracker from "./components/VisitorTracker";
 
 const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
@@ -15,9 +16,11 @@ const Dashboard = lazy(() => import("./admin/Dashboard"));
 const CollectionPage = lazy(() => import("./admin/CollectionPage"));
 const EditorPage = lazy(() => import("./admin/EditorPage"));
 const SettingsPage = lazy(() => import("./admin/SettingsPage"));
+const VisitorsPage = lazy(() => import("./admin/VisitorsPage"));
+const VisitorDetailPage = lazy(() => import("./admin/VisitorDetailPage"));
 
 export default function App() {
-  return <Suspense fallback={<div className="grid min-h-screen place-items-center bg-[#050507] text-sm text-zinc-500">Loading…</div>}><Routes>
+  return <Suspense fallback={<div className="grid min-h-screen place-items-center bg-[#050507] text-sm text-zinc-500">Loading…</div>}><VisitorTracker /><Routes>
     <Route path="/" element={<IndexPage />} />
     <Route path="/projects" element={<ProjectsPage />} />
     <Route path="/projects/:slug" element={<DynamicProjectPage />} />
@@ -30,10 +33,11 @@ export default function App() {
     <Route path="/admin" element={<AdminLayout />}>
       <Route index element={<Dashboard />} />
       <Route path="settings" element={<SettingsPage />} />
+      <Route path="visitors" element={<VisitorsPage />} />
+      <Route path="visitors/:id" element={<VisitorDetailPage />} />
       <Route path=":section" element={<CollectionPage />} />
       <Route path=":section/:id" element={<EditorPage />} />
     </Route>
     <Route path="*" element={<IndexPage />} />
   </Routes></Suspense>;
 }
-
