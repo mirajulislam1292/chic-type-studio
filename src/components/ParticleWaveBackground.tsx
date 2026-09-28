@@ -21,7 +21,11 @@ export function ParticleWaveBackground() {
     if (!ctx) return;
 
     let animationId: number;
+    let running = true;
+    let lastFrame = 0;
     let particles: Particle[] = [];
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const compactDevice = window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
     const mouse = { x: -1000, y: -1000, active: false };
 
     const initParticles = () => {
@@ -29,7 +33,7 @@ export function ParticleWaveBackground() {
       const height = (canvas.height = window.innerHeight);
 
       // Density calculation
-      const particleCount = Math.floor((width * height) / 16000);
+      const particleCount = Math.min(compactDevice ? 42 : 90, Math.floor((width * height) / (compactDevice ? 24000 : 16000)));
       particles = [];
 
       for (let i = 0; i < particleCount; i++) {
@@ -62,16 +66,29 @@ export function ParticleWaveBackground() {
       mouse.y = -1000;
     };
 
+    const handleVisibility = () => {
+      running = !document.hidden;
+      if (running) animationId = requestAnimationFrame(render);
+      else cancelAnimationFrame(animationId);
+    };
+
     window.addEventListener("resize", handleResize);
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("visibilitychange", handleVisibility);
 
     initParticles();
 
     const maxConnectDistance = 120;
     const mouseRadius = 160;
 
-    const render = () => {
+    const render = (timestamp = 0) => {
+      if (!running) return;
+      if (compactDevice && timestamp - lastFrame < 32) {
+        animationId = requestAnimationFrame(render);
+        return;
+      }
+      lastFrame = timestamp;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const width = canvas.width;
@@ -153,7 +170,7 @@ export function ParticleWaveBackground() {
         ctx.fill();
       }
 
-      animationId = requestAnimationFrame(render);
+      if (!reducedMotion) animationId = requestAnimationFrame(render);
     };
 
     render();
@@ -163,6 +180,7 @@ export function ParticleWaveBackground() {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("visibilitychange", handleVisibility);
     };
   }, []);
 
@@ -174,4 +192,3 @@ export function ParticleWaveBackground() {
     />
   );
 }
-

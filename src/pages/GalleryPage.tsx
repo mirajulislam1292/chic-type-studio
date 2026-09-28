@@ -1,183 +1,65 @@
-import { ArrowLeft, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import { galleryImages } from "@/data/galleryImages";
+import { listRecords } from "@/lib/contentRepository";
+import { useSeo } from "@/lib/seo";
+import type { GalleryItem } from "@/lib/types";
 
-const INITIAL_BATCH_SIZE = 8;
-const BATCH_INCREMENT = 8;
+const BATCH = 12;
 
 export default function GalleryPage() {
-  const [visibleCount, setVisibleCount] = useState(INITIAL_BATCH_SIZE);
+  const [images, setImages] = useState<GalleryItem[]>([]);
+  const [count, setCount] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [visibleCount, setVisibleCount] = useState(BATCH);
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const triggerRef = useRef<HTMLDivElement | null>(null);
+  useSeo({ title: "Gallery — M. Mahimmiraj", description: "A visual archive of engineering, robotics, volunteering and life moments.", path: "/gallery" });
 
   useEffect(() => {
-    if (visibleCount >= galleryImages.length || !triggerRef.current) {
-      return undefined;
-    }
+    let active = true;
+    setLoading(true);
+    listRecords<GalleryItem>("gallery_items", { publishedOnly: true, page, pageSize: 24 }).then((result) => {
+      if (!active) return;
+      if (result.error) throw result.error;
+      setImages((current) => page === 1 ? result.data : [...current, ...result.data.filter((item) => !current.some((existing) => existing.id === item.id))]);
+      setCount(result.count);
+      setError(null);
+    }).catch((caught) => active && setError(caught instanceof Error ? caught.message : "Unable to load gallery.")).finally(() => active && setLoading(false));
+    return () => { active = false; };
+  }, [page]);
 
-    if (typeof window === "undefined" || !("IntersectionObserver" in window)) {
-      setVisibleCount(galleryImages.length);
-      return undefined;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting) {
-          setVisibleCount((prev) => Math.min(prev + BATCH_INCREMENT, galleryImages.length));
-        }
-      },
-      { rootMargin: "240px 0px" }
-    );
-
+  useEffect(() => {
+    if ((visibleCount >= images.length && images.length >= count) || !triggerRef.current) return;
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries[0]?.isIntersecting || loading) return;
+      if (visibleCount < images.length) setVisibleCount((value) => Math.min(value + BATCH, images.length));
+      else if (images.length < count) setPage((value) => value + 1);
+    }, { rootMargin: "300px" });
     observer.observe(triggerRef.current);
-
     return () => observer.disconnect();
-  }, [visibleCount]);
+  }, [count, images.length, loading, visibleCount]);
 
-  const handleKeyDown = useCallback((event: KeyboardEvent) => {
-    if (selectedIdx === null) return;
-
-    if (event.key === "Escape") {
-      setSelectedIdx(null);
-      return;
-    }
-
-    if (event.key === "ArrowRight") {
-      setSelectedIdx((prev) => (prev === null ? null : (prev + 1) % galleryImages.length));
-      return;
-    }
-
-    if (event.key === "ArrowLeft") {
-      setSelectedIdx((prev) => (prev === null ? null : (prev - 1 + galleryImages.length) % galleryImages.length));
-    }
-  }, [selectedIdx]);
-
+  const close = useCallback(() => setSelectedIdx(null), []);
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [handleKeyDown]);
+    const handleKey = (event: KeyboardEvent) => {
+      if (selectedIdx === null) return;
+      if (event.key === "Escape") close();
+      if (event.key === "ArrowRight") setSelectedIdx((selectedIdx + 1) % images.length);
+      if (event.key === "ArrowLeft") setSelectedIdx((selectedIdx - 1 + images.length) % images.length);
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [close, images.length, selectedIdx]);
 
-  const visibleImages = galleryImages.slice(0, visibleCount);
-
-  return (
-    <div className="min-h-screen bg-[#07070a] text-foreground selection:bg-orange-500/20 selection:text-orange-400">
-      <Navbar />
-
-      <main className="py-24">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <Link
-              to="/"
-              className="inline-flex items-center text-sm font-mono text-zinc-400 transition-colors hover:text-white"
-            >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
-            </Link>
-          </div>
-
-          <div className="mb-12 text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-              Photo Gallery
-            </h1>
-          </div>
-
-          <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
-            {visibleImages.map((image, index) => {
-              return (
-                <button
-                  key={`${image.src}-${index}`}
-                  type="button"
-                  onClick={() => setSelectedIdx(index)}
-                  aria-label={`Open photo ${index + 1}: ${image.alt}`}
-                  className="group mb-4 block w-full break-inside-avoid overflow-hidden rounded-2xl border border-zinc-800/80 bg-[#0d0d12] text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700"
-                >
-                  <img
-                    src={image.src}
-                    alt={image.alt || "Gallery Photo"}
-                    loading="lazy"
-                    decoding="async"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="block h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                  />
-                </button>
-              );
-            })}
-          </div>
-
-          {visibleCount < galleryImages.length && (
-            <div
-              ref={triggerRef}
-              className="flex items-center justify-center gap-2 py-12 text-center text-xs font-mono text-zinc-500"
-            >
-              <div className="h-2 w-2 rounded-full bg-orange-400 animate-pulse" />
-              Loading more photos ({visibleCount}/{galleryImages.length})...
-            </div>
-          )}
-        </div>
-      </main>
-
-      {selectedIdx !== null && galleryImages[selectedIdx] && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 backdrop-blur-md"
-          onClick={() => setSelectedIdx(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Gallery image viewer"
-        >
-          <button
-            type="button"
-            onClick={() => setSelectedIdx(null)}
-            className="absolute right-5 top-5 z-50 rounded-full border border-zinc-700 bg-zinc-900/80 p-3 text-zinc-300 shadow-xl transition-colors hover:bg-zinc-800 hover:text-white"
-            aria-label="Close lightbox"
-          >
-            <X className="h-5 w-5" />
-          </button>
-
-          <button
-            type="button"
-            onClick={(event) => {
-              event.stopPropagation();
-              setSelectedIdx((prev) => (prev === null ? null : (prev - 1 + galleryImages.length) % galleryImages.length));
-            }}
-            className="absolute left-4 top-1/2 z-50 -translate-y-1/2 rounded-full border border-zinc-700 bg-zinc-900/80 p-3 text-zinc-300 shadow-xl transition-colors hover:bg-zinc-800 hover:text-white"
-            aria-label="Previous image"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-
-          <button
-            type="button"
-            onClick={(event) => {
-              event.stopPropagation();
-              setSelectedIdx((prev) => (prev === null ? null : (prev + 1) % galleryImages.length));
-            }}
-            className="absolute right-14 top-1/2 z-50 -translate-y-1/2 rounded-full border border-zinc-700 bg-zinc-900/80 p-3 text-zinc-300 shadow-xl transition-colors hover:bg-zinc-800 hover:text-white"
-            aria-label="Next image"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-
-          <div
-            className="relative flex max-h-[90vh] w-full max-w-5xl flex-col items-center justify-center"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <img
-              src={galleryImages[selectedIdx].fullSrc}
-              alt={galleryImages[selectedIdx].alt}
-              decoding="async"
-              className="max-h-[85vh] max-w-full rounded-xl border border-zinc-800 object-contain shadow-2xl"
-            />
-            <div className="mt-3 text-xs font-mono text-zinc-400">
-              {selectedIdx + 1} / {galleryImages.length}
-            </div>
-          </div>
-        </div>
-      )}
-
-      <Footer />
-    </div>
-  );
+  return <div className="min-h-screen bg-[#050507] text-white"><Navbar /><main className="mx-auto max-w-7xl px-4 pb-24 pt-32 sm:px-6"><header className="mb-12"><p className="eyebrow mb-3 text-xs uppercase text-orange-400">Visual archive</p><h1 className="text-4xl font-bold sm:text-6xl">Gallery</h1><p className="mt-4 text-zinc-400">Projects, field work, community and the moments between.</p></header>
+    {loading && <p className="text-zinc-500">Loading gallery…</p>}{error && <p role="alert" className="text-red-400">{error}</p>}{!loading && !images.length && <p className="rounded-xl border border-zinc-800 p-10 text-zinc-400">The gallery is being curated.</p>}
+    <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">{images.slice(0, visibleCount).map((image, index) => <button key={image.id} onClick={() => setSelectedIdx(index)} className="group mb-4 block w-full break-inside-avoid overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500" aria-label={`Open ${image.alt_text}`}><img src={image.thumbnail_url || image.image_url} alt={image.alt_text} loading="lazy" decoding="async" className="h-auto w-full transition duration-500 group-hover:scale-[1.02]" />{(image.title || image.caption) && <span className="block p-4"><strong className="block text-sm">{image.title}</strong><span className="mt-1 block text-xs text-zinc-500">{image.caption}</span></span>}</button>)}</div>
+    {(visibleCount < images.length || images.length < count) && <div ref={triggerRef} className="py-10 text-center text-xs font-mono text-zinc-500">Loading more…</div>}
+  </main>
+  {selectedIdx !== null && images[selectedIdx] && <div role="dialog" aria-modal="true" aria-label="Gallery image viewer" className="fixed inset-0 z-[70] flex items-center justify-center bg-black/95 p-4 backdrop-blur" onClick={close}><button onClick={close} className="absolute right-4 top-4 rounded-full border border-zinc-700 bg-zinc-900 p-3" aria-label="Close image"><X className="h-5 w-5" /></button><button onClick={(event) => { event.stopPropagation(); setSelectedIdx((selectedIdx - 1 + images.length) % images.length); }} className="absolute left-3 top-1/2 rounded-full border border-zinc-700 bg-zinc-900/90 p-3" aria-label="Previous image"><ChevronLeft /></button><img onClick={(event) => event.stopPropagation()} src={images[selectedIdx].image_url} alt={images[selectedIdx].alt_text} className="max-h-[88vh] max-w-[90vw] rounded-xl object-contain" /><button onClick={(event) => { event.stopPropagation(); setSelectedIdx((selectedIdx + 1) % images.length); }} className="absolute right-3 top-1/2 rounded-full border border-zinc-700 bg-zinc-900/90 p-3" aria-label="Next image"><ChevronRight /></button></div>}
+  <Footer /></div>;
 }

@@ -53,6 +53,10 @@
     overflow-x: hidden;
   }
 
+  :focus-visible {
+    @apply outline-none ring-2 ring-orange-500 ring-offset-2 ring-offset-[#050507];
+  }
+
   #root {
     position: relative;
     z-index: 1;
@@ -82,6 +86,60 @@
   .orange-border-glow {
     box-shadow: 0 0 15px 0 rgba(249, 115, 22, 0.15);
   }
+
+  .action-primary {
+    @apply inline-flex min-h-11 items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-black transition hover:bg-zinc-200 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .action-secondary {
+    @apply inline-flex min-h-11 items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900/70 px-4 py-2.5 text-sm font-medium text-zinc-200 transition hover:border-zinc-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .admin-page {
+    @apply mx-auto w-full max-w-5xl px-4 py-7 sm:px-7 lg:px-10 lg:py-10;
+  }
+
+  .cms-label {
+    @apply mb-2 block text-sm font-medium text-zinc-300;
+  }
+
+  .cms-input {
+    @apply min-h-12 w-full rounded-xl border border-zinc-700 bg-[#0b0b0f] px-4 py-3 text-base text-white placeholder:text-zinc-600 focus:border-orange-500/60 focus:ring-1 focus:ring-orange-500/50;
+  }
+
+  .touch-button {
+    @apply inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-zinc-400 transition hover:bg-zinc-800 hover:text-white disabled:opacity-25;
+  }
+
+  .mobile-admin-tab {
+    @apply flex min-h-12 items-center justify-center rounded-lg text-xs font-medium text-zinc-500 transition hover:text-white [&.active]:bg-zinc-800 [&.active]:text-white;
+  }
+
+  .admin-action-card {
+    @apply flex min-h-20 items-center gap-4 rounded-xl border border-zinc-800 bg-[#0a0a0d] p-4 transition hover:border-zinc-600;
+  }
+
+  .admin-action-card span {
+    @apply min-w-0 flex-1;
+  }
+
+  .admin-action-card strong,
+  .admin-action-card small {
+    @apply block;
+  }
+
+  .admin-action-card small {
+    @apply mt-1 text-xs font-normal text-zinc-500;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Custom scrollbar */
@@ -98,4 +156,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #f97316;
 }
-

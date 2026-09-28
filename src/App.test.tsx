@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "./App";
 import { galleryImages } from "./data/galleryImages";
+import { AuthProvider } from "./context/AuthContext";
 
 describe("portfolio routes and gallery data", () => {
   it("uses the local gallery asset list requested for the portfolio", () => {
@@ -21,20 +22,25 @@ describe("portfolio routes and gallery data", () => {
   });
 
   it.each([
-    ["/gallery", /Photo Gallery/i],
+    ["/gallery", /^Gallery$/i],
     ["/projects/hydrover", /HydroVer/i],
     ["/projects/truemedi", /TrueMedi/i],
     ["/projects/a-eye", /AEYE|A-Eye/i],
     ["/projects/nutridrip", /NutriDrip/i],
     ["/essays/qcec", /QCEC/i],
-  ])("registers the route %s", (route, headingMatcher) => {
+  ])("registers the route %s", async (route, headingMatcher) => {
     const { unmount } = render(
       <MemoryRouter initialEntries={[route]}>
-        <App />
+        <AuthProvider><App /></AuthProvider>
       </MemoryRouter>
     );
 
-    expect(screen.getAllByText(headingMatcher).length).toBeGreaterThan(0);
+    expect((await screen.findAllByText(headingMatcher)).length).toBeGreaterThan(0);
     unmount();
+  });
+
+  it("keeps admin access behind authentication and configuration", async () => {
+    render(<MemoryRouter initialEntries={["/admin/login"]}><AuthProvider><App /></AuthProvider></MemoryRouter>);
+    expect(await screen.findByText(/content service is not connected/i)).toBeInTheDocument();
   });
 });

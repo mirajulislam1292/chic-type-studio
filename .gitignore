@@ -104,3 +104,4 @@ android-sdk/-e
 *.env
 *.env.*
 .env
+!.env.example

@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
-
-const profileImage = "/assets/new-profile.jpg";
+import { useSiteSettings } from "@/hooks/useContent";
 
 export function HeroSection() {
   const [imgError, setImgError] = useState(false);
+  const { settings } = useSiteSettings();
+  const profileImage = settings?.profile_image_url || "/assets/new-profile.jpg";
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -29,14 +30,14 @@ export function HeroSection() {
             {/* Name Headline */}
             <div>
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.08] mb-2">
-                M. Mahimmiraj
+                {settings?.name || "M. Mahimmiraj"}
               </h1>
             </div>
 
             {/* Subtext Content */}
             <div className="space-y-4 text-base sm:text-lg text-zinc-300 leading-relaxed font-normal max-w-2xl">
               <p>
-                Currently developing <strong className="text-white font-semibold">TagWraps</strong>, an innovative packaging system using NFC technology to protect the authenticity of a product through a secured cryptographic encryption method, helping the public buy and identify genuine products.
+                {settings?.short_bio || "Building secure NFC packaging and engineering systems that solve real problems."}
               </p>
             </div>
 
@@ -72,7 +73,7 @@ export function HeroSection() {
                 {!imgError ? (
                   <img
                     src={profileImage}
-                    alt="M. Mahimmiraj"
+                    alt={settings?.name || "M. Mahimmiraj"}
                     className="w-full h-full object-cover"
                     loading="eager"
                     onError={() => setImgError(true)}
@@ -92,4 +93,3 @@ export function HeroSection() {
     </section>
   );
 }
-

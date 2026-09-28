@@ -1,23 +1,39 @@
-import { Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
 import IndexPage from "./pages/Index";
-import GalleryPage from "./pages/GalleryPage";
-import HydroVerPage from "./pages/projects/HydroVerPage";
-import TrueMediPage from "./pages/projects/TrueMediPage";
-import AEyePage from "./pages/projects/AEyePage";
-import NutriDripPage from "./pages/projects/NutriDripPage";
 import QCECPage from "./pages/projects/QCECPage";
 
+const GalleryPage = lazy(() => import("./pages/GalleryPage"));
+const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
+const DynamicProjectPage = lazy(() => import("./pages/DynamicProjectPage"));
+const AchievementsPage = lazy(() => import("./pages/AchievementsPage"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
+const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
+const AdminLogin = lazy(() => import("./admin/AdminLogin"));
+const AdminLayout = lazy(() => import("./admin/AdminLayout"));
+const Dashboard = lazy(() => import("./admin/Dashboard"));
+const CollectionPage = lazy(() => import("./admin/CollectionPage"));
+const EditorPage = lazy(() => import("./admin/EditorPage"));
+const SettingsPage = lazy(() => import("./admin/SettingsPage"));
+
 export default function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<IndexPage />} />
-      <Route path="/gallery" element={<GalleryPage />} />
-      <Route path="/projects/hydrover" element={<HydroVerPage />} />
-      <Route path="/projects/truemedi" element={<TrueMediPage />} />
-      <Route path="/projects/a-eye" element={<AEyePage />} />
-      <Route path="/projects/nutridrip" element={<NutriDripPage />} />
-      <Route path="/essays/qcec" element={<QCECPage />} />
-      <Route path="*" element={<IndexPage />} />
-    </Routes>
-  );
+  return <Suspense fallback={<div className="grid min-h-screen place-items-center bg-[#050507] text-sm text-zinc-500">Loading…</div>}><Routes>
+    <Route path="/" element={<IndexPage />} />
+    <Route path="/projects" element={<ProjectsPage />} />
+    <Route path="/projects/:slug" element={<DynamicProjectPage />} />
+    <Route path="/achievements" element={<AchievementsPage />} />
+    <Route path="/gallery" element={<GalleryPage />} />
+    <Route path="/blog" element={<BlogPage />} />
+    <Route path="/blog/:slug" element={<BlogPostPage />} />
+    <Route path="/essays/qcec" element={<QCECPage />} />
+    <Route path="/admin/login" element={<AdminLogin />} />
+    <Route path="/admin" element={<AdminLayout />}>
+      <Route index element={<Dashboard />} />
+      <Route path="settings" element={<SettingsPage />} />
+      <Route path=":section" element={<CollectionPage />} />
+      <Route path=":section/:id" element={<EditorPage />} />
+    </Route>
+    <Route path="*" element={<IndexPage />} />
+  </Routes></Suspense>;
 }
+

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Image, Linkedin, Github, Facebook, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useSiteSettings } from "@/hooks/useContent";
 
 const contactInfo = [
   {
@@ -47,6 +48,13 @@ const socialLinks = [
 ];
 
 export function ContactSection() {
+  const { settings } = useSiteSettings();
+  const dynamicContactInfo = settings ? [
+    { icon: Mail, label: "Email", value: settings.email, href: `mailto:${settings.email}` },
+    ...(settings.phone ? [{ icon: Phone, label: "Phone", value: settings.phone, href: `tel:${settings.phone.replace(/\s/g, "")}` }] : []),
+    ...(settings.location ? [{ icon: MapPin, label: "Location", value: settings.location, href: null }] : []),
+  ] : contactInfo;
+  const dynamicSocialLinks = settings ? socialLinks.map((item) => ({ ...item, href: settings.social_links[item.name.toLowerCase()] || item.href })).filter((item) => item.href) : socialLinks;
   return (
     <section id="contact" className="py-24 relative">
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
@@ -68,7 +76,7 @@ export function ContactSection() {
 
         {/* Contact Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
-          {contactInfo.map((item, index) => (
+          {dynamicContactInfo.map((item, index) => (
             <motion.div
               key={item.label}
               initial={{ opacity: 0, y: 20 }}
@@ -120,7 +128,7 @@ export function ContactSection() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex justify-center gap-4"
         >
-          {socialLinks.map((social) => {
+          {dynamicSocialLinks.map((social) => {
             const SocialIcon = social.icon;
             return (
               <a
@@ -140,4 +148,3 @@ export function ContactSection() {
     </section>
   );
 }
-

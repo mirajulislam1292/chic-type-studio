@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Menu, X, Award, Image as ImageIcon } from "lucide-react";
+import { Menu, X, Award, Image as ImageIcon, BookOpen } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 
@@ -68,6 +68,15 @@ export function Navbar() {
                 </button>
               </li>
             ))}
+            <li>
+              <Link
+                to="/blog"
+                className="px-3 py-1.5 text-xs font-medium text-zinc-400 hover:text-white hover:bg-zinc-800/60 rounded-full transition-all inline-flex items-center gap-1"
+              >
+                <BookOpen className="w-3 h-3" />
+                Blog
+              </Link>
+            </li>
             <li>
               <Link
                 to="/gallery"
@@ -139,6 +148,14 @@ export function Navbar() {
                   Full Photo Archive & Gallery
                 </Link>
                 <Link
+                  to="/blog"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-2 py-2 px-3 text-sm font-medium text-zinc-200 bg-zinc-900 rounded-lg border border-zinc-800"
+                >
+                  <BookOpen className="w-4 h-4 text-orange-400" />
+                  Writing & technical notes
+                </Link>
+                <Link
                   to="/essays/qcec"
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center gap-2 py-2 px-3 text-sm font-medium text-zinc-200 bg-zinc-900 rounded-lg border border-zinc-800"
@@ -154,4 +171,3 @@ export function Navbar() {
     </motion.header>
   );
 }
-
