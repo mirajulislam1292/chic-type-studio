@@ -9,7 +9,7 @@ export default function VisitorTracker() {
   const location = useLocation();
 
   useEffect(() => {
-    if (!supabase || location.pathname.startsWith("/admin")) return;
+    if (import.meta.env.MODE === "test" || !supabase || location.pathname.startsWith("/admin")) return;
     const path = `${location.pathname}${location.search}`;
     const now = Date.now();
     if (path === lastTrackedPath && now - lastTrackedAt < 5000) return;

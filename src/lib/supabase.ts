@@ -1,7 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
 
-const url = import.meta.env.VITE_SUPABASE_URL?.trim();
-const key = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY?.trim();
+const isTest = import.meta.env.MODE === "test";
+const url = isTest ? undefined : import.meta.env.VITE_SUPABASE_URL?.trim();
+const key = isTest ? undefined : import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY?.trim();
 
 export const isCmsConfigured = Boolean(url && key);
 
@@ -14,4 +15,3 @@ export const supabase = isCmsConfigured
       },
     })
   : null;
-
