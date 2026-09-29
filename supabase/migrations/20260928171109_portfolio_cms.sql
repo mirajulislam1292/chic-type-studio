@@ -242,39 +242,72 @@ create policy "admins update portfolio media" on storage.objects for update to a
 create policy "admins delete portfolio media" on storage.objects for delete to authenticated using (bucket_id = 'portfolio-media' and (select auth.jwt()->'app_metadata'->>'role') = 'admin');
 
 insert into public.site_settings (id, name, short_bio, about_content, profile_image_url, email, phone, location, social_links, seo_title, seo_description, footer_text)
-values ('main', 'M. Mahimmiraj', 'Building TagWraps: secure NFC packaging that helps people identify genuine products.', 'I''m Mahim from Narayanganj, Bangladesh, a technology enthusiast driven by curiosity and a passion for creating positive change through innovation. I have been fascinated by machines since childhood and want to establish a robotics and automation company in Bangladesh.', '/assets/new-profile.jpg', 'mahimmiraj@outlook.com', '+880 1410 669641', 'Narayanganj, Bangladesh', '{"github":"https://github.com/mirajulislam1292","linkedin":"https://www.linkedin.com/in/mahimmiraj1292/","facebook":"https://www.facebook.com/mahimmiraj1292","instagram":"https://www.instagram.com/mahimmiraj1292"}', 'M. Mahimmiraj — Engineer, Builder & Founder', 'Portfolio of M. Mahimmiraj: engineering, robotics, IoT, product authentication and technical writing.', 'Built with curiosity in Narayanganj, Bangladesh.');
+values ('main', 'M. Mahimmiraj', $$Currently developing TagWraps, an innovative packaging system using NFC technology to protect the authenticity of a product through a secured cryptographic encryption method, helping the public buy and identify genuine products.$$, $$I'm Mahim from Narayanganj, Bangladesh, a technology enthusiast driven by curiosity and a passion for creating positive change through innovation.
+
+I am a lifelong student who is always seeking knowledge. I enjoy learning from everyone, from younger individuals with fresh ideas to senior professionals with years of experience. From the beginning of my childhood, I have been fascinated by machines and constantly wondered how things work. I developed a unique hobby of taking apart electronic devices to explore their internal components and understand their functions.
+
+Through attending various events and gaining hands-on experience with innovative engineering projects, I realized that there is a significant gap in automation and robotics development in my country. Being the son of a businessman, I have developed a vision to establish a robotics and automation company in Bangladesh.$$, '/assets/new-profile.jpg', 'mahimmiraj@outlook.com', '+880 1410 669641', 'Narayanganj, Bangladesh', '{"github":"https://github.com/mirajulislam1292","linkedin":"https://www.linkedin.com/in/mahimmiraj1292/","facebook":"https://www.facebook.com/mahimmiraj1292","instagram":"https://www.instagram.com/mahimmiraj1292"}', 'M. Mahimmiraj — Engineer, Builder & Founder', 'Portfolio of M. Mahimmiraj: engineering, robotics, IoT, product authentication and technical writing.', 'Built with curiosity in Narayanganj, Bangladesh.');
 
 insert into public.projects (name, slug, short_description, long_description, thumbnail_url, gallery_urls, technologies, live_url, category, featured, status, sort_order, metadata) values
-('TagWraps','tagwraps','Tamper-Evident NFC Packaging & Real-Time Product Verification Platform','TagWraps provides tamper-evident packaging integrated with high-security NFC tags and proprietary cryptographic encryption to eliminate counterfeit goods.','/assets/truemedi-prototype.jpg',array['/assets/truemedi-prototype.jpg','/assets/about-photo.jpg'],array['NTAG 424 DNA / PN532','AES-128 / ECC Cryptography','Node.js','React'],'https://tagwraps.vercel.app/','Hardware & Cryptographic Packaging',true,'published',0,'{"whitepaper_url":"/TagWraps_Whitepaper.pdf"}'),
-('HydroVer','hydrover','Smart Water Pollution Monitoring & Autonomous Sampling Surface Vehicle','An IoT-enabled remote controlled surface vehicle designed to collect water samples, measure quality metrics and administer treatments.','/assets/hydrover-prototype.jpg',array['/assets/hydrover-prototype.jpg','/assets/hydrover-electronics.jpg'],array['Arduino Nano','NRF24L01','pH Sensor','Turbidity'],null,'Environmental Robotics & IoT',true,'published',1,'{}'),
-('TrueMedi','truemedi','Anti-Counterfeit Pharmaceutical Verification Platform','Encrypted NFC tags on pharmaceutical packaging allow instant verification of medicine authenticity.','/assets/truemedi-prototype.jpg',array['/assets/truemedi-prototype.jpg','/assets/electronics-experiment.jpg'],array['PN532 NFC','Arduino','AES-128'],null,'Healthcare & Cryptographic Security',true,'published',2,'{}'),
-('AquaGuard','aquaguard','Continuous Real-Time IoT Water Quality Telemetry System','A compact IoT device engineered for continuous water quality monitoring in rivers, lakes and industrial drainage.','/assets/aquaguard-device.jpg',array['/assets/aquaguard-device.jpg'],array['ESP8266','Water Quality Sensors','Cloud Telemetry'],null,'Environmental IoT & Hardware',true,'published',3,'{}'),
-('Autonomous Robot Car','robot-car','4WD Obstacle Avoiding Autonomous Rover','A custom autonomous rover that maps obstacles and executes real-time collision evasion maneuvers.','/assets/robot-car.jpg',array['/assets/robot-car.jpg','/assets/robot-car-selfie.jpg'],array['Arduino Uno','HC-SR04','L298N'],null,'Autonomous Robotics',false,'published',4,'{}'),
-('Smart City Infrastructure Model','smart-city','Integrated Urban Automation & Environmental Sensing System','A scale model demonstrating interconnected smart city systems and sustainable automation.','/assets/smart-city-model.jpg',array['/assets/smart-city-model.jpg'],array['ESP8266','Sensors','Relay Control'],null,'Smart Grid & Automation',false,'published',5,'{}'),
-('AEYE Edge Vision','a-eye','Automatic Highway Accident Detection & Emergency Dispatch System','A low-latency computer vision system that detects vehicle collisions and alerts emergency services.','/assets/electronics-experiment.jpg',array['/assets/electronics-experiment.jpg'],array['ESP32-CAM','OpenCV','Python','TensorFlow Lite'],null,'Computer Vision & Edge AI',true,'published',6,'{}'),
-('NutriDrip','nutridrip','Smart Automated Plant Irrigation & Soil NPK Adjustment System','Automated precision irrigation and nutrient dosing based on live soil sensor readings.','/assets/smart-city-model.jpg',array['/assets/smart-city-model.jpg'],array['ESP8266','NPK Sensors','IoT'],null,'AgriTech & Smart Farming',true,'published',7,'{}');
+('TagWraps','tagwraps',$$An innovative packaging system using NFC technology to protect the authenticity of a product through a secured cryptographic encryption method, helping the public buy and identify genuine products.$$, $$In Bangladesh and across South Asia, counterfeit medicines, fake cosmetics, and fraudulent goods cause real harm to real people every day. I built TagWraps to solve that with something simple and affordable.
+
+TagWraps is a smart NFC authentication tag embedded in a product wrapper. Each chip is cryptographically locked and registered in a cloud database. When a customer taps the tag with their smartphone, the system verifies the product as genuine or flags it as fake in real time. No app required. No special scanner. Just a phone tap.
+
+The cost per tag is 5 to 10 taka. The protection it provides is priceless.$$,null,'{}',array['NFC Tag Type-4','AES Cryptography','Anti-Counterfeit','Hardware Security'],'https://tagwraps.vercel.app/','Hardware & Cryptographic Packaging',true,'published',0,'{"whitepaper_url":"/TagWraps_Whitepaper.pdf"}'),
+('HydroVer','hydrover','Smart water pollution monitoring system with remote controlled surface vehicle for water sampling and chemical treatment.','Water pollution and ineffective monitoring of water bodies are pressing issues in Bangladesh and across the world. To address these challenges, I developed HydroVer, a multi-functional remotely controlled water surface vehicle designed for environmental monitoring, water sampling, chemical treatment, and emergency assistance applications.',null,'{}',array['Arduino Nano','NRF24L01','IoT','Environmental'],null,'Environmental Robotics & IoT',true,'published',1,'{}'),
+('TrueMedi','truemedi','Fake medicine detection system using NFC technology and encrypted hash codes to verify medicine authenticity.','Counterfeit medicines pose a critical threat to public health globally, especially in developing countries like Bangladesh. TrueMedi is an innovative, affordable, and accessible fake medicine detection system developed using Arduino technology and NFC modules.',null,'{}',array['PN532 NFC','Arduino','Healthcare','Security'],null,'Healthcare & Cryptographic Security',true,'published',2,'{}'),
+('AEYE','a-eye','Automatic accident detection system using OpenCV and ESP32-CAM achieving 92% accuracy for highway monitoring.','AEYE is an automatic accident detection system integrated with OpenCV for situation detection. I developed a scaled-down version of this system using an ESP32-CAM module for detecting certain accidents, achieving 92% accuracy in accident detection.',null,'{}',array['ESP32-CAM','OpenCV','Computer Vision','Safety'],null,'Computer Vision & Edge AI',true,'published',3,'{}'),
+('NutriDrip','nutridrip','Automatic plant irrigation and NPK adjustment system with IoT connectivity for remote monitoring and smart watering.','NutriDrip is an automatic plant irrigation and NPK adjustment system with IoT connectivity for remote monitoring and smart watering.',null,'{}',array['ESP8266','IoT','Agriculture','Mobile App'],null,'AgriTech & Smart Farming',true,'published',4,'{}');
 
 with certificate as (
   insert into public.certificates (title, file_url, file_type, issuer, issued_at)
   values ('QCEC 2025 Silver Award Certificate','/assets/qcec-silver-certificate.jpg','image','The Royal Commonwealth Society','2025-01-01') returning id
 )
 insert into public.achievements (title, short_description, full_description, organization, category, image_url, external_url, featured, status, certificate_id, sort_order)
-select 'Silver Award','The Queen''s Commonwealth Essay Competition 2025','Silver Award in the senior category of The Queen''s Commonwealth Essay Competition 2025.','The Royal Commonwealth Society','Award','/assets/qcec-silver-certificate.jpg','/essays/qcec',true,'published',id,0 from certificate;
+select 'Silver Award','The Queen''s Commonwealth Essay Competition 2025','The Queen''s Commonwealth Essay Competition 2025','The Royal Commonwealth Society','Major Awards & Championships','/assets/qcec-silver-certificate.jpg','/essays/qcec',true,'published',id,0 from certificate;
 
 insert into public.achievements (title, short_description, full_description, organization, category, featured, status, sort_order) values
-('Champion','NextGen BD Festival, Green University of Bangladesh','Champion at NextGen BD Festival.','Green University of Bangladesh','Award',true,'published',1),
-('Champion','UIU CSE FEST 2025 — ICT Olympiad','Champion at UIU CSE FEST 2025 ICT Olympiad.','United International University','Award',true,'published',2),
-('Champion','DRMC Math Summit','Champion at the DRMC Math Summit.','Dhaka Residential Model College','Award',true,'published',3),
-('5th Place','EWU NatEcon Startup Catalyst','Fifth place at EWU NatEcon Startup Catalyst.','East West University','Award',true,'published',4),
-('National Rank 9th','46th National Science and Technology Fest','District Champion and National Rank 9th.','Government of Bangladesh','National ranking',false,'published',5),
-('National Rank 13th','45th National Science and Technology Fest','District Champion and National Rank 13th.','Government of Bangladesh','National ranking',false,'published',6);
+('Champion','NextGen BD Festival, Green University of Bangladesh','NextGen BD Festival, Green University of Bangladesh',null,'Major Awards & Championships',true,'published',1),
+('Champion','UIU CSE FEST 2025 (ICT Olympiad)','UIU CSE FEST 2025 (ICT Olympiad)',null,'Major Awards & Championships',true,'published',2),
+('Champion','DRMC Math Summit','DRMC Math Summit',null,'Major Awards & Championships',true,'published',3),
+('5th Place','EWU NatEcon Startup Catalyst','EWU NatEcon Startup Catalyst',null,'Major Awards & Championships',true,'published',4),
+('President, Govt. Tolaram College Science Club (2024-2025)','','',null,'Leadership & Organizational Roles',false,'published',5),
+('Youth Volunteer (ICT Dept.), Bangladesh Red Crescent Society (BDRCS), Narayanganj Unit','','',null,'Leadership & Organizational Roles',false,'published',6),
+('Member, Team Atlas (Robotics)','','',null,'Leadership & Organizational Roles',false,'published',7),
+('District Champion & National Rank 9th, 46th National Science and Technology Fest','','',null,'National & District Rankings',false,'published',8),
+('District Champion & National Rank 13th, 45th National Science and Technology Fest','','',null,'National & District Rankings',false,'published',9),
+('District Champion, Bangladesh Wildlife Olympiad (Narayanganj)','','',null,'National & District Rankings',false,'published',10),
+('7th Place, Ibn Al-Haytham Science Fest 2024','','',null,'National & District Rankings',false,'published',11),
+('9th Place, Al-Khwarizmi Science Fest 2025','','',null,'National & District Rankings',false,'published',12),
+('Bangladesh Mathematical Olympiad (BdMO)','','',null,'Olympiad Finalist & Participation',false,'published',13),
+('Bangladesh Physics Olympiad (BdPhO)','','',null,'Olympiad Finalist & Participation',false,'published',14),
+('Bangladesh Robotics Olympiad (BdRO)','','',null,'Olympiad Finalist & Participation',false,'published',15),
+('Bangladesh Artificial Intelligence Olympiad (BdAiO)','','',null,'Olympiad Finalist & Participation',false,'published',16),
+('Bangladesh Wildlife Olympiad','','',null,'Olympiad Finalist & Participation',false,'published',17),
+('Bangladesh English Olympiad','','',null,'Olympiad Finalist & Participation',false,'published',18),
+('Bangladesh Environmental Olympiad','','',null,'Olympiad Finalist & Participation',false,'published',19),
+('National Earth Olympiad','','',null,'Olympiad Finalist & Participation',false,'published',20),
+('Basic to Advanced Robotics, Team Atlas','','',null,'Technical Training & Certifications',false,'published',21),
+('ML Data Handling & Image Recognition, Team Atlas','','',null,'Technical Training & Certifications',false,'published',22),
+('Computer 101, Govt. Tolaram College (Grade: A+)','','',null,'Technical Training & Certifications',false,'published',23),
+('Cyber Hygiene, The Asia Foundation & Sajeda Foundation','','',null,'Technical Training & Certifications',false,'published',24),
+('Green Day Training (GDT), Bangladesh Youth Environmental Initiative (BYEI)','','',null,'Technical Training & Certifications',false,'published',25),
+('AAA Training, Bangladesh Red Crescent Society (BDRCS)','','',null,'Technical Training & Certifications',false,'published',26),
+('MIS & Data Management, BDRCS','','',null,'Technical Training & Certifications',false,'published',27),
+('ICRC & Standard Volunteering, BDRCS','','',null,'Technical Training & Certifications',false,'published',28),
+('Art of Problem Definition, Passport to Earning (P2E) Bangladesh','','',null,'Technical Training & Certifications',false,'published',29);
 
 insert into public.experiences (position, company, description, start_date, end_date, current, external_url, sort_order) values
-('Founder & Lead Developer','TagWraps — Product Authenticity Startup','Developing a cryptographic NFC verification system to combat counterfeit consumer goods.','2026-01-01',null,true,'https://tagwraps.vercel.app/',0),
-('Lead Developer & Technical Architect','Scholars Cafe','Built the platform and coordinate the technical team, review and operations.','2026-01-01',null,true,'https://www.scholarscafe.com/',1),
-('Graphic Design Intern','Scholars Cafe','Produced visual communications and promotional materials aligned with brand guidelines.','2025-04-01','2025-12-01',false,null,2),
-('President, Science Club','Government Tolaram College','Directed a student-led science and technology club and organized workshops.','2025-05-01','2026-05-01',false,null,3),
-('RCY Volunteer, ICT Department','Bangladesh Red Crescent Youth','Coordinate digital communication during emergency response and climate programs.','2024-05-01',null,true,null,4);
+('Founder & Lead Developer','TagWraps - Product Authenticity Startup',$$Independently developing a blockchain-integrated verification system to combat counterfeit consumer goods across Bangladeshi supply chains.
+Sole developer responsible for architecture, backend API design, and real-time product authentication features.$$,'2026-01-01',null,true,'https://tagwraps.vercel.app/',0),
+('Lead Developer & Technical Architect','Scholars Cafe - Student Consulting Platform',$$Built the entire Scholars Cafe platform from scratch as the primary developer and technical architect behind the website.
+Engineered frontend interfaces, backend services, responsive design, and deployment pipelines from the ground up.
+Coordinating the intern technical team, conducting code reviews, and maintaining platform operations that empower students with EPT, SAT prep, university applications, and scholarship pathways.$$,'2026-01-01',null,true,'https://www.scholarscafe.com/',1),
+('Graphic Design Intern','Scholars Cafe','Produced visual communications and promotional materials aligned with brand guidelines and audience engagement objectives.','2025-04-01','2025-12-01',false,null,2),
+('President, Science Club (GTCSC) - EC 2024-2025','Government Tolaram College, Narayanganj',$$Directed a student-led science and technology club; organized seminars, inter-college workshops, and outreach initiatives.
+Managed a committee to execute events promoting STEM education across the district.$$,'2025-05-01','2026-05-01',false,null,3),
+('RCY Volunteer, ICT Department','Bangladesh Red Crescent Youth, Narayanganj Unit',$$Coordinated digital communication during emergency response operations.
+Contributed to climate adaptation programs and participated in multiple national environmental training initiatives.$$,'2024-05-01',null,true,null,4);
 
 insert into public.skills (name, category, sort_order) values
 ('Arduino & Embedded C++','Engineering',0),('IoT systems','Engineering',1),('Robotics','Engineering',2),('React','Software',3),('Hardware prototyping','Engineering',4),('Computer vision','Software',5);

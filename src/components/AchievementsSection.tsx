@@ -1,11 +1,67 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Award, ExternalLink } from "lucide-react";
+import { Award, Cpu, ExternalLink, GraduationCap, Star, Target, Trophy, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCollection } from "@/hooks/useContent";
 import type { Achievement } from "@/lib/types";
 
-export function AchievementsSection() {
-  const { data, loading } = useCollection<Achievement>("achievements", { publishedOnly: true, pageSize: 6 });
-  return <section id="achievements" className="py-24"><div className="mx-auto max-w-7xl px-6 lg:px-12"><motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-10 border-b border-white/10 pb-8"><h2 className="text-3xl font-bold">Achievements</h2><p className="mt-2 text-sm text-zinc-500">Recognition across engineering, science and writing.</p></motion.div>{loading && <p className="text-zinc-500">Loading achievements…</p>}<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{data.map((item, index) => <motion.article key={item.id} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.05 }} className="rounded-xl border border-zinc-800 bg-[#0a0a0d] p-5"><div className="mb-4 flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900"><Award className="h-4 w-4 text-orange-400" /></div><p className="text-xs font-mono uppercase text-zinc-600">{item.category}</p><h3 className="mt-2 text-lg font-semibold">{item.title}</h3><p className="mt-2 text-sm leading-relaxed text-zinc-400">{item.short_description}</p>{item.certificate?.file_url && <a href={item.certificate.file_url} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 text-xs text-orange-300 hover:text-orange-200">View this certificate<ExternalLink className="h-3.5 w-3.5" /></a>}</motion.article>)}</div><Link to="/achievements" className="mt-8 inline-flex items-center gap-2 text-sm text-zinc-300 hover:text-white">View all achievements<ArrowRight className="h-4 w-4" /></Link></div></section>;
-}
+const groups = [
+  { category: "Major Awards & Championships", icon: Trophy, columns: "sm:grid-cols-2 lg:grid-cols-3" },
+  { category: "Leadership & Organizational Roles", icon: Users, columns: "sm:grid-cols-3" },
+  { category: "National & District Rankings", icon: Target, columns: "sm:grid-cols-2 lg:grid-cols-3" },
+  { category: "Olympiad Finalist & Participation", icon: Star, columns: "grid-cols-2 sm:grid-cols-4" },
+  { category: "Technical Training & Certifications", icon: GraduationCap, columns: "sm:grid-cols-2 lg:grid-cols-3" },
+] as const;
 
+export function AchievementsSection() {
+  const { data, loading } = useCollection<Achievement>("achievements", { publishedOnly: true, pageSize: 50 });
+
+  return (
+    <section id="achievements" className="relative py-24">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 border-b border-white/10 pb-8">
+          <h2 className="text-3xl font-bold tracking-tight text-white">Achievements &amp; Experience</h2>
+        </motion.div>
+
+        {loading && <p className="text-zinc-500">Loading achievements…</p>}
+
+        <div className="space-y-16">
+          {groups.map((group) => {
+            const items = data.filter((item) => item.category === group.category);
+            if (!items.length) return null;
+            const Icon = group.icon;
+
+            return (
+              <motion.div key={group.category} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                <div className="mb-6 flex items-center gap-3">
+                  <Icon className={`h-6 w-6 ${group.category === "Major Awards & Championships" ? "text-orange-400" : "text-zinc-300"}`} />
+                  <h3 className="text-2xl font-bold text-white">{group.category}</h3>
+                </div>
+                <div className={`grid gap-4 ${group.columns}`}>
+                  {items.map((item) => {
+                    const card = (
+                      <article className="h-full rounded-xl border border-zinc-800/80 bg-[#0b0b0e] p-5 transition-colors hover:border-zinc-700">
+                        {group.category === "Major Awards & Championships" && (
+                          <div className="mb-3 flex items-center justify-between">
+                            <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-[#14141d]">
+                              <Award className="h-5 w-5 text-orange-400" />
+                            </div>
+                            {item.external_url && <span className="inline-flex items-center gap-1 rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 text-xs font-mono text-zinc-300">Read Essay <ExternalLink className="h-3 w-3" /></span>}
+                          </div>
+                        )}
+                        {group.category === "Technical Training & Certifications" && <Cpu className="mb-3 h-4 w-4 text-zinc-400" />}
+                        <h4 className={`${group.category === "Olympiad Finalist & Participation" ? "text-center font-mono text-xs sm:text-sm" : "text-sm font-medium sm:text-base"} text-zinc-200`}>{item.title}</h4>
+                        {item.short_description && <p className="mt-1 text-sm text-zinc-400">{item.short_description}</p>}
+                      </article>
+                    );
+
+                    return item.external_url ? <Link key={item.id} to={item.external_url}>{card}</Link> : <div key={item.id}>{card}</div>;
+                  })}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
