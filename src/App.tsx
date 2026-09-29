@@ -11,6 +11,7 @@ const AchievementsPage = lazy(() => import("./pages/AchievementsPage"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
 const AdminLogin = lazy(() => import("./admin/AdminLogin"));
+const ResetPasswordPage = lazy(() => import("./admin/ResetPasswordPage"));
 const AdminLayout = lazy(() => import("./admin/AdminLayout"));
 const Dashboard = lazy(() => import("./admin/Dashboard"));
 const CollectionPage = lazy(() => import("./admin/CollectionPage"));
@@ -30,6 +31,7 @@ export default function App() {
     <Route path="/blog/:slug" element={<BlogPostPage />} />
     <Route path="/essays/qcec" element={<QCECPage />} />
     <Route path="/admin/login" element={<AdminLogin />} />
+    <Route path="/admin/reset-password" element={<ResetPasswordPage />} />
     <Route path="/admin" element={<AdminLayout />}>
       <Route index element={<Dashboard />} />
       <Route path="settings" element={<SettingsPage />} />

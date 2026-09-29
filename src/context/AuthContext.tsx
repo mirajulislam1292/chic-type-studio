@@ -1,12 +1,14 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import type { User } from "@supabase/supabase-js";
-import { supabase } from "@/lib/supabase";
+import { setRememberSessionPreference, supabase } from "@/lib/supabase";
 
 interface AuthValue {
   user: User | null;
   loading: boolean;
   isAdmin: boolean;
-  signIn: (email: string, password: string) => Promise<void>;
+  signIn: (email: string, password: string, remember: boolean) => Promise<void>;
+  sendPasswordReset: (email: string) => Promise<void>;
+  updatePassword: (password: string) => Promise<void>;
   signOut: () => Promise<void>;
 }
 
@@ -33,14 +35,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     user,
     loading,
     isAdmin: user?.app_metadata?.role === "admin",
-    signIn: async (email, password) => {
+    signIn: async (email, password, remember) => {
       if (!supabase) throw new Error("The CMS has not been connected yet.");
+      setRememberSessionPreference(remember);
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw new Error(error.message);
       if (data.user?.app_metadata?.role !== "admin") {
         await supabase.auth.signOut();
         throw new Error("This account is not authorized for portfolio administration.");
       }
+    },
+    sendPasswordReset: async (email) => {
+      if (!supabase) throw new Error("The CMS has not been connected yet.");
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/admin/reset-password`,
+      });
+      if (error) throw new Error(error.message);
+    },
+    updatePassword: async (password) => {
+      if (!supabase) throw new Error("The CMS has not been connected yet.");
+      const { error } = await supabase.auth.updateUser({ password });
+      if (error) throw new Error(error.message);
     },
     signOut: async () => { if (supabase) await supabase.auth.signOut(); },
   }), [loading, user]);
