@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import { useSiteSettings } from "@/hooks/useContent";
 import { HeroGeometry } from "./HeroGeometry";
@@ -17,21 +17,25 @@ export function HeroSection() {
   };
 
   return (
-    <section className="min-h-[85vh] flex flex-col justify-center relative pt-28 pb-16 overflow-hidden">
+    <section className="relative flex h-[100svh] min-h-[640px] flex-col justify-center overflow-hidden border-b border-white/[0.06] pt-24 pb-14">
       <HeroGeometry />
-      <div className="w-full max-w-5xl mx-auto px-6 lg:px-12 relative z-10">
-        <div className="flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-10 md:gap-12">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-6 lg:px-12">
+        <div className="grid items-center gap-10 md:grid-cols-[minmax(0,1.05fr)_minmax(300px,0.95fr)] md:gap-5">
           
           {/* Main Text Column */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="flex-1 space-y-6 text-left"
+            className="space-y-6 text-left"
           >
+            <div className="inline-flex items-center gap-2 rounded-full border border-orange-400/20 bg-orange-500/[0.07] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-orange-200/80">
+              <ShieldCheck className="h-3.5 w-3.5 text-orange-400" />
+              Engineering trust into products
+            </div>
             {/* Name Headline */}
             <div>
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.08] mb-2">
+              <h1 className="text-4xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-6xl lg:text-7xl">
                 {settings?.name || "M. Mahimmiraj"}
               </h1>
             </div>
@@ -63,35 +67,41 @@ export function HeroSection() {
 
           </motion.div>
 
-          {/* Profile Picture Column */}
+          {/* The portrait is a verified identity card floating beside the security system. */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="shrink-0 self-center md:self-auto"
+            className="relative hidden min-h-[360px] md:block"
           >
-            <div className="relative">
-              <div className="w-40 h-40 sm:w-56 sm:h-56 rounded-full overflow-hidden border border-zinc-800 bg-[#0f0f15] shadow-2xl flex items-center justify-center relative">
+            <div className="absolute bottom-5 right-0 flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0b0b0e]/75 p-2.5 pr-4 shadow-2xl shadow-black/60 backdrop-blur-xl">
+              <div className="relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl border border-orange-400/25 bg-[#0f0f15]">
                 {!imgError ? (
                   <img
                     src={profileImage}
                     alt={settings?.name || "M. Mahimmiraj"}
-                    className="w-full h-full object-cover"
+                    className="h-full w-full object-cover"
                     loading="eager"
                     onError={() => setImgError(true)}
                   />
                 ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-zinc-800 to-zinc-900 text-zinc-300">
-                    <span className="text-3xl sm:text-5xl font-black text-white tracking-wider">MM</span>
-                    <span className="text-[10px] font-mono text-zinc-400 mt-1 uppercase">Mahimmiraj</span>
+                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-b from-zinc-800 to-zinc-900 text-zinc-300">
+                    <span className="text-xl font-black tracking-wider text-white">MM</span>
                   </div>
                 )}
+              </div>
+              <div>
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-white"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />Verified builder</div>
+                <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.16em] text-zinc-500">Identity secured</p>
               </div>
             </div>
           </motion.div>
 
         </div>
       </div>
+      <button onClick={() => scrollToSection("#about")} className="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-600 transition hover:text-zinc-300" aria-label="Scroll to My Story">
+        Continue <ArrowDown className="h-3.5 w-3.5" />
+      </button>
     </section>
   );
 }

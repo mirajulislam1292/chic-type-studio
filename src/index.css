@@ -87,6 +87,26 @@
     box-shadow: 0 0 15px 0 rgba(249, 115, 22, 0.15);
   }
 
+  .space-field::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.34;
+    background-image:
+      radial-gradient(circle at 18% 12%, rgba(255,255,255,0.42) 0 1px, transparent 1.4px),
+      radial-gradient(circle at 73% 22%, rgba(249,115,22,0.36) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 41% 67%, rgba(148,163,184,0.32) 0 1px, transparent 1.4px),
+      radial-gradient(circle at 88% 78%, rgba(255,255,255,0.28) 0 1px, transparent 1.4px);
+    background-size: 173px 181px, 227px 241px, 197px 211px, 263px 269px;
+    mask-image: linear-gradient(to bottom, transparent, black 4%, black 96%, transparent);
+  }
+
+  .space-field > * {
+    position: relative;
+    z-index: 1;
+  }
+
   .action-primary {
     @apply inline-flex min-h-11 items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-black transition hover:bg-zinc-200 disabled:cursor-not-allowed disabled:opacity-50;
   }

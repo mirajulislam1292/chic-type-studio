@@ -19,13 +19,15 @@ export default function IndexPage() {
       <Navbar />
       <main className="relative z-10">
         <HeroSection />
-        <AboutSection />
-        <ProjectsSection />
-        <WorkExperience />
-        <CredentialsSection />
-        <AchievementsSection />
-        <VisionSection />
-        <ContactSection />
+        <div className="space-field relative overflow-hidden">
+          <AboutSection />
+          <ProjectsSection />
+          <WorkExperience />
+          <CredentialsSection />
+          <AchievementsSection />
+          <VisionSection />
+          <ContactSection />
+        </div>
       </main>
       <Footer />
     </div>
