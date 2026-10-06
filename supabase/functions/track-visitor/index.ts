@@ -18,7 +18,7 @@ function allowedOrigin(origin: string | null) {
 }
 
 function clientIp(request: Request) {
-  const direct = request.headers.get("cf-connecting-ip") || request.headers.get("x-real-ip");
+  const direct = request.headers.get("x-analytics-client-ip") || request.headers.get("cf-connecting-ip") || request.headers.get("x-real-ip");
   const forwarded = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
   return direct || forwarded || null;
 }
@@ -85,11 +85,11 @@ Deno.serve(async (request) => {
     const userAgent = (request.headers.get("user-agent") || "").slice(0, 1024);
     const { browser, operatingSystem, deviceType } = parseUserAgent(userAgent);
     const rawCountryCode = (
-      request.headers.get("cf-ipcountry") || request.headers.get("x-vercel-ip-country") || ""
+      request.headers.get("x-analytics-country") || request.headers.get("cf-ipcountry") || request.headers.get("x-vercel-ip-country") || ""
     ).toUpperCase();
     const countryCode = /^[A-Z]{2}$/.test(rawCountryCode) ? rawCountryCode : null;
-    const region = request.headers.get("x-vercel-ip-country-region")?.slice(0, 160) || null;
-    const city = request.headers.get("x-vercel-ip-city")?.slice(0, 160) || null;
+    const region = (request.headers.get("x-analytics-region") || request.headers.get("x-vercel-ip-country-region"))?.slice(0, 160) || null;
+    const city = (request.headers.get("x-analytics-city") || request.headers.get("x-vercel-ip-city"))?.slice(0, 160) || null;
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");

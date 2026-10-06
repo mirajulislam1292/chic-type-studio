@@ -162,6 +162,9 @@ export interface VisitorProfile {
   country: string | null;
   region: string | null;
   city: string | null;
+  network_name: string | null;
+  asn: string | null;
+  geo_updated_at: string | null;
 }
 
 export interface VisitorEvent {

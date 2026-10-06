@@ -58,3 +58,14 @@ export function useSeo({ title, description, path = "/", type = "website", image
 export function readingTime(content: string) {
   return Math.max(1, Math.ceil(content.trim().split(/\s+/).length / 220));
 }
+
+export function blogSummary(content: string, limit = 180) {
+  const plainText = content
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/[`#>*_~|-]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (plainText.length <= limit) return plainText;
+  return `${plainText.slice(0, limit).replace(/\s+\S*$/, "")}…`;
+}
