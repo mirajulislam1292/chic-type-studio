@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { ArrowLeft, ExternalLink, ImagePlus, Loader2, Save, Trash2 } from "lucide-react";
+import { ArrowLeft, ExternalLink, ImagePlus, Loader2, Save, Send, Trash2 } from "lucide-react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { MarkdownContent } from "@/components/MarkdownContent";
 import { deleteRecord, getRecord, listRecords, saveRecord } from "@/lib/contentRepository";
@@ -15,7 +15,7 @@ export default function EditorPage() {
   const navigate = useNavigate();
   const [record, setRecord] = useState<Record<string, unknown>>({});
   const [loading, setLoading] = useState(id !== "new");
-  const [saving, setSaving] = useState(false);
+  const [savingAction, setSavingAction] = useState<"save" | "publish" | null>(null);
   const [uploading, setUploading] = useState<string | null>(null);
   const [message, setMessage] = useState("");
   const [preview, setPreview] = useState(false);
@@ -32,14 +32,20 @@ export default function EditorPage() {
   const publicUrl = useMemo(() => config?.publicPath && record.slug ? `${config.publicPath}${record.slug}` : null, [config, record.slug]);
   if (!config) return <Navigate to="/admin" replace />;
   const update = (key: string, value: unknown) => setRecord((current) => ({ ...current, [key]: value }));
-  const submit = async (event: FormEvent) => {
-    event.preventDefault(); setSaving(true); setMessage("");
+  const persist = async (overrides: Record<string, unknown> = {}, action: "save" | "publish" = "save") => {
+    setSavingAction(action); setMessage("");
     try {
-      const saved = await saveRecord(config.collection, record as Partial<CmsRecord>);
-      setRecord(saved as unknown as Record<string, unknown>); setMessage("Saved successfully.");
+      const saved = await saveRecord(config.collection, { ...record, ...overrides } as Partial<CmsRecord>);
+      setRecord(saved as unknown as Record<string, unknown>);
+      setMessage(action === "publish" ? "Published successfully. It is now visible on the public Blog page." : "Saved successfully.");
       if (id === "new") navigate(`/admin/${section}/${saved.id}`, { replace: true });
-    } catch (caught) { setMessage(caught instanceof Error ? caught.message : "Save failed."); } finally { setSaving(false); }
+    } catch (caught) { setMessage(caught instanceof Error ? caught.message : "Save failed."); } finally { setSavingAction(null); }
   };
+  const submit = async (event: FormEvent) => {
+    event.preventDefault();
+    await persist();
+  };
+  const publish = async () => persist({ status: "published", published_at: record.published_at || new Date().toISOString() }, "publish");
   const upload = async (field: FieldConfig, file?: File) => {
     if (!file) return; setUploading(field.key); setMessage("");
     try {
@@ -81,7 +87,7 @@ export default function EditorPage() {
   return <form onSubmit={submit} className="admin-page"><header className="mb-7 flex items-start justify-between gap-4"><div><Link to={`/admin/${section}`} className="mb-3 inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-white"><ArrowLeft className="h-4 w-4" />{config.label}</Link><h1 className="text-2xl font-semibold sm:text-3xl">{id === "new" ? `New ${config.singular}` : `Edit ${config.singular}`}</h1></div><div className="flex gap-2">{("content" in record || "long_description" in record) && <button type="button" className="action-secondary" onClick={() => setPreview(!preview)}>{preview ? "Edit" : "Preview"}</button>}{publicUrl && <Link to={publicUrl} target="_blank" className="touch-button" aria-label="Open public page"><ExternalLink className="h-4 w-4" /></Link>}</div></header>
     {preview ? <div className="rounded-xl border border-zinc-800 bg-[#09090c] p-6 sm:p-10"><h1 className="mb-6 text-3xl font-semibold">{String(record.title || record.name || "Untitled")}</h1><MarkdownContent content={String(record.content || record.long_description || "")} /></div> : <div className="space-y-6">{config.fields.map((field) => <Field key={field.key} field={field} value={record[field.key]} record={record} update={update} upload={upload} uploading={uploading} clearMedia={clearMedia} certificates={certificates} attachCertificate={attachCertificate} appendImages={appendImages} insertContentImage={insertContentImage} />)}</div>}
     {message && <p role="status" className={`mt-6 rounded-lg border p-3 text-sm ${message.includes("success") ? "border-emerald-500/30 text-emerald-300" : "border-red-500/30 text-red-300"}`}>{message}</p>}
-    <div className="sticky bottom-[72px] z-30 mt-8 flex items-center gap-3 rounded-xl border border-zinc-700 bg-[#101014]/95 p-3 shadow-2xl backdrop-blur lg:bottom-4"><button disabled={saving || Boolean(uploading)} className="action-primary flex-1 justify-center py-3 sm:flex-none sm:px-7">{saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}{saving ? "Saving…" : "Save"}</button>{id !== "new" && <button type="button" onClick={() => void remove()} className="touch-button ml-auto text-red-400" aria-label={`Delete ${config.singular}`}><Trash2 /></button>}</div>
+    <div className="sticky bottom-[72px] z-30 mt-8 flex flex-wrap items-center gap-3 rounded-xl border border-zinc-700 bg-[#101014]/95 p-3 shadow-2xl backdrop-blur lg:bottom-4">{section === "blog" && record.status !== "published" ? <><button type="submit" disabled={Boolean(savingAction) || Boolean(uploading)} className="action-secondary flex-1 justify-center py-3 sm:flex-none sm:px-6">{savingAction === "save" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}{savingAction === "save" ? "Saving…" : "Save draft"}</button><button type="button" onClick={() => void publish()} disabled={Boolean(savingAction) || Boolean(uploading)} className="action-primary flex-1 justify-center py-3 sm:flex-none sm:px-7">{savingAction === "publish" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}{savingAction === "publish" ? "Publishing…" : "Publish now"}</button></> : <button type="submit" disabled={Boolean(savingAction) || Boolean(uploading)} className="action-primary flex-1 justify-center py-3 sm:flex-none sm:px-7">{savingAction ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}{savingAction ? "Saving…" : section === "blog" ? "Update published post" : "Save"}</button>}{id !== "new" && <button type="button" onClick={() => void remove()} className="touch-button ml-auto text-red-400" aria-label={`Delete ${config.singular}`}><Trash2 /></button>}</div>
   </form>;
 }
 
@@ -95,5 +101,6 @@ function Field({ field, value, record, update, upload, uploading, clearMedia, ce
   if (field.type === "select") return <label className="block" htmlFor={id}><span className="cms-label">{field.label}</span><select id={id} className="cms-input" value={String(value || "")} onChange={(event) => update(field.key, event.target.value)}>{field.options?.map((option) => <option key={option} value={option}>{option}</option>)}</select></label>;
   if (field.type === "array") return <label className="block" htmlFor={id}><span className="cms-label">{field.label}</span><input id={id} className="cms-input" value={Array.isArray(value) ? value.join(", ") : ""} onChange={(event) => update(field.key, event.target.value.split(",").map((item) => item.trim()).filter(Boolean))} placeholder="Separate items with commas" /></label>;
   const type = field.type === "slug" ? "text" : field.type;
-  return <label className="block" htmlFor={id}><span className="cms-label">{field.label}</span><input id={id} className="cms-input" type={type} required={field.required} value={String(value || "")} onChange={(event) => { update(field.key, event.target.value); if ((field.key === "title" || field.key === "name") && !record.slug) update("slug", slugify(event.target.value)); }} />{field.help && <small className="mt-1 block text-zinc-500">{field.help}</small>}</label>;
+  const inputValue = field.type === "date" && typeof value === "string" ? value.slice(0, 10) : String(value || "");
+  return <label className="block" htmlFor={id}><span className="cms-label">{field.label}</span><input id={id} className="cms-input" type={type} required={field.required} value={inputValue} onChange={(event) => { update(field.key, event.target.value); if ((field.key === "title" || field.key === "name") && !record.slug) update("slug", slugify(event.target.value)); }} />{field.help && <small className="mt-1 block text-zinc-500">{field.help}</small>}</label>;
 }

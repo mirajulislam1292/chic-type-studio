@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import { useSiteSettings } from "@/hooks/useContent";
+import { HeroGeometry } from "./HeroGeometry";
 
 export function HeroSection() {
   const [imgError, setImgError] = useState(false);
@@ -17,6 +18,7 @@ export function HeroSection() {
 
   return (
     <section className="min-h-[85vh] flex flex-col justify-center relative pt-28 pb-16 overflow-hidden">
+      <HeroGeometry />
       <div className="w-full max-w-5xl mx-auto px-6 lg:px-12 relative z-10">
         <div className="flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-10 md:gap-12">
           

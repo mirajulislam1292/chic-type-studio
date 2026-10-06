@@ -69,6 +69,10 @@ export async function saveRecord<T extends CmsRecord>(collection: CollectionName
   delete payload.created_at;
   delete payload.updated_at;
   delete payload.certificate;
+  if (collection === "blog_posts") {
+    if (payload.published_at === "") payload.published_at = null;
+    if (payload.status === "published" && !payload.published_at) payload.published_at = new Date().toISOString();
+  }
   const { data, error } = await supabase.from(collection).upsert(payload).select().single();
   if (error) throw new Error(error.message);
   return data as T;
