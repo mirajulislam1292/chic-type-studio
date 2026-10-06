@@ -136,7 +136,7 @@ export const defaultSettings: SiteSettings = {
     facebook: "https://www.facebook.com/mahimmiraj1292",
     instagram: "https://www.instagram.com/mahimmiraj1292",
   },
-  seo_title: "M. Mahimmiraj — Engineer, Builder & Founder",
+  seo_title: "M. Mahimmiraj — Builder & Innovator",
   seo_description: "Portfolio of M. Mahimmiraj: engineering, robotics, IoT, product authentication and technical writing.",
   footer_text: "Built with curiosity in Narayanganj, Bangladesh.",
 };

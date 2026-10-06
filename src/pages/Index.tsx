@@ -13,7 +13,7 @@ import { useSeo } from "@/lib/seo";
 
 export default function IndexPage() {
   const { settings } = useSiteSettings();
-  useSeo({ title: settings?.seo_title || "M. Mahimmiraj — Engineer, Builder & Founder", description: settings?.seo_description || "Engineering, robotics and product security portfolio of M. Mahimmiraj.", path: "/", image: settings?.profile_image_url, jsonLd: { "@context": "https://schema.org", "@type": "Person", name: settings?.name || "M. Mahimmiraj", url: window.location.origin, sameAs: settings ? Object.values(settings.social_links) : [] } });
+  useSeo({ title: settings?.seo_title || "M. Mahimmiraj — Builder & Innovator", description: settings?.seo_description || "Robotics, technology and product security portfolio of M. Mahimmiraj.", path: "/", image: settings?.profile_image_url, jsonLd: { "@context": "https://schema.org", "@type": "Person", name: settings?.name || "M. Mahimmiraj", url: window.location.origin, sameAs: settings ? Object.values(settings.social_links) : [] } });
   return (
     <div className="min-h-screen bg-background text-foreground relative selection:bg-orange-500/20 selection:text-orange-400">
       <Navbar />
