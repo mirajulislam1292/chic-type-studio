@@ -11,6 +11,9 @@ type VercelResponse = {
   setHeader(name: string, value: string): void;
 };
 
+const projectUrl = "https://qaevcjvzttwmcgdryits.supabase.co";
+const projectPublishableKey = "sb_publishable_uP0Skkl1mE-smN2TanwdtA_MoxN1kgG";
+
 function header(request: VercelRequest, name: string) {
   const value = request.headers[name];
   return Array.isArray(value) ? value[0] : value || "";
@@ -27,13 +30,8 @@ export default async function trackVisitor(request: VercelRequest, response: Ver
     return;
   }
 
-  const supabaseUrl = process.env.VITE_SUPABASE_URL;
-  const anonKey = process.env.VITE_SUPABASE_ANON_KEY;
-  if (!supabaseUrl || !anonKey) {
-    console.error("Visitor tracking proxy is missing Supabase configuration");
-    response.status(503).json({ error: "Tracking unavailable" });
-    return;
-  }
+  const supabaseUrl = process.env.VITE_SUPABASE_URL || projectUrl;
+  const anonKey = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env.VITE_SUPABASE_ANON_KEY || projectPublishableKey;
 
   const forwardedFor = header(request, "x-vercel-forwarded-for") || header(request, "x-forwarded-for") || header(request, "x-real-ip");
   const ipAddress = forwardedFor.split(",")[0]?.trim();
