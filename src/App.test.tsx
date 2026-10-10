@@ -28,6 +28,8 @@ describe("portfolio routes and gallery data", () => {
     ["/projects/a-eye", /AEYE|A-Eye/i],
     ["/projects/nutridrip", /NutriDrip/i],
     ["/essays/qcec", /QCEC/i],
+    ["/message", /anonymous note/i],
+    ["/contact", /Let's talk/i],
   ])("registers the route %s", async (route, headingMatcher) => {
     const { unmount } = render(
       <MemoryRouter initialEntries={[route]}>

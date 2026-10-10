@@ -115,7 +115,8 @@ export async function getDashboardCounts() {
   }));
   const { count: drafts } = await supabase.from("blog_posts").select("id", { head: true, count: "exact" }).eq("status", "draft");
   const { count: published } = await supabase.from("blog_posts").select("id", { head: true, count: "exact" }).eq("status", "published");
-  return { ...Object.fromEntries(values), blog_drafts: drafts || 0, blog_published: published || 0 };
+  const { count: newMessages } = await supabase.from("inbound_messages").select("id", { head: true, count: "exact" }).eq("status", "new");
+  return { ...Object.fromEntries(values), blog_drafts: drafts || 0, blog_published: published || 0, new_messages: newMessages || 0 };
 }
 
 export { isCmsConfigured };

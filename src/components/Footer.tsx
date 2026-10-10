@@ -53,6 +53,9 @@ export function Footer() {
           <Link to="/gallery" className="hover:text-white transition-colors">
             Gallery
           </Link>
+          <Link to="/message" className="hover:text-white transition-colors">
+            Message
+          </Link>
         </div>
       </div>
     </footer>

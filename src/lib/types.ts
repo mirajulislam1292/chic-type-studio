@@ -178,3 +178,22 @@ export interface VisitorEvent {
   operating_system: string | null;
   device_type: string | null;
 }
+
+export interface InboundMessage {
+  id: string;
+  message_type: "anonymous" | "contact";
+  name: string | null;
+  email: string | null;
+  subject: string | null;
+  message: string;
+  ip_address: string;
+  country_code: string | null;
+  country: string | null;
+  region: string | null;
+  city: string | null;
+  user_agent: string | null;
+  status: "new" | "read" | "archived";
+  read_at: string | null;
+  created_at: string;
+  updated_at: string;
+}

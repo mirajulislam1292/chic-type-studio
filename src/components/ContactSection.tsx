@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Image, Linkedin, Github, Facebook, Instagram } from "lucide-react";
+import { Mail, Phone, MapPin, Image, Linkedin, Github, Facebook, Instagram, MessageCircle, BriefcaseBusiness, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSiteSettings } from "@/hooks/useContent";
 
@@ -73,6 +73,21 @@ export function ContactSection() {
             As a passionate learner and open project contributor, I am always eager to connect and collaborate. Feel free to reach out to me via email or connect with me on social platforms.
           </p>
         </motion.div>
+
+        <div className="mx-auto mb-12 grid max-w-4xl gap-4 sm:grid-cols-2">
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="rounded-2xl border border-zinc-800 bg-[#0b0b0e] p-6">
+            <MessageCircle className="h-5 w-5 text-orange-400" />
+            <h3 className="mt-5 text-xl font-semibold text-white">Leave a private note</h3>
+            <p className="mt-2 text-sm leading-relaxed text-zinc-400">No name or email. Share a thought, opinion, encouragement, or criticism.</p>
+            <Link to="/message" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-orange-300">Anonymous message <ArrowUpRight className="h-4 w-4" /></Link>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.08 }} className="rounded-2xl border border-zinc-800 bg-[#0b0b0e] p-6">
+            <BriefcaseBusiness className="h-5 w-5 text-orange-400" />
+            <h3 className="mt-5 text-xl font-semibold text-white">Professional contact</h3>
+            <p className="mt-2 text-sm leading-relaxed text-zinc-400">For collaboration, projects, opportunities, or anything that needs a reply.</p>
+            <Link to="/contact" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-orange-300">Open contact form <ArrowUpRight className="h-4 w-4" /></Link>
+          </motion.div>
+        </div>
 
         {/* Contact Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
