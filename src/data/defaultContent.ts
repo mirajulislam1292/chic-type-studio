@@ -1,5 +1,5 @@
 import { galleryImages } from "./galleryImages";
-import type { Achievement, BlogPost, Certificate, Education, Experience, GalleryItem, Project, SiteSettings, Skill } from "@/lib/types";
+import type { Achievement, BlogPost, Certificate, Education, Experience, GalleryItem, Project, SiteSettings, Skill, Volunteering } from "@/lib/types";
 
 const projects = [
   ["TagWraps", "tagwraps", "An innovative packaging system using NFC technology to protect the authenticity of a product through a secured cryptographic encryption method, helping the public buy and identify genuine products.", "In Bangladesh and across South Asia, counterfeit medicines, fake cosmetics, and fraudulent goods cause real harm to real people every day. I built TagWraps to solve that with something simple and affordable.\n\nTagWraps is a smart NFC authentication tag embedded in a product wrapper. Each chip is cryptographically locked and registered in a cloud database. When a customer taps the tag with their smartphone, the system verifies the product as genuine or flags it as fake in real time. No app required. No special scanner. Just a phone tap.\n\nThe cost per tag is 5 to 10 taka. The protection it provides is priceless.", "/assets/truemedi-prototype.jpg", "/assets/about-photo.jpg", "Hardware & Cryptographic Packaging", ["NFC Tag Type-4", "AES Cryptography", "Anti-Counterfeit", "Hardware Security"]],
@@ -81,7 +81,6 @@ export const defaultExperiences: Experience[] = [
   ["Lead Developer & Technical Architect", "Scholars Cafe - Student Consulting Platform", "Built the entire Scholars Cafe platform from scratch as the primary developer and technical architect behind the website.\nEngineered frontend interfaces, backend services, responsive design, and deployment pipelines from the ground up.\nCoordinating the intern technical team, conducting code reviews, and maintaining platform operations that empower students with EPT, SAT prep, university applications, and scholarship pathways.", "2026-01-01", null, true, "https://www.scholarscafe.com/"],
   ["Graphic Design Intern", "Scholars Cafe", "Produced visual communications and promotional materials aligned with brand guidelines and audience engagement objectives.", "2025-04-01", "2025-12-01", false, null],
   ["President, Science Club (GTCSC) - EC 2024-2025", "Government Tolaram College, Narayanganj", "Directed a student-led science and technology club; organized seminars, inter-college workshops, and outreach initiatives.\nManaged a committee to execute events promoting STEM education across the district.", "2025-05-01", "2026-05-01", false, null],
-  ["RCY Volunteer, ICT Department", "Bangladesh Red Crescent Youth, Narayanganj Unit", "Coordinated digital communication during emergency response operations.\nContributed to climate adaptation programs and participated in multiple national environmental training initiatives.", "2024-05-01", null, true, null],
 ].map(([position, company, description, start, end, current, url], index) => ({
   id: `seed-experience-${index + 1}`,
   position: position as string,
@@ -94,6 +93,19 @@ export const defaultExperiences: Experience[] = [
   external_url: url as string | null,
   sort_order: index,
 }));
+
+export const defaultVolunteering: Volunteering[] = [{
+  id: "seed-volunteering-1",
+  role: "RCY Volunteer, ICT Department",
+  organization: "Bangladesh Red Crescent Youth, Narayanganj Unit",
+  description: "Coordinated digital communication during emergency response operations.\nContributed to climate adaptation programs and participated in multiple national environmental training initiatives.",
+  start_date: "2024-05-01",
+  end_date: "2026-02-02",
+  current: false,
+  cause: "Humanitarian response and climate adaptation",
+  external_url: null,
+  sort_order: 0,
+}];
 
 export const defaultEducation: Education[] = [];
 
@@ -148,6 +160,7 @@ export const fallbackCollections = {
   blog_posts: defaultPosts,
   gallery_items: defaultGallery,
   experiences: defaultExperiences,
+  volunteering: defaultVolunteering,
   education: defaultEducation,
   skills: defaultSkills,
 };

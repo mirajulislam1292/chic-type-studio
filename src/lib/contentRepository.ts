@@ -16,6 +16,7 @@ const searchable: Partial<Record<CollectionName, string>> = {
   blog_posts: "title",
   gallery_items: "alt_text",
   experiences: "position",
+  volunteering: "role",
   education: "institution",
   skills: "name",
 };
@@ -108,7 +109,7 @@ export async function getDashboardCounts() {
   if (!supabase) {
     return Object.fromEntries(Object.entries(fallbackCollections).map(([key, value]) => [key, value.length]));
   }
-  const collections: CollectionName[] = ["projects", "achievements", "certificates", "blog_posts", "gallery_items", "experiences", "education", "skills"];
+  const collections: CollectionName[] = ["projects", "achievements", "certificates", "blog_posts", "gallery_items", "experiences", "volunteering", "education", "skills"];
   const values = await Promise.all(collections.map(async (collection) => {
     const { count } = await supabase.from(collection).select("id", { head: true, count: "exact" });
     return [collection, count || 0] as const;

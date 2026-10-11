@@ -3,6 +3,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { WorkExperience } from "@/components/WorkExperience";
+import { VolunteeringSection } from "@/components/VolunteeringSection";
 import { AchievementsSection } from "@/components/AchievementsSection";
 import { VisionSection } from "@/components/VisionSection";
 import { ContactSection } from "@/components/ContactSection";
@@ -23,6 +24,7 @@ export default function IndexPage() {
           <AboutSection />
           <ProjectsSection />
           <WorkExperience />
+          <VolunteeringSection />
           <CredentialsSection />
           <AchievementsSection />
           <VisionSection />

@@ -45,4 +45,12 @@ describe("portfolio routes and gallery data", () => {
     render(<MemoryRouter initialEntries={["/admin/login"]}><AuthProvider><App /></AuthProvider></MemoryRouter>);
     expect(await screen.findByText(/content service is not connected/i)).toBeInTheDocument();
   });
+
+  it("separates volunteering from work experience on the homepage", async () => {
+    render(<MemoryRouter initialEntries={["/"]}><AuthProvider><App /></AuthProvider></MemoryRouter>);
+
+    expect(await screen.findByRole("heading", { name: "Work Experience" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "Volunteering" })).toBeInTheDocument();
+    expect(await screen.findByText("RCY Volunteer, ICT Department")).toBeInTheDocument();
+  });
 });

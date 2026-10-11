@@ -88,6 +88,17 @@ export interface Experience extends BaseRecord {
   external_url: string | null;
 }
 
+export interface Volunteering extends BaseRecord {
+  role: string;
+  organization: string;
+  description: string;
+  start_date: string | null;
+  end_date: string | null;
+  current: boolean;
+  cause: string | null;
+  external_url: string | null;
+}
+
 export interface Education extends BaseRecord {
   institution: string;
   degree: string;
@@ -126,10 +137,11 @@ export type CollectionName =
   | "blog_posts"
   | "gallery_items"
   | "experiences"
+  | "volunteering"
   | "education"
   | "skills";
 
-export type CmsRecord = Project | Achievement | Certificate | BlogPost | GalleryItem | Experience | Education | Skill;
+export type CmsRecord = Project | Achievement | Certificate | BlogPost | GalleryItem | Experience | Volunteering | Education | Skill;
 
 export interface AnalyticsBreakdown {
   label: string;
