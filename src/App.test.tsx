@@ -3,6 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import App from "./App";
 import { galleryImages } from "./data/galleryImages";
 import { AuthProvider } from "./context/AuthContext";
+import { getVisibleSocialLinks } from "./lib/socialLinks";
 
 describe("portfolio routes and gallery data", () => {
   it("uses the local gallery asset list requested for the portfolio", () => {
@@ -18,6 +19,20 @@ describe("portfolio routes and gallery data", () => {
       "/assets/gallery-thumbs/IMG_3143.JPG",
       "/assets/gallery-thumbs/IMG_3822.jpg",
       "/assets/gallery-thumbs/IMG_3828.jpg",
+    ]);
+  });
+
+  it("shows only configured social profiles and supports custom platforms", () => {
+    expect(getVisibleSocialLinks({
+      x: "https://x.com/mahim",
+      facebook: "",
+      custom: [
+        { label: "Behance", url: "https://behance.net/mahim" },
+        { label: "Hidden", url: "" },
+      ],
+    })).toEqual([
+      { key: "x", label: "X (formerly Twitter)", url: "https://x.com/mahim" },
+      { key: "custom-0-Behance", label: "Behance", url: "https://behance.net/mahim" },
     ]);
   });
 

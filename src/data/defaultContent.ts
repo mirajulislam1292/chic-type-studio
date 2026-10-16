@@ -1,4 +1,5 @@
 import { galleryImages } from "./galleryImages";
+import { defaultSocialLinks } from "@/lib/socialLinks";
 import type { Achievement, BlogPost, Certificate, Education, Experience, GalleryItem, Project, SiteSettings, Skill, Volunteering } from "@/lib/types";
 
 const projects = [
@@ -142,12 +143,7 @@ export const defaultSettings: SiteSettings = {
   email: "mahimmiraj@outlook.com",
   phone: "+880 1410 669641",
   location: "Narayanganj, Bangladesh",
-  social_links: {
-    github: "https://github.com/mirajulislam1292",
-    linkedin: "https://www.linkedin.com/in/mahimmiraj1292/",
-    facebook: "https://www.facebook.com/mahimmiraj1292",
-    instagram: "https://www.instagram.com/mahimmiraj1292",
-  },
+  social_links: defaultSocialLinks,
   seo_title: "M. Mahimmiraj — Builder & Innovator",
   seo_description: "Portfolio of M. Mahimmiraj: engineering, robotics, IoT, product authentication and technical writing.",
   footer_text: "Built with curiosity in Narayanganj, Bangladesh.",

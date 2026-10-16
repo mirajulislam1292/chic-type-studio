@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Image, Linkedin, Github, Facebook, Instagram, MessageCircle, BriefcaseBusiness, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, MapPin, Image, Linkedin, Github, Facebook, Instagram, MessageCircle, BriefcaseBusiness, ArrowUpRight, Twitter, Youtube, Music2, Send, PenLine, Link2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSiteSettings } from "@/hooks/useContent";
+import { defaultSocialLinks, getVisibleSocialLinks } from "@/lib/socialLinks";
 
 const contactInfo = [
   {
@@ -24,28 +25,20 @@ const contactInfo = [
   },
 ];
 
-const socialLinks = [
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/mahimmiraj1292/",
-    icon: Linkedin,
-  },
-  {
-    name: "GitHub",
-    href: "https://github.com/mirajulislam1292",
-    icon: Github,
-  },
-  {
-    name: "Facebook",
-    href: "https://www.facebook.com/mahimmiraj1292",
-    icon: Facebook,
-  },
-  {
-    name: "Instagram",
-    href: "https://www.instagram.com/mahimmiraj1292",
-    icon: Instagram,
-  },
-];
+const socialIcons = {
+  github: Github,
+  linkedin: Linkedin,
+  x: Twitter,
+  facebook: Facebook,
+  instagram: Instagram,
+  whatsapp: MessageCircle,
+  wechat: MessageCircle,
+  youtube: Youtube,
+  telegram: Send,
+  tiktok: Music2,
+  discord: MessageCircle,
+  medium: PenLine,
+} as const;
 
 export function ContactSection() {
   const { settings } = useSiteSettings();
@@ -54,7 +47,7 @@ export function ContactSection() {
     ...(settings.phone ? [{ icon: Phone, label: "Phone", value: settings.phone, href: `tel:${settings.phone.replace(/\s/g, "")}` }] : []),
     ...(settings.location ? [{ icon: MapPin, label: "Location", value: settings.location, href: null }] : []),
   ] : contactInfo;
-  const dynamicSocialLinks = settings ? socialLinks.map((item) => ({ ...item, href: settings.social_links[item.name.toLowerCase()] || item.href })).filter((item) => item.href) : socialLinks;
+  const dynamicSocialLinks = getVisibleSocialLinks(settings?.social_links || defaultSocialLinks);
   return (
     <section id="contact" className="py-24 relative">
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
@@ -144,15 +137,16 @@ export function ContactSection() {
           className="flex justify-center gap-4"
         >
           {dynamicSocialLinks.map((social) => {
-            const SocialIcon = social.icon;
+            const SocialIcon = socialIcons[social.key as keyof typeof socialIcons] || Link2;
             return (
               <a
-                key={social.name}
-                href={social.href}
+                key={social.key}
+                href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-xl bg-[#0b0b0e] border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-600 transition-all duration-300"
-                title={social.name}
+                title={social.label}
+                aria-label={social.label}
               >
                 <SocialIcon className="w-5 h-5" />
               </a>

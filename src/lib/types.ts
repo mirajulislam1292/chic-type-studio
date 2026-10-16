@@ -114,6 +114,17 @@ export interface Skill extends BaseRecord {
   level: string | null;
 }
 
+export interface CustomSocialLink {
+  id?: string;
+  label: string;
+  url: string;
+}
+
+export interface SocialLinks {
+  custom?: CustomSocialLink[];
+  [platform: string]: string | CustomSocialLink[] | undefined;
+}
+
 export interface SiteSettings {
   id: string;
   name: string;
@@ -123,7 +134,7 @@ export interface SiteSettings {
   email: string;
   phone: string | null;
   location: string | null;
-  social_links: Record<string, string>;
+  social_links: SocialLinks;
   seo_title: string;
   seo_description: string;
   footer_text: string;
