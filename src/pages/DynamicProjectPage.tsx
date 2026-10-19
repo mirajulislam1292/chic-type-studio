@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { MarkdownContent } from "@/components/MarkdownContent";
+import { ProjectMedia } from "@/components/ProjectMedia";
 import { getBySlug } from "@/lib/contentRepository";
 import { useSeo } from "@/lib/seo";
 import type { Project } from "@/lib/types";
@@ -18,8 +19,9 @@ export default function DynamicProjectPage() {
     <Link to="/projects" className="mb-10 inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white"><ArrowLeft className="h-4 w-4" />All projects</Link>
     {loading && <p className="text-zinc-500">Loading project…</p>}
     {!loading && !project && <div className="rounded-xl border border-zinc-800 p-10"><h1 className="text-3xl font-semibold">Project not found</h1><p className="mt-3 text-zinc-400">This project is unavailable or has not been published.</p></div>}
-    {project && <article><header className="mb-10"><p className="eyebrow mb-3 text-xs uppercase text-orange-400">{project.category}</p><h1 className="text-4xl font-bold sm:text-6xl">{project.name}</h1><p className="mt-5 max-w-3xl text-lg leading-relaxed text-zinc-300">{project.short_description}</p><div className="mt-7 flex flex-wrap gap-3">{project.live_url ? <a className="action-primary" href={project.live_url} target="_blank" rel="noreferrer">Project link <ExternalLink className="h-4 w-4" /></a> : null}{project.demo_url ? <a className="action-secondary" href={project.demo_url} target="_blank" rel="noreferrer">Demo <ExternalLink className="h-4 w-4" /></a> : null}{project.github_url ? <a className="action-secondary" href={project.github_url} target="_blank" rel="noreferrer"><Github className="h-4 w-4" />Source</a> : null}</div></header>
-      <div className="grid gap-12 md:grid-cols-[1fr_240px]"><MarkdownContent content={project.long_description} /><aside><h2 className="mb-4 text-sm font-mono uppercase tracking-wider text-zinc-500">Technology</h2><ul className="space-y-2 text-sm text-zinc-300">{project.technologies.map((tech) => <li key={tech}>{tech}</li>)}</ul></aside></div>
+    {project && <article><header className="mb-10"><p className="eyebrow mb-3 text-xs uppercase text-orange-400">{project.category}</p><h1 className="text-4xl font-bold sm:text-6xl">{project.name}</h1><p className="mt-5 max-w-3xl text-lg leading-relaxed text-zinc-300">{project.short_description}</p><div className="mt-7 flex flex-wrap gap-3">{project.live_url ? <a className="action-primary" href={project.live_url} target="_blank" rel="noreferrer">Visit project <ExternalLink className="h-4 w-4" /></a> : null}{project.demo_url ? <a className="action-secondary" href={project.demo_url} target="_blank" rel="noreferrer">Demo <ExternalLink className="h-4 w-4" /></a> : null}{project.github_url ? <a className="action-secondary" href={project.github_url} target="_blank" rel="noreferrer"><Github className="h-4 w-4" />Source</a> : null}</div></header>
+      <ProjectMedia projectName={project.name} thumbnailUrl={project.thumbnail_url} galleryUrls={project.gallery_urls} />
+      <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_240px]"><MarkdownContent content={project.long_description} preserveWhitespace /><aside><h2 className="mb-4 text-sm font-mono uppercase tracking-wider text-zinc-500">Technology</h2><ul className="space-y-2 text-sm text-zinc-300">{project.technologies.map((tech) => <li key={tech}>{tech}</li>)}</ul></aside></div>
     </article>}
   </main><Footer /></div>;
 }

@@ -4,6 +4,8 @@ import App from "./App";
 import { galleryImages } from "./data/galleryImages";
 import { AuthProvider } from "./context/AuthContext";
 import { getVisibleSocialLinks } from "./lib/socialLinks";
+import { MarkdownContent } from "./components/MarkdownContent";
+import { ProjectMedia } from "./components/ProjectMedia";
 
 describe("portfolio routes and gallery data", () => {
   it("uses the local gallery asset list requested for the portfolio", () => {
@@ -34,6 +36,14 @@ describe("portfolio routes and gallery data", () => {
       { key: "x", label: "X (formerly Twitter)", url: "https://x.com/mahim" },
       { key: "custom-0-Behance", label: "Behance", url: "https://behance.net/mahim" },
     ]);
+  });
+
+  it("renders project screenshots and preserves authored description spacing", () => {
+    const { container } = render(<><ProjectMedia projectName="GutiGhor" galleryUrls={["https://example.com/screenshot.png"]} /><MarkdownContent content={"First  line\nSecond line"} preserveWhitespace /></>);
+
+    expect(screen.getByRole("img", { name: "GutiGhor project preview" })).toHaveAttribute("src", "https://example.com/screenshot.png");
+    expect(container.querySelector("p")).toHaveClass("whitespace-pre-wrap");
+    expect(container.querySelector("p")?.textContent).toBe("First  lineSecond line");
   });
 
   it.each([

@@ -12,18 +12,18 @@ function inline(text: string): ReactNode[] {
   });
 }
 
-export function MarkdownContent({ content }: { content: string }) {
+export function MarkdownContent({ content, preserveWhitespace = false }: { content: string; preserveWhitespace?: boolean }) {
   const blocks = content.replace(/\r/g, "").split(/\n{2,}/);
   return (
-    <div className="prose prose-invert prose-zinc max-w-none prose-headings:font-semibold prose-a:text-orange-400 prose-code:text-orange-300 prose-code:before:content-none prose-code:after:content-none">
+    <div className={`prose prose-invert prose-zinc max-w-none prose-headings:font-semibold prose-a:text-orange-400 prose-code:text-orange-300 prose-code:before:content-none prose-code:after:content-none ${preserveWhitespace ? "space-y-6 [&>p]:m-0" : ""}`}>
       {blocks.map((block, index) => {
         if (block.startsWith("```")) return <pre key={index}><code>{block.replace(/^```[^\n]*\n?/, "").replace(/```$/, "")}</code></pre>;
         if (block.startsWith("### ")) return <h3 key={index}>{inline(block.slice(4))}</h3>;
         if (block.startsWith("## ")) return <h2 key={index}>{inline(block.slice(3))}</h2>;
         if (block.startsWith("# ")) return <h1 key={index}>{inline(block.slice(2))}</h1>;
         const lines = block.split("\n");
-        if (lines.every((line) => line.startsWith("- "))) return <ul key={index}>{lines.map((line, lineIndex) => <li key={lineIndex}>{inline(line.slice(2))}</li>)}</ul>;
-        return <p key={index}>{lines.map((line, lineIndex) => <span key={lineIndex}>{inline(line)}{lineIndex < lines.length - 1 && <br />}</span>)}</p>;
+        if (lines.every((line) => line.startsWith("- "))) return <ul key={index}>{lines.map((line, lineIndex) => <li key={lineIndex} className={preserveWhitespace ? "whitespace-pre-wrap" : undefined}>{inline(line.slice(2))}</li>)}</ul>;
+        return <p key={index} className={preserveWhitespace ? "whitespace-pre-wrap" : undefined}>{lines.map((line, lineIndex) => <span key={lineIndex}>{inline(line)}{lineIndex < lines.length - 1 && <br />}</span>)}</p>;
       })}
     </div>
   );
