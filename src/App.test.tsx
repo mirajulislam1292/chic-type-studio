@@ -46,6 +46,16 @@ describe("portfolio routes and gallery data", () => {
     expect(container.querySelector("p")?.textContent).toBe("First  lineSecond line");
   });
 
+  it("keeps thumbnails off the projects listing while retaining detail-page media", async () => {
+    const listing = render(<MemoryRouter initialEntries={["/projects"]}><AuthProvider><App /></AuthProvider></MemoryRouter>);
+    expect(await screen.findByRole("heading", { name: /Projects built around real problems/i })).toBeInTheDocument();
+    expect(screen.queryByRole("img", { name: /preview/i })).not.toBeInTheDocument();
+    listing.unmount();
+
+    render(<MemoryRouter initialEntries={["/projects/hydrover"]}><AuthProvider><App /></AuthProvider></MemoryRouter>);
+    expect(await screen.findByRole("img", { name: /HydroVer project preview/i })).toBeInTheDocument();
+  });
+
   it.each([
     ["/gallery", /^Gallery$/i],
     ["/projects/hydrover", /HydroVer/i],
